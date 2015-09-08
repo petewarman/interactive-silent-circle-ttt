@@ -19439,7 +19439,7 @@ define( 'views/introView',[
 
 
 
-define('text!templates/questions.html',[],function () { return '<div class="inner">\n\n    {{#questions}}\n\n    <div id="{{question-id}}" data-index="{{question-index}}" class="question">\n\n        <h2><i>{{index}}. {{topic}}.</i> {{question}}</h2>\n\n        <fieldset class="answers">\n\n            {{#answers}}\n            <div class="answer-wrapper">\n                <input type="radio"\n                       name="{{question-id}}-radio"\n                       id="{{answer-id}}"\n                       value="{{value}}"\n                       data-index="{{answer-index}}">\n                <label><span></span>{{answer}}</label>\n\n                <div class="feedback">{{feedback}}</div>\n            </div>\n            {{/answers}}\n\n        </fieldset>\n\n    </div>\n\n    {{/questions}}\n\n</div>\n\n<div class="button right">\n    <a href="#">{{button.next}}</a>\n</div>\n\n\n';});
+define('text!templates/questions.html',[],function () { return '<div class="inner">\n\n    {{#questions}}\n\n    <div id="{{question-id}}" data-index="{{question-index}}" class="question">\n\n        <h2><i>{{index}}. {{topic}}.</i> {{question}}</h2>\n\n        <fieldset class="answers">\n\n            {{#answers}}\n            <div class="answer-wrapper">\n                <input type="radio"\n                       name="{{question-id}}-radio"\n                       id="{{answer-id}}"\n                       value="{{value}}"\n                       data-index="{{answer-index}}">\n                <label><span></span>{{answer}}</label>\n\n                <div class="endscreen">{{endscreen}}</div>\n\n                <div class="feedback">{{feedback}}</div>\n            </div>\n            {{/answers}}\n\n        </fieldset>\n\n    </div>\n\n    {{/questions}}\n\n</div>\n\n<div class="button right">\n    <a href="#">{{button.next}}</a>\n</div>\n\n\n';});
 
 define( 'views/questionsView',[
   'backbone',
@@ -19447,6 +19447,7 @@ define( 'views/questionsView',[
   'text!templates/questions.html',
   'underscore',
   'velocity',
+
   'velocity-ui'
 //  'views/analytics'
 ], function ( Backbone, Mustache, template, _, velocity ) {
@@ -19462,6 +19463,8 @@ define( 'views/questionsView',[
       this.app = options.app;
 
       this.questionsCount = this.questions.length;
+
+      this.currentState = 'questions';
 
       return this;
     },
@@ -19497,7 +19500,17 @@ define( 'views/questionsView',[
 
       $( document ).on( click, '.answer-wrapper:not(.selected) label, .answer-wrapper:not(.selected) span', this.activateAnswer.bind( this ) );
 
-      $( document ).on( click, '.button.enabled a', this.next.bind( this ) );
+      $( document ).on( click, '.button.enabled a', this.buttonClicked.bind( this ) );
+
+    },
+
+    buttonClicked: function () {
+
+      if ( this.currentState === 'questions' ) {
+        this.next();
+      } else if ( this.currentState === 'summary' ) {
+        this.app.restart();
+      }
 
     },
 
@@ -19509,16 +19522,8 @@ define( 'views/questionsView',[
       if ( nextIdx >= 0 ) {
         this.app.showQuestion( nextIdx );
       } else {
-        this.renderSummary();
+        this.showSummary();
       }
-
-      console.log( nextIdx );
-
-    },
-
-    renderSummary: function () {
-
-      console.log( 'render summary' );
 
     },
 
@@ -19537,7 +19542,7 @@ define( 'views/questionsView',[
      */
     activateAnswer: function ( e ) {
 
-      var $question, $answers, $selectedAnswer, $radio, $feedback, $feedbacks, index;
+      var $question, $answers, $selectedAnswer, $radio, $selectedFeedback, $allFeedbacks, $visibleFeedbacks, index;
 
       if ( e instanceof jQuery ) {
         $radio = e;
@@ -19551,8 +19556,9 @@ define( 'views/questionsView',[
       }
 
       $answers = $question.find( '.answer-wrapper' );
-      $feedback = $selectedAnswer.find( '.feedback' );
-      $feedbacks = $answers.find( '.feedback' );
+      $selectedFeedback = $selectedAnswer.find( '.feedback' );
+      $allFeedbacks = $answers.find( '.feedback' );
+      $visibleFeedbacks = $allFeedbacks.filter( ':visible' );
       index = $question.data( 'index' );
 
       // Activate the radio
@@ -19567,17 +19573,32 @@ define( 'views/questionsView',[
       $question.addClass( 'done' );
 
       // Show feedback
-      $feedbacks.hide();
-      $feedback.velocity( 'slideDown', {duration: 400} );
+      this.showFeedback( $visibleFeedbacks, $allFeedbacks, $selectedFeedback );
 
       // Update steps
       this.app.updateSteps();
 
-      // Update answers total +
+      // Update risk level
       this.app.updateLevel();
 
       // Update button state
       this.updateButton();
+
+    },
+
+    showFeedback: function ( $visibleFeedbacks, $allFeedbacks, $selectedFeedback ) {
+
+      $allFeedbacks.velocity( 'finish' );
+
+      if ( $visibleFeedbacks.length ) {
+        $visibleFeedbacks.velocity( 'slideUp', {duration: 400, complete: function () {
+          $selectedFeedback.velocity( 'slideDown', {duration: 400} );
+          $allFeedbacks.not( $selectedFeedback ).hide();
+        }} );
+      } else {
+        $selectedFeedback.velocity( 'slideDown', {duration: 400} );
+        $allFeedbacks.not( $selectedFeedback ).hide();
+      }
 
     },
 
@@ -19616,6 +19637,21 @@ define( 'views/questionsView',[
         this.$button.removeClass( 'enabled' );
       }
 
+      // If we are in summary
+      if ( this.currentState === 'summary' ) {
+        this.$button.addClass( 'enabled' );
+        this.$buttonLink.html( this.button.repeat );
+      }
+
+    },
+
+    showSummary: function () {
+
+      this.currentState = 'summary';
+
+      this.$el.addClass( 'summary' );
+      this.updateButton();
+
     },
 
     show: function ( callback ) {
@@ -19630,7 +19666,7 @@ define( 'views/questionsView',[
     hide: function ( callback ) {
 
       this.$el.velocity( "fadeOut", {
-        duration: 800,
+        duration: 400,
         complete: callback
       } );
 
@@ -19768,7 +19804,6 @@ define( 'views/appView',[
   'views/introView',
   'views/questionsView',
   'views/levelView',
-//  'views/summaryView',
 
   // Templates
   'text!templates/app.html',
@@ -19896,7 +19931,7 @@ define( 'views/appView',[
         this.showQuestion( 0 ); // show the first question
 
         // Set the first answer active
-        this.questionsView.activateFirstAnswer.call(this.questionsView);
+        this.questionsView.activateFirstAnswer.call( this.questionsView );
 
       }.bind( this ) );
 
@@ -19962,6 +19997,12 @@ define( 'views/appView',[
     start: function () {
 
       this.introView.hide( this.renderLevel.bind( this, this.renderQuestions.bind( this ) ) );
+
+    },
+
+    restart: function () {
+
+      console.log( 'restart test' );
 
     }
 

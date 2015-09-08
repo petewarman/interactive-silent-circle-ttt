@@ -4,6 +4,7 @@ define( [
   'text!templates/questions.html',
   'underscore',
   'velocity',
+
   'velocity-ui'
 //  'views/analytics'
 ], function ( Backbone, Mustache, template, _, velocity ) {
@@ -19,6 +20,8 @@ define( [
       this.app = options.app;
 
       this.questionsCount = this.questions.length;
+
+      this.currentState = 'questions';
 
       return this;
     },
@@ -54,7 +57,17 @@ define( [
 
       $( document ).on( click, '.answer-wrapper:not(.selected) label, .answer-wrapper:not(.selected) span', this.activateAnswer.bind( this ) );
 
-      $( document ).on( click, '.button.enabled a', this.next.bind( this ) );
+      $( document ).on( click, '.button.enabled a', this.buttonClicked.bind( this ) );
+
+    },
+
+    buttonClicked: function () {
+
+      if ( this.currentState === 'questions' ) {
+        this.next();
+      } else if ( this.currentState === 'summary' ) {
+        this.app.restart();
+      }
 
     },
 
@@ -66,16 +79,8 @@ define( [
       if ( nextIdx >= 0 ) {
         this.app.showQuestion( nextIdx );
       } else {
-        this.renderSummary();
+        this.showSummary();
       }
-
-      console.log( nextIdx );
-
-    },
-
-    renderSummary: function () {
-
-      console.log( 'render summary' );
 
     },
 
@@ -94,7 +99,7 @@ define( [
      */
     activateAnswer: function ( e ) {
 
-      var $question, $answers, $selectedAnswer, $radio, $feedback, $feedbacks, index;
+      var $question, $answers, $selectedAnswer, $radio, $selectedFeedback, $allFeedbacks, $visibleFeedbacks, index;
 
       if ( e instanceof jQuery ) {
         $radio = e;
@@ -108,8 +113,9 @@ define( [
       }
 
       $answers = $question.find( '.answer-wrapper' );
-      $feedback = $selectedAnswer.find( '.feedback' );
-      $feedbacks = $answers.find( '.feedback' );
+      $selectedFeedback = $selectedAnswer.find( '.feedback' );
+      $allFeedbacks = $answers.find( '.feedback' );
+      $visibleFeedbacks = $allFeedbacks.filter( ':visible' );
       index = $question.data( 'index' );
 
       // Activate the radio
@@ -124,17 +130,32 @@ define( [
       $question.addClass( 'done' );
 
       // Show feedback
-      $feedbacks.hide();
-      $feedback.velocity( 'slideDown', {duration: 400} );
+      this.showFeedback( $visibleFeedbacks, $allFeedbacks, $selectedFeedback );
 
       // Update steps
       this.app.updateSteps();
 
-      // Update answers total +
+      // Update risk level
       this.app.updateLevel();
 
       // Update button state
       this.updateButton();
+
+    },
+
+    showFeedback: function ( $visibleFeedbacks, $allFeedbacks, $selectedFeedback ) {
+
+      $allFeedbacks.velocity( 'finish' );
+
+      if ( $visibleFeedbacks.length ) {
+        $visibleFeedbacks.velocity( 'slideUp', {duration: 400, complete: function () {
+          $selectedFeedback.velocity( 'slideDown', {duration: 400} );
+          $allFeedbacks.not( $selectedFeedback ).hide();
+        }} );
+      } else {
+        $selectedFeedback.velocity( 'slideDown', {duration: 400} );
+        $allFeedbacks.not( $selectedFeedback ).hide();
+      }
 
     },
 
@@ -173,6 +194,21 @@ define( [
         this.$button.removeClass( 'enabled' );
       }
 
+      // If we are in summary
+      if ( this.currentState === 'summary' ) {
+        this.$button.addClass( 'enabled' );
+        this.$buttonLink.html( this.button.repeat );
+      }
+
+    },
+
+    showSummary: function () {
+
+      this.currentState = 'summary';
+
+      this.$el.addClass( 'summary' );
+      this.updateButton();
+
     },
 
     show: function ( callback ) {
@@ -187,7 +223,7 @@ define( [
     hide: function ( callback ) {
 
       this.$el.velocity( "fadeOut", {
-        duration: 800,
+        duration: 400,
         complete: callback
       } );
 

@@ -9,7 +9,6 @@ define( [
   'views/introView',
   'views/questionsView',
   'views/levelView',
-//  'views/summaryView',
 
   // Templates
   'text!templates/app.html',
@@ -137,7 +136,7 @@ define( [
         this.showQuestion( 0 ); // show the first question
 
         // Set the first answer active
-        this.questionsView.activateFirstAnswer.call(this.questionsView);
+        this.questionsView.activateFirstAnswer.call( this.questionsView );
 
       }.bind( this ) );
 
@@ -203,6 +202,12 @@ define( [
     start: function () {
 
       this.introView.hide( this.renderLevel.bind( this, this.renderQuestions.bind( this ) ) );
+
+    },
+
+    restart: function () {
+
+      console.log( 'restart test' );
 
     }
 

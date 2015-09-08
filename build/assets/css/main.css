@@ -931,6 +931,46 @@ body {
 .guInteractive #questions-section {
   background-color: #424242;
 }
+.guInteractive #questions-section.summary > .inner .question {
+  display: block;
+  padding-bottom: 80px;
+}
+.guInteractive #questions-section.summary > .inner .question > h2 {
+  padding-bottom: 20px;
+}
+.guInteractive #questions-section.summary > .inner .question:last-of-type {
+  padding-bottom: 20px;
+}
+.guInteractive #questions-section.summary > .inner .question:last-of-type:after {
+  display: none;
+}
+.guInteractive #questions-section.summary > .inner .question:after {
+  content: ' ';
+  width: 200px;
+  height: 2px;
+  background-color: #666;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -khtml-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.guInteractive #questions-section.summary > .inner .question .answers .answer-wrapper {
+  display: none;
+}
+.guInteractive #questions-section.summary > .inner .question .answers .answer-wrapper.selected {
+  display: block;
+}
+.guInteractive #questions-section.summary > .inner .question .answers .answer-wrapper.selected .endscreen {
+  display: block;
+  padding-bottom: 20px;
+}
+.guInteractive #questions-section.summary > .inner .question .answers .answer-wrapper.selected .feedback {
+  display: block;
+  color: #ff827f;
+}
 .guInteractive #questions-section > .inner {
   margin: 0 auto;
 }
@@ -942,6 +982,7 @@ body {
 .guInteractive #questions-section > .inner .question {
   padding: 0px 20px;
   display: none;
+  position: relative;
 }
 .guInteractive #questions-section > .inner .question.current {
   display: block;
@@ -987,6 +1028,14 @@ body {
   font-size: 13px;
   padding: 5px 0 5px 25px;
   display: none;
+}
+.guInteractive #questions-section > .inner .question .answers .answer-wrapper .endscreen {
+  font-size: 13px;
+  padding: 5px 0 5px 25px;
+  display: none;
+}
+.guInteractive #questions-section > .inner .question .answers .answer-wrapper.selected * {
+  cursor: default;
 }
 .guInteractive #questions-section > .inner .question .answers .answer-wrapper label {
   position: relative;
