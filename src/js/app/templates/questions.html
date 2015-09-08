@@ -1,0 +1,36 @@
+<div class="inner">
+
+    {{#questions}}
+
+    <div id="{{question-id}}" data-index="{{question-index}}" class="question">
+
+        <h2><i>{{index}}. {{topic}}.</i> {{question}}</h2>
+
+        <fieldset class="answers">
+
+            {{#answers}}
+            <div class="answer-wrapper">
+                <input type="radio"
+                       name="{{question-id}}-radio"
+                       id="{{answer-id}}"
+                       value="{{value}}"
+                       data-index="{{answer-index}}">
+                <label><span></span>{{answer}}</label>
+
+                <div class="feedback">{{feedback}}</div>
+            </div>
+            {{/answers}}
+
+        </fieldset>
+
+    </div>
+
+    {{/questions}}
+
+</div>
+
+<div class="button right">
+    <a href="#">{{button.next}}</a>
+</div>
+
+

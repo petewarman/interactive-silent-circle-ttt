@@ -1,0 +1,66 @@
+.steps-container {
+  position: relative;
+  text-align: center;
+  padding: 0;
+  $step-size: 48px;
+
+  @include transform(scale(0.66, 0.66));
+
+  @media(min-width: 660px) {
+    padding: 10px 0;
+    @include transform(scale(0.75, 0.75));
+  }
+
+  @media(min-width: 980px) {
+    padding: 20px 0;
+    @include transform(scale(1, 1));
+  }
+
+  .step {
+    @include border-radius(50%);
+    border: 2px solid #666;
+    width: $step-size;
+    height: $step-size;
+    position: relative;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 62%;
+    margin-left: 14px;
+    cursor: default;
+    z-index: 2;
+
+    &.current {
+      border-color: $accent-color;
+      cursor: default !important;
+    }
+
+    &.done {
+      background-color: rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+    }
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    &:last-of-type {
+      &:after {
+        display: none;
+      }
+    }
+
+    &:after {
+      display: block;
+      content: '';
+      width: 19px;
+      height: 1px;
+      background-color: #666;
+      position: relative;
+      z-index: 1;
+      top: $step-size / 2 - 1px;
+      left: $step-size - 2px;
+    }
+  }
+
+}

@@ -1,0 +1,45 @@
+#intro-section {
+  position: relative;
+  height: 500px;
+
+  > .inner {
+    position: relative;
+    height: 100%;
+    margin: 0;
+    background-color: #666;
+
+    @media(min-width: 660px) {
+      margin: 0 10px;
+    }
+
+    @media(min-width: 980px) {
+      margin: 0 20px;
+    }
+
+    .titles-wrapper {
+
+      h1 {
+        text-align: center;
+        font-weight: 400;
+      }
+
+      h2 {
+        text-align: center;
+        font-weight: 400;
+      }
+
+    }
+
+    .button {
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+
+      a {
+        padding: 8px 40px;
+      }
+    }
+
+  }
+
+}

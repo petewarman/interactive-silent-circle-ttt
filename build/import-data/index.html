@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheet to JSON</title>
+
+    <style>
+        body {
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<p>
+    <a id="google-sheet" href=""></a>
+</p>
+
+<div id="json"></div>
+
+<!-- Libs -->
+<script src="js/jquery.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/tabletop.js"></script>
+
+
+<script type="text/javascript">
+    window.onload = function () {
+        init()
+    };
+
+    var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1oApMvBX6k8ijToreNOj0HFnHlhL7W6_y7k1d5jjSK7s/pubhtml?gid=0&single=true';
+
+    var lang, questions;
+
+    function init() {
+
+        $.ajax( {
+            url: 'lang.json',
+            success: loadSpreadsheet
+        } );
+
+    }
+
+    function loadSpreadsheet( langData ) {
+
+        lang = langData;
+
+        console.log( lang );
+
+        var a = document.getElementById( 'google-sheet' );
+        a.innerHTML = public_spreadsheet_url;
+        a.href = public_spreadsheet_url;
+
+        Tabletop.init( {
+            key: public_spreadsheet_url,
+            callback: showData,
+            simpleSheet: true
+        } );
+
+    }
+
+    function showData( questionsData, tabletop ) {
+        // alert( "Successfully processed!" );
+        console.log( questionsData );
+
+        var newData = {};
+        newData.questions = prepareData( questionsData );
+        newData.button = lang.button;
+        newData.view = lang.view;
+
+//        questionsData = JSON.stringify( newData, null, 4 );
+
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent( JSON.stringify( newData, null, 4 ) );
+
+        var a = document.createElement( 'a' );
+        a.href = 'data:' + dataStr;
+        a.download = 'data.json';
+        a.innerHTML = 'Download JSON';
+
+        var container = document.getElementById( 'json' );
+        container.appendChild( a );
+    }
+
+
+    /**
+     * Prepare the data for the "Take the test" page
+     * @param data
+     */
+    function prepareData( questions ) {
+
+        var preparedData;
+        var fields = [
+            'answer',
+            'value',
+            'feedback',
+            'endscreen',
+            'cstitle',
+            'cs'
+        ];
+
+        preparedData = _.map( questions, function ( item, idx ) {
+
+            var temp = {}; // TEMPORARY object with answers organized in arrays
+            var question = {}; // FINAL object with answers as objects
+
+            // 1. Organize answers and its relative values in arrays
+            _.each( item, function ( value, key, list ) {
+
+                key = key.toLowerCase();
+                value = value.trim();
+
+                if ( key.indexOf( 'question' ) === 0 ) {
+                    temp.question = value;
+                } else if ( key.indexOf( 'icon' ) === 0 ) {
+                    temp.icon = value;
+                } else if ( key.indexOf( 'topic' ) === 0 ) {
+                    temp.topic = value;
+                }
+
+                // Add elements to the right array
+                fields.forEach( function ( field ) {
+                    if ( key.indexOf( field ) === 0 ) {
+                        if ( !value ) return;
+
+                        if ( !temp[field] ) {
+                            temp[field] = [];
+                        }
+                        temp[field].push( value );
+                    }
+                } );
+
+            } );
+
+            // If answers are missing, just return
+            if ( !temp.answer )
+                return;
+
+            // 2. Organize answers in objects (more readable)
+            question.index = idx + 1;
+            question.topic = temp.topic;
+            question.question = temp.question;
+            question.icon = temp.icon;
+            question.questionId = 'question-' + idx;
+            question.answers = [];
+
+            temp.answer.forEach( function ( answer, idx ) {
+
+                var a = {};
+                a.answerId = question.questionId + '-answer-' + idx;
+
+                fields.forEach( function ( field ) {
+                    a[field] = temp[field] ? temp[field][idx] : null;
+                } );
+
+                question.answers.push( a );
+
+            } );
+
+            return question;
+
+        } );
+
+
+        return preparedData;
+    }
+
+</script>
+</body>
+</html>

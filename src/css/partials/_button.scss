@@ -1,0 +1,50 @@
+.button {
+  padding: 20px;
+
+  @media(min-width: 660px) {
+    padding: 20px 10px;
+  }
+
+  @media(min-width: 980px) {
+    padding: 20px 0;
+  }
+
+  &.center {
+    text-align: center;
+  }
+
+  &.right {
+    text-align: right;
+  }
+
+  &.enabled a {
+    background-color: $accent-color;
+    cursor: pointer;
+  }
+
+  a {
+    cursor: default;
+    display: inline-block;
+    padding: 5px 18px;
+    @include border-radius(3px);
+    background-color: #646464;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+
+    @media(min-width: 660px) {
+      font-size: 14px;
+      padding: 7px 20px;
+    }
+
+    @media(min-width: 980px) {
+      font-size: 15px;
+      padding: 8px 21px;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+}

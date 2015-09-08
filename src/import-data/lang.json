@@ -1,0 +1,15 @@
+{
+  "view": {
+    "intro": {
+      "title": "Take the test",
+      "subtitle": "How secure is your business?"
+    }
+  },
+
+  "button": {
+    "start": "Enter",
+    "next": "Next question",
+    "results": "See results",
+    "repeat": "Repeat test"
+  }
+}

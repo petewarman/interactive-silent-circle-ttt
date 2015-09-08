@@ -1,0 +1,48 @@
+#header-section {
+  position: relative;
+
+  &:after {
+    content: ' ';
+    height: 1px;
+    border-bottom: 4px solid $accent-color;
+    display: block;
+  }
+
+  #sc-logo {
+    position: relative;
+    text-align: right;
+
+    a {
+      position: relative;
+      display: inline-block;
+      width: 50%;
+      padding: 10px 10px;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      @media(min-width: 440px) {
+        width: 40%;
+      }
+
+      @media(min-width: 660px) {
+        padding: 15px 10px;
+      }
+
+      @media(min-width: 980px) {
+        width: 30%;
+        padding: 20px;
+      }
+
+      @media(min-width: 1300px) {
+        width: 25%;
+        padding: 20px 40px;
+      }
+
+    }
+  }
+
+}
+

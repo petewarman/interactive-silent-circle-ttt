@@ -1,0 +1,29 @@
+.section {
+  position: relative;
+  margin: 0;
+  @include css3-prefix(transition-duration, 0.4s);
+  opacity: 1;
+
+  @media(min-width: 660px) {
+    margin: 0 10px;
+  }
+
+  @media(min-width: 980px) {
+    margin: 0 20px;
+  }
+
+  &.full-width {
+    margin: 0;
+  }
+
+  &.top-sections-container {
+    position: relative;
+//    min-height: 500px;
+    background-color: #424242;
+  }
+
+  &.transparent {
+    opacity: 0;
+  }
+
+}

@@ -1,0 +1,151 @@
+#questions-section {
+
+  background-color: $content-bg-secondary-color;
+
+  > .inner {
+
+    margin: 0 auto;
+
+    @media(min-width: 980px) {
+      margin: 0 180px;
+    }
+
+    .question {
+      padding: 0px 20px;
+      display: none;
+
+//      @media(min-width: 660px) {
+//        padding: 10px;
+//      }
+//
+//      @media(min-width: 980px) {
+//        padding: 20px;
+//      }
+
+      &.current {
+        display: block;
+      }
+
+      h2 {
+        font-weight: 400;
+        color: $accent-color;
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 15px;
+
+        i {
+          font-style: italic;
+        }
+
+        @media(min-width: 660px) {
+          font-size: 22px;
+          line-height: 26px;
+        }
+
+        @media(min-width: 980px) {
+          font-size: 26px;
+          line-height: 30px;
+        }
+      }
+
+      .answers {
+
+        .answer-wrapper {
+          text-align: left;
+          position: relative;
+          padding-bottom: 12px;
+
+          @media(min-width: 660px) {
+            padding-bottom: 8px;
+          }
+
+          @media(min-width: 980px) {
+            padding-bottom: 5px;
+          }
+
+          .feedback {
+            font-size: 13px;
+            padding: 5px 0 5px 25px;
+            display: none;
+          }
+
+          label {
+            position: relative;
+            font-size: 16px;
+            color: #999;
+            padding-left: 25px;
+            display: inline-block;
+            cursor: pointer;
+            @include css3-prefix(transition-duration, 0.4s);
+
+            @media(min-width: 660px) {
+              font-size: 18px;
+            }
+
+            @media(min-width: 980px) {
+              font-size: 20px;
+            }
+
+            span {
+              width: 18px;
+              height: 18px;
+              display: inline-block;
+              vertical-align: middle;
+              position: absolute;
+              left: 0;
+              top: 50%;
+              border: 1px solid #999;
+              @include border-radius(50%);
+              @include transform(translateY(-50%));
+            }
+          }
+
+          input[type="radio"] {
+            @include opacity(0);
+            cursor: pointer;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            @include transform(translateY(-50%));
+            z-index: 2;
+          }
+
+          &.error label {
+            color: #be4848;
+          }
+
+          input[type="radio"]:checked + label {
+            color: #FFF;
+          }
+
+          input[type="radio"]:checked + label span {
+
+            &:after {
+              content: ' ';
+              background-color: $accent-color;
+              @include border-radius(50%);
+              width: 8px;
+              height: 8px;
+              display: block;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              @include transform(translateX(-50%) translateY(-50%));
+            }
+
+          }
+
+        }
+
+      }
+    }
+
+    fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+  }
+
+}

@@ -1,0 +1,102 @@
+// Main site CSS
+body {
+  margin: 0;
+}
+
+.element-interactive.interactive {
+  margin: 0;
+  padding: 0;
+}
+
+.guInteractive {
+
+  // Responsive pieces
+  @import 'responsive/main';
+
+  // Partials
+  @import 'partials/content-block';
+  @import 'partials/share-buttons';
+  @import 'partials/button';
+  @import 'partials/sections';
+
+  // Sections
+  @import 'sections/header';
+  @import 'sections/about';
+  @import 'sections/video';
+  @import 'sections/questions';
+  @import 'sections/summary';
+  @import 'sections/intro';
+  @import 'sections/level';
+
+  background: #555;
+  color: #fff;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+    font-family: "Guardian Egyptian Web", "Egyptian Display", "Guardian Text Egyptian Web", "Egyptian Text", Georgia, serif;
+  }
+
+  // GDN NAVIGATION
+  #guardianNav {
+    height: 48px;
+    background: #296d96;
+    width: 100%;
+  }
+
+  #navContainer {
+    background: #005689;
+    height: 100%;
+    padding: 1px 10px 0;
+    &:after {
+      clear: both;
+      content: '';
+      display: block;
+    }
+  }
+
+  #guardianLogo {
+    width: 170px;
+    float: right;
+    margin-top: 10px;
+    display: inline-block;
+  }
+
+  #homeLogo {
+    width: 15px;
+    height: 18px;
+    margin-top: 14px;
+    display: inline-block;
+    margin-right: 7px;
+    vertical-align: top;
+  }
+
+  // CONTENT
+  #content {
+    background: $content-bg-color;
+    position: relative;
+    height: auto;
+    padding: 1px 0 80px;
+    overflow: hidden;
+    margin: 0 auto;
+
+  }
+
+  #episodeQuote {
+    font-family: "Guardian Egyptian Web", "Egyptian Display", "Guardian Text Egyptian Web", "Egyptian Text", Georgia, serif;
+    font-size: 20px;
+  }
+
+  #backgroundLayer {
+    position: relative;
+    display: none;
+    @include css3-prefix(transition, 0.5s background);
+  }
+
+}
+
+

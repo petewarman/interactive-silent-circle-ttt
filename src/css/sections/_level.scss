@@ -1,0 +1,24 @@
+#level-section {
+  margin-bottom: 10px;
+
+  @media(min-width: 660px) {
+    margin-bottom: 15px;
+  }
+
+  @media(min-width: 980px) {
+    margin-bottom: 20px;
+  }
+
+  > .inner {
+    margin: 0 auto;
+
+    @media(min-width: 980px) {
+      margin: 0 180px;
+    }
+
+    @import "level/bar";
+    @import "level/steps";
+
+  }
+
+}

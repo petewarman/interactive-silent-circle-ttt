@@ -1,0 +1,33 @@
+<div class="inner">
+
+    <div class="steps-container">
+
+        {{#questions}}
+
+        <div id="{{question-id}}-step" data-index="{{question-index}}" class="step" style="background-image: url('{{assets}}/imgs/{{icon}}')"></div>
+
+        {{/questions}}
+
+    </div>
+
+    <div class="bar-container">
+        <h1>
+            Take the test.
+            <br>
+            How secure is your business?
+        </h1>
+
+        <div class="label-container">
+            <span class="left">Low risk</span>
+            <span class="right">High risk</span>
+        </div>
+
+        <div class="bar">
+            <!--<div id="level-value" class="level-value">-->
+                <!--<div class="level-bg"></div>-->
+            <!--</div>-->
+            <div id="level-mask" class="level-mask"></div>
+        </div>
+    </div>
+
+</div>
