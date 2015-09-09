@@ -8,26 +8,25 @@
 
         {{/questions}}
 
+        <div id="summary-step" class="step" style="background-image: url('{{assets}}/imgs/close.svg')"></div>
+
     </div>
 
     <div class="bar-container">
-        <h1>
-            Take the test.
-            <br>
-            How secure is your business?
+        <h1 class="title">
+            {{{view.title}}}
         </h1>
 
         <div class="label-container">
-            <span class="left">Low risk</span>
-            <span class="right">High risk</span>
+            <span class="left">{{view.low}}</span>
+            <span class="right">{{view.high}}</span>
         </div>
 
         <div class="bar">
-            <!--<div id="level-value" class="level-value">-->
-                <!--<div class="level-bg"></div>-->
-            <!--</div>-->
             <div id="level-mask" class="level-mask"></div>
         </div>
+
+        <div class="summary-message">{{{view.summary-message}}}</div>
     </div>
 
 </div>

@@ -2,7 +2,7 @@
 
   background-color: $content-bg-secondary-color;
 
-  &.summary {
+  .summary & {
     > .inner {
       .question {
         display: block;

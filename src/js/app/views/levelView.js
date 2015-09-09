@@ -51,7 +51,8 @@ define( [
 
       // Render main template
       this.$el.html( Mustache.render( template, {
-        questions: this.data.questions
+        questions: this.data.questions,
+        view: this.data.view.level
       } ) );
 
       this.setupElements();
@@ -85,6 +86,19 @@ define( [
       this.$steps.eq( idx ).addClass( 'done' );
 
       return this;
+    },
+
+    setStepUndone: function ( idx ) {
+      this.$steps.eq( idx ).removeClass( 'done' );
+
+      return this;
+    },
+
+    disableSteps: function () {
+
+      this.$steps.addClass( 'summary' );
+      this.$steps.removeClass( 'current' );
+
     },
 
     show: function ( callback ) {

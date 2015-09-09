@@ -931,20 +931,20 @@ body {
 .guInteractive #questions-section {
   background-color: #424242;
 }
-.guInteractive #questions-section.summary > .inner .question {
+.summary .guInteractive #questions-section > .inner .question {
   display: block;
   padding-bottom: 80px;
 }
-.guInteractive #questions-section.summary > .inner .question > h2 {
+.summary .guInteractive #questions-section > .inner .question > h2 {
   padding-bottom: 20px;
 }
-.guInteractive #questions-section.summary > .inner .question:last-of-type {
+.summary .guInteractive #questions-section > .inner .question:last-of-type {
   padding-bottom: 20px;
 }
-.guInteractive #questions-section.summary > .inner .question:last-of-type:after {
+.summary .guInteractive #questions-section > .inner .question:last-of-type:after {
   display: none;
 }
-.guInteractive #questions-section.summary > .inner .question:after {
+.summary .guInteractive #questions-section > .inner .question:after {
   content: ' ';
   width: 200px;
   height: 2px;
@@ -957,17 +957,17 @@ body {
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-.guInteractive #questions-section.summary > .inner .question .answers .answer-wrapper {
+.summary .guInteractive #questions-section > .inner .question .answers .answer-wrapper {
   display: none;
 }
-.guInteractive #questions-section.summary > .inner .question .answers .answer-wrapper.selected {
+.summary .guInteractive #questions-section > .inner .question .answers .answer-wrapper.selected {
   display: block;
 }
-.guInteractive #questions-section.summary > .inner .question .answers .answer-wrapper.selected .endscreen {
+.summary .guInteractive #questions-section > .inner .question .answers .answer-wrapper.selected .endscreen {
   display: block;
   padding-bottom: 20px;
 }
-.guInteractive #questions-section.summary > .inner .question .answers .answer-wrapper.selected .feedback {
+.summary .guInteractive #questions-section > .inner .question .answers .answer-wrapper.selected .feedback {
   display: block;
   color: #ff827f;
 }
@@ -1268,8 +1268,13 @@ body {
   height: 100%;
   width: 99%;
   background-color: #555;
+  -khtml-transition-property: width;
+  transition-property: width;
   -khtml-transition-duration: 1s;
   transition-duration: 1s;
+}
+.summary .guInteractive #level-section > .inner .bar-container .bar .level-mask {
+  border-left: 4px solid #FFF;
 }
 .guInteractive #level-section > .inner .steps-container {
   position: relative;
@@ -1318,6 +1323,13 @@ body {
   border-color: #ff827f;
   cursor: default !important;
 }
+.guInteractive #level-section > .inner .steps-container .step.summary {
+  background-color: transparent !important;
+  cursor: default !important;
+}
+.guInteractive #level-section > .inner .steps-container .step.summary:last-of-type {
+  border-color: #ff827f;
+}
 .guInteractive #level-section > .inner .steps-container .step.done {
   background-color: rgba(255, 255, 255, 0.05);
   cursor: pointer;
@@ -1338,6 +1350,20 @@ body {
   z-index: 1;
   top: 23px;
   left: 46px;
+}
+.guInteractive #level-section > .inner .summary-message {
+  text-align: center;
+  color: #ff827f;
+  font-size: 14px;
+  line-height: 30px;
+  padding: 20px 0 0 0;
+  height: 0;
+  overflow: hidden;
+  -khtml-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+.summary .guInteractive #level-section > .inner .summary-message {
+  height: 50px;
 }
 .guInteractive * {
   -moz-box-sizing: border-box;

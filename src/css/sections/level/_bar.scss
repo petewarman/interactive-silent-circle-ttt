@@ -39,6 +39,7 @@
   .label-container {
     font-size: 0;
     margin-bottom: 5px;
+
     .left,
     .right {
       font-size: 11px;
@@ -85,7 +86,13 @@
       width: 99%;
       background-color: #555;
 
+      @include css3-prefix(transition-property, width);
       @include css3-prefix(transition-duration, 1s);
+
+      .summary & {
+        border-left: 4px solid #FFF;
+      }
+
     }
 
   }

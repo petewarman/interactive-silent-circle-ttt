@@ -19464,7 +19464,7 @@ define( 'views/questionsView',[
 
       this.questionsCount = this.questions.length;
 
-      this.currentState = 'questions';
+      this.app.currentState = 'questions';
 
       return this;
     },
@@ -19492,6 +19492,8 @@ define( 'views/questionsView',[
       this.$button = this.$( '.button' );
       this.$buttonLink = this.$button.find( 'a' );
 
+      this.$feedbacks = this.$( '.feedback' );
+
     },
 
     setupEvents: function () {
@@ -19506,9 +19508,9 @@ define( 'views/questionsView',[
 
     buttonClicked: function () {
 
-      if ( this.currentState === 'questions' ) {
+      if ( this.app.currentState === 'questions' ) {
         this.next();
-      } else if ( this.currentState === 'summary' ) {
+      } else if ( this.app.currentState === 'summary' ) {
         this.app.restart();
       }
 
@@ -19522,7 +19524,7 @@ define( 'views/questionsView',[
       if ( nextIdx >= 0 ) {
         this.app.showQuestion( nextIdx );
       } else {
-        this.showSummary();
+        this.app.showSummary();
       }
 
     },
@@ -19638,19 +19640,10 @@ define( 'views/questionsView',[
       }
 
       // If we are in summary
-      if ( this.currentState === 'summary' ) {
+      if ( this.app.currentState === 'summary' ) {
         this.$button.addClass( 'enabled' );
         this.$buttonLink.html( this.button.repeat );
       }
-
-    },
-
-    showSummary: function () {
-
-      this.currentState = 'summary';
-
-      this.$el.addClass( 'summary' );
-      this.updateButton();
 
     },
 
@@ -19677,7 +19670,7 @@ define( 'views/questionsView',[
 
 
 
-define('text!templates/level.html',[],function () { return '<div class="inner">\n\n    <div class="steps-container">\n\n        {{#questions}}\n\n        <div id="{{question-id}}-step" data-index="{{question-index}}" class="step" style="background-image: url(\'assets/imgs/{{icon}}\')"></div>\n\n        {{/questions}}\n\n    </div>\n\n    <div class="bar-container">\n        <h1>\n            Take the test.\n            <br>\n            How secure is your business?\n        </h1>\n\n        <div class="label-container">\n            <span class="left">Low risk</span>\n            <span class="right">High risk</span>\n        </div>\n\n        <div class="bar">\n            <!--<div id="level-value" class="level-value">-->\n                <!--<div class="level-bg"></div>-->\n            <!--</div>-->\n            <div id="level-mask" class="level-mask"></div>\n        </div>\n    </div>\n\n</div>';});
+define('text!templates/level.html',[],function () { return '<div class="inner">\n\n    <div class="steps-container">\n\n        {{#questions}}\n\n        <div id="{{question-id}}-step" data-index="{{question-index}}" class="step" style="background-image: url(\'assets/imgs/{{icon}}\')"></div>\n\n        {{/questions}}\n\n        <div id="summary-step" class="step" style="background-image: url(\'assets/imgs/close.svg\')"></div>\n\n    </div>\n\n    <div class="bar-container">\n        <h1 class="title">\n            {{{view.title}}}\n        </h1>\n\n        <div class="label-container">\n            <span class="left">{{view.low}}</span>\n            <span class="right">{{view.high}}</span>\n        </div>\n\n        <div class="bar">\n            <div id="level-mask" class="level-mask"></div>\n        </div>\n\n        <div class="summary-message">{{{view.summary-message}}}</div>\n    </div>\n\n</div>';});
 
 define( 'views/levelView',[
   'backbone',
@@ -19732,7 +19725,8 @@ define( 'views/levelView',[
 
       // Render main template
       this.$el.html( Mustache.render( template, {
-        questions: this.data.questions
+        questions: this.data.questions,
+        view: this.data.view.level
       } ) );
 
       this.setupElements();
@@ -19766,6 +19760,19 @@ define( 'views/levelView',[
       this.$steps.eq( idx ).addClass( 'done' );
 
       return this;
+    },
+
+    setStepUndone: function ( idx ) {
+      this.$steps.eq( idx ).removeClass( 'done' );
+
+      return this;
+    },
+
+    disableSteps: function () {
+
+      this.$steps.addClass( 'summary' );
+      this.$steps.removeClass( 'current' );
+
     },
 
     show: function ( callback ) {
@@ -19823,7 +19830,7 @@ define( 'views/appView',[
 
       this.data = this.prepareData( options.data );
       this.isWeb = options.isWeb;
-      this.isTouch = options.isTouch; //
+      this.isTouch = options.isTouch;
 
     },
 
@@ -19870,7 +19877,7 @@ define( 'views/appView',[
       this.$el.on( click, '#start', this.start.bind( this ) );
 
       // Navigate through questions
-      this.$el.on( click, '.step.done', this.showQuestion.bind( this ) );
+      this.$el.on( click, '.step.done:not(.summary)', this.showQuestion.bind( this ) );
 
     },
 
@@ -19986,9 +19993,17 @@ define( 'views/appView',[
 
     updateSteps: function () {
 
+      // Remove class 'summary'
+      if ( this.currentState === 'questions' ) {
+        this.levelView.$steps.removeClass( 'summary' );
+      }
+
+      // Set step done or undone, depending on questions answered
       this.data.questions.forEach( function ( q, i ) {
         if ( q.done ) {
           this.levelView.setStepDone( i );
+        } else {
+          this.levelView.setStepUndone( i );
         }
       }.bind( this ) );
 
@@ -20000,9 +20015,51 @@ define( 'views/appView',[
 
     },
 
+    showSummary: function () {
+
+      this.currentState = 'summary';
+      this.$el.addClass( 'summary' );
+
+      // Update button and step icons
+      this.questionsView.updateButton();
+      this.levelView.disableSteps();
+
+    },
+
     restart: function () {
 
-      console.log( 'restart test' );
+      // Undo all questions
+      this.data.questions.forEach( function ( q, i ) {
+        q.done = false;
+      } );
+
+      // Uncheck all radios
+      this.questionsView.$answerWrapper.find( 'input[type=radio]' ).prop( 'checked', false );
+
+      // Remove class 'done' from all questions
+      this.questionsView.$questions.removeClass( 'done' );
+
+      // Hide all feedbacks
+      this.questionsView.$feedbacks.hide();
+
+      // Remove class 'selected' from all answers
+      this.questionsView.$answerWrapper.removeClass( 'selected' );
+
+      // Set current state to 'questions'
+      this.currentState = 'questions';
+
+      // Activate the first answer
+      this.questionsView.activateFirstAnswer();
+
+      // Show first question
+      this.showQuestion( 0 );
+
+      // Update button and steps
+      this.questionsView.updateButton();
+      this.updateSteps();
+
+      // Remove summary class
+      this.$el.removeClass( 'summary' );
 
     }
 

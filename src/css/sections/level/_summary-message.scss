@@ -1,0 +1,14 @@
+.summary-message {
+  text-align: center;
+  color: $accent-color;
+  font-size: 14px;
+  line-height: 30px;
+  padding: 20px 0 0 0;
+  height: 0;
+  overflow: hidden;
+  @include css3-prefix(transition-duration, 0.4s);
+
+  .summary & {
+    height: 50px;
+  }
+}

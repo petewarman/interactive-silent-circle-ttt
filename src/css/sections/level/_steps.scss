@@ -35,6 +35,15 @@
       cursor: default !important;
     }
 
+    &.summary {
+      background-color: transparent !important;
+      cursor: default !important;
+
+      &:last-of-type {
+        border-color: $accent-color;
+      }
+    }
+
     &.done {
       background-color: rgba(255, 255, 255, 0.05);
       cursor: pointer;

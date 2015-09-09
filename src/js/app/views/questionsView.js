@@ -21,7 +21,7 @@ define( [
 
       this.questionsCount = this.questions.length;
 
-      this.currentState = 'questions';
+      this.app.currentState = 'questions';
 
       return this;
     },
@@ -49,6 +49,8 @@ define( [
       this.$button = this.$( '.button' );
       this.$buttonLink = this.$button.find( 'a' );
 
+      this.$feedbacks = this.$( '.feedback' );
+
     },
 
     setupEvents: function () {
@@ -63,9 +65,9 @@ define( [
 
     buttonClicked: function () {
 
-      if ( this.currentState === 'questions' ) {
+      if ( this.app.currentState === 'questions' ) {
         this.next();
-      } else if ( this.currentState === 'summary' ) {
+      } else if ( this.app.currentState === 'summary' ) {
         this.app.restart();
       }
 
@@ -79,7 +81,7 @@ define( [
       if ( nextIdx >= 0 ) {
         this.app.showQuestion( nextIdx );
       } else {
-        this.showSummary();
+        this.app.showSummary();
       }
 
     },
@@ -195,19 +197,10 @@ define( [
       }
 
       // If we are in summary
-      if ( this.currentState === 'summary' ) {
+      if ( this.app.currentState === 'summary' ) {
         this.$button.addClass( 'enabled' );
         this.$buttonLink.html( this.button.repeat );
       }
-
-    },
-
-    showSummary: function () {
-
-      this.currentState = 'summary';
-
-      this.$el.addClass( 'summary' );
-      this.updateButton();
 
     },
 

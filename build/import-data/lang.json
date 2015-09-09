@@ -3,6 +3,15 @@
     "intro": {
       "title": "Take the test",
       "subtitle": "How secure is your business?"
+    },
+    "level": {
+      "title": "Take the test.<br>How secure is your business?",
+      "low": "Low risk",
+      "high": "High risk",
+      "summary-message": "Your answers are below as well as some tips to keep you more secure",
+      "results-bad": "Based on your results, your business needs improvement",
+      "results-medium": "Based on your results, MEDIUM",
+      "results-good": "Based on your results, GOOD"
     }
   },
 

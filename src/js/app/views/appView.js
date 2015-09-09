@@ -28,7 +28,7 @@ define( [
 
       this.data = this.prepareData( options.data );
       this.isWeb = options.isWeb;
-      this.isTouch = options.isTouch; //
+      this.isTouch = options.isTouch;
 
     },
 
@@ -75,7 +75,7 @@ define( [
       this.$el.on( click, '#start', this.start.bind( this ) );
 
       // Navigate through questions
-      this.$el.on( click, '.step.done', this.showQuestion.bind( this ) );
+      this.$el.on( click, '.step.done:not(.summary)', this.showQuestion.bind( this ) );
 
     },
 
@@ -191,9 +191,17 @@ define( [
 
     updateSteps: function () {
 
+      // Remove class 'summary'
+      if ( this.currentState === 'questions' ) {
+        this.levelView.$steps.removeClass( 'summary' );
+      }
+
+      // Set step done or undone, depending on questions answered
       this.data.questions.forEach( function ( q, i ) {
         if ( q.done ) {
           this.levelView.setStepDone( i );
+        } else {
+          this.levelView.setStepUndone( i );
         }
       }.bind( this ) );
 
@@ -205,9 +213,51 @@ define( [
 
     },
 
+    showSummary: function () {
+
+      this.currentState = 'summary';
+      this.$el.addClass( 'summary' );
+
+      // Update button and step icons
+      this.questionsView.updateButton();
+      this.levelView.disableSteps();
+
+    },
+
     restart: function () {
 
-      console.log( 'restart test' );
+      // Undo all questions
+      this.data.questions.forEach( function ( q, i ) {
+        q.done = false;
+      } );
+
+      // Uncheck all radios
+      this.questionsView.$answerWrapper.find( 'input[type=radio]' ).prop( 'checked', false );
+
+      // Remove class 'done' from all questions
+      this.questionsView.$questions.removeClass( 'done' );
+
+      // Hide all feedbacks
+      this.questionsView.$feedbacks.hide();
+
+      // Remove class 'selected' from all answers
+      this.questionsView.$answerWrapper.removeClass( 'selected' );
+
+      // Set current state to 'questions'
+      this.currentState = 'questions';
+
+      // Activate the first answer
+      this.questionsView.activateFirstAnswer();
+
+      // Show first question
+      this.showQuestion( 0 );
+
+      // Update button and steps
+      this.questionsView.updateButton();
+      this.updateSteps();
+
+      // Remove summary class
+      this.$el.removeClass( 'summary' );
 
     }
 

@@ -1,196 +1,205 @@
 {
-  "questions": [
-    {
-      "index": 1,
-      "topic": "Size of business",
-      "question": "How large is your organisation?",
-      "icon": "close.svg",
-      "questionId": "question-0",
-      "answers": [
+    "questions": [
         {
-          "answerId": "question-0-answer-0",
-          "answer": "sole trader/self-employed",
-          "value": "1",
-          "feedback": "Businesses of different sizes can be at risk of information security breaches. Small doesn’t necessarily mean safe.",
-          "endscreen": "As a small business, your customer records are likely to be one your most important assets. Any unauthorised access to these could put customers at risk of identity theft and cause you significant reputational damage. You could also be fined for failing in your Data Protection Act responsibilities. Earlier this year short-term lender The Money Shop was fined £180,000 after two servers containing sensitive data were lost.",
-          "cstitle": null,
-          "cs": null
+            "index": 1,
+            "topic": "Size of business",
+            "question": "How large is your organisation?",
+            "icon": "close.svg",
+            "questionId": "question-0",
+            "answers": [
+                {
+                    "answerId": "question-0-answer-0",
+                    "answer": "sole trader/self-employed",
+                    "value": "1",
+                    "feedback": "Businesses of different sizes can be at risk of information security breaches. Small doesn’t necessarily mean safe.",
+                    "endscreen": "As a small business, your customer records are likely to be one your most important assets. Any unauthorised access to these could put customers at risk of identity theft and cause you significant reputational damage. You could also be fined for failing in your Data Protection Act responsibilities. Earlier this year short-term lender The Money Shop was fined £180,000 after two servers containing sensitive data were lost.",
+                    "cstitle": null,
+                    "cs": null
+                },
+                {
+                    "answerId": "question-0-answer-1",
+                    "answer": "2-250 employees",
+                    "value": "5",
+                    "feedback": "As a business grows, so does the need to ensure systems are in place to manage risks to its data. Having staff working on different sites, for example, brings with it new risks that need to be managed.",
+                    "endscreen": "Your customer records are likely to be one of your most important assets; any unauthorised access to these could cost you in management time, lost sales and reputational damage. Fines under the Data Protection Act are also a possibility – earlier this year, short-term lender The Money Shop was fined £180,000 after two servers containing sensitive data were lost.",
+                    "cstitle": null,
+                    "cs": null
+                },
+                {
+                    "answerId": "question-0-answer-2",
+                    "answer": "250+ employees",
+                    "value": "10",
+                    "feedback": "As a large business, your approach to information security needs to be more sophisticated than that of smaller businesses. With this guide you can check if you’re on the right course.",
+                    "endscreen": "As well as holding significant numbers of customer records, your business will hold a large amount of sensitive data in the form of staff records. Your company may even hold commercially confidential information on business deals or intellectual property; unauthorised access to this could be costly or embarrassing. When Sony Pictures was hacked last year, vast amounts of data were leaked, which led to one of the company’s co-chairs resigning.",
+                    "cstitle": null,
+                    "cs": null
+                }
+            ]
         },
         {
-          "answerId": "question-0-answer-1",
-          "answer": "2-250 employees",
-          "value": "5",
-          "feedback": "As a business grows, so does the need to ensure systems are in place to manage risks to its data. Having staff working on different sites, for example, brings with it new risks that need to be managed.",
-          "endscreen": "Your customer records are likely to be one of your most important assets; any unauthorised access to these could cost you in management time, lost sales and reputational damage. Fines under the Data Protection Act are also a possibility – earlier this year, short-term lender The Money Shop was fined £180,000 after two servers containing sensitive data were lost.",
-          "cstitle": null,
-          "cs": null
+            "index": 2,
+            "topic": "Log-on procedures",
+            "question": "Nowadays everyone knows the importance of strong passwords. But do people in your organisation use two-factor authentication as well?",
+            "icon": "close.svg",
+            "questionId": "question-1",
+            "answers": [
+                {
+                    "answerId": "question-1-answer-0",
+                    "answer": "Yes – across the board",
+                    "value": "1",
+                    "feedback": "Well done. The list of services offering two-factor authentication is increasing all the time, though, so it’s worth checking you have it enabled everywhere you can.",
+                    "endscreen": "Popular web services that offer two-factor authentication (2FA) include Gmail, Microsoft Office 365, Dropbox, LinkedIn, WordPress and GitHub – so check you have it enabled. It’s also worth thinking about 2FA for device access – it’s an option for all devices running Windows 8 or later and an upcoming OS release will offer Mac users full access to 2FA.",
+                    "cstitle": null,
+                    "cs": null
+                },
+                {
+                    "answerId": "question-1-answer-1",
+                    "answer": "We do for some things",
+                    "value": "3",
+                    "feedback": "That sounds like a good start. It’s worth enabling it everywhere you can, though, so that more of your core services are protected.",
+                    "endscreen": "More services are adding two-factor authentication (2FA) as an option, so it’s worth enabling it everywhere you can. Gmail, Microsoft Office 365, Dropbox, LinkedIn, WordPress and GitHub, for example, now offer 2FA, so check you have it enabled on all of these services.",
+                    "cstitle": null,
+                    "cs": null
+                },
+                {
+                    "answerId": "question-1-answer-2",
+                    "answer": "No",
+                    "value": "7",
+                    "feedback": "You should think about enabling it for websites and services you use – it’s no silver bullet, but security experts recommend turning it on when you have the option.",
+                    "endscreen": "Lots of web services, including Gmail, Microsoft Office 365, Dropbox, LinkedIn, WordPress and GitHub, now offer two-factor authentication as an option. It might sound complicated, but once it’s enabled it requires minimal effort.",
+                    "cstitle": null,
+                    "cs": null
+                },
+                {
+                    "answerId": "question-1-answer-3",
+                    "answer": "What’s two-factor authentication?",
+                    "value": "10",
+                    "feedback": "Put simply, it requires you to enter both something you know – a password – and something you have – generally a one-use code sent to your smartphone – when you log in to a service, making it less likely anyone else can get into your account.",
+                    "endscreen": "Lots of web services, including Gmail, Microsoft Office 365, Dropbox, LinkedIn, WordPress and GitHub, now offer two-factor authentication as an option. It might sound complicated, but once it’s enabled it requires minimal effort.",
+                    "cstitle": null,
+                    "cs": null
+                }
+            ]
         },
         {
-          "answerId": "question-0-answer-2",
-          "answer": "250+ employees",
-          "value": "10",
-          "feedback": "As a large business, your approach to information security needs to be more sophisticated than that of smaller businesses. With this guide you can check if you’re on the right course.",
-          "endscreen": "As well as holding significant numbers of customer records, your business will hold a large amount of sensitive data in the form of staff records. Your company may even hold commercially confidential information on business deals or intellectual property; unauthorised access to this could be costly or embarrassing. When Sony Pictures was hacked last year, vast amounts of data were leaked, which led to one of the company’s co-chairs resigning.",
-          "cstitle": null,
-          "cs": null
+            "index": 3,
+            "topic": "Out and about",
+            "question": "The pace at which business gets done increases every year. Do you and others within your business ever do work on the move?",
+            "icon": "close.svg",
+            "questionId": "question-2",
+            "answers": [
+                {
+                    "answerId": "question-2-answer-0",
+                    "answer": "Yes",
+                    "value": "1",
+                    "feedback": "While great for convenience, using laptops or smartphones out of the office does bring with it certain risks. There’s no need to stop – but it’s worth checking you’re taking the right precautions.",
+                    "endscreen": "Using devices on the move puts them at greater risk of loss or theft – so it’s even more important to follow good information-security practices. It’s also worth taking precautions when connecting to free Wi-Fi networks, such as in cafes or hotels. Spoof networks, given plausible-sounding names, are a threat, so it’s always worth checking the network’s name with staff. When you log on to websites, check that the URL starts with ”https” rather than ”http”: this means a secure connection is being used.",
+                    "cstitle": null,
+                    "cs": null
+                },
+                {
+                    "answerId": "question-2-answer-1",
+                    "answer": "No",
+                    "value": "5",
+                    "feedback": "That puts your devices – and the data on them – at lower risk of being stolen. It’s worth checking that your office environment itself is secure from an information-security perspective though.",
+                    "endscreen": "Physical security plays a part in securing your office environment and preventing outsiders from getting access to company systems. Data should be disposed of correctly – with confidential documents shredded and hard drives securely wiped of any sensitive data before disposal. Wireless networks should be secured to prevent unauthorised access. Bear in mind that, for most businesses, the risk posed by disgruntled ex-employees is probably higher than that from hackers.",
+                    "cstitle": null,
+                    "cs": null
+                }
+            ]
+        },
+        {
+            "index": 4,
+            "topic": "Staying up to date",
+            "question": "It’s not glamorous, but it’s important. How frequently do you update software that you use?",
+            "icon": "close.svg",
+            "questionId": "question-3",
+            "answers": [
+                {
+                    "answerId": "question-3-answer-0",
+                    "answer": "As soon as a patch becomes available",
+                    "value": "1",
+                    "feedback": "Great. Using unpatched or outdated software is thought to be one the biggest causes of security vulnerabilities.",
+                    "endscreen": "Since it sounds like you’re covered as far as company-mandated software goes, here’s something else to think about. Are employees at your business allowed to use their own devices – laptops, smartphones and tablets – for work? Although this allows more flexible working, it’s worth thinking about how this fits with the security arrangements your organisation has in place. Is there anything preventing keylogging software from unknowingly being installed on a personal device that’s used for work purposes, for example?",
+                    "cstitle": null,
+                    "cs": null
+                },
+                {
+                    "answerId": "question-3-answer-1",
+                    "answer": "As and when I get the chance",
+                    "value": "5",
+                    "feedback": "It’s good your software isn’t going entirely unpatched, but it makes sense to try and stay on top of this. Using unpatched or outdated software is thought to be one the biggest causes of security vulnerabilities.",
+                    "endscreen": "You’re certainly not alone in letting this slip. Earlier this year it was reported that the Met Police still had 35,000 computers running Windows XP, 14 years after the operating system’s launch and more than a year after Microsoft ceased offering general support for it. But whereas the Met Police has the resources to pay for custom support from Microsoft, your organisation might not. Keeping software and operating systems you use up to date can help ensure you’re protected against known vulnerabilities.",
+                    "cstitle": null,
+                    "cs": null
+                },
+                {
+                    "answerId": "question-3-answer-2",
+                    "answer": "Don’t know/the IT department handle that",
+                    "value": "10",
+                    "feedback": "This might not be your responsibility, but someone within your organisation should definitely be keeping an eye on it. Using unpatched or outdated software is thought to be one the biggest causes of security vulnerabilities.",
+                    "endscreen": "Even big organisations sometimes struggle to keep up to date. Earlier this year it was reported that the Met Police still had 35,000 computers running Windows XP, 14 years after the operating system’s launch and more than a year after Microsoft ceased offering general support for it. But whereas the Met Police has the resources to pay for custom support from Microsoft, your organisation might not. Keeping software and operating systems you use up to date can help ensure you’re protected against known vulnerabilities.",
+                    "cstitle": null,
+                    "cs": null
+                }
+            ]
+        },
+        {
+            "index": 5,
+            "topic": "In the cloud",
+            "question": "Do you or others within your business use cloud computing services?",
+            "icon": "close.svg",
+            "questionId": "question-4",
+            "answers": [
+                {
+                    "answerId": "question-4-answer-0",
+                    "answer": "Yes",
+                    "value": "1",
+                    "feedback": "Cloud services offer great convenience. But it’s worth checking a couple of things to ensure this isn’t at the expense of your data security.",
+                    "endscreen": null,
+                    "cstitle": null,
+                    "cs": null
+                },
+                {
+                    "answerId": "question-4-answer-1",
+                    "answer": "No",
+                    "value": "5",
+                    "feedback": "Cloud computing has been one of the biggest trends in technology over the past few years. Even if you don’t use it yet, the chances are you will in the future, so it’s worth getting familiar with some of the things to think about when making the switch.",
+                    "endscreen": null,
+                    "cstitle": null,
+                    "cs": null
+                },
+                {
+                    "answerId": "question-4-answer-2",
+                    "answer": "Not sure",
+                    "value": "10",
+                    "feedback": "Broadly speaking, cloud computing refers to use of either internet-based software or online storage space. Your company might have a use for it, so it’s worth getting familiar with some of the things you’ll need to consider when making the switch.",
+                    "endscreen": null,
+                    "cstitle": null,
+                    "cs": null
+                }
+            ]
         }
-      ]
+    ],
+    "button": {
+        "start": "Enter",
+        "next": "Next question",
+        "results": "See results",
+        "repeat": "Repeat test"
     },
-    {
-      "index": 2,
-      "topic": "Log-on procedures",
-      "question": "Nowadays everyone knows the importance of strong passwords. But do people in your organisation use two-factor authentication as well?",
-      "icon": "close.svg",
-      "questionId": "question-1",
-      "answers": [
-        {
-          "answerId": "question-1-answer-0",
-          "answer": "Yes – across the board",
-          "value": "1",
-          "feedback": "Well done. The list of services offering two-factor authentication is increasing all the time, though, so it’s worth checking you have it enabled everywhere you can.",
-          "endscreen": "Popular web services that offer two-factor authentication (2FA) include Gmail, Microsoft Office 365, Dropbox, LinkedIn, WordPress and GitHub – so check you have it enabled. It’s also worth thinking about 2FA for device access – it’s an option for all devices running Windows 8 or later and an upcoming OS release will offer Mac users full access to 2FA.",
-          "cstitle": null,
-          "cs": null
+    "view": {
+        "intro": {
+            "title": "Take the test",
+            "subtitle": "How secure is your business?"
         },
-        {
-          "answerId": "question-1-answer-1",
-          "answer": "We do for some things",
-          "value": "5",
-          "feedback": "That sounds like a good start. It’s worth enabling it everywhere you can, though, so that more of your core services are protected.",
-          "endscreen": "More services are adding two-factor authentication (2FA) as an option, so it’s worth enabling it everywhere you can. Gmail, Microsoft Office 365, Dropbox, LinkedIn, WordPress and GitHub, for example, now offer 2FA, so check you have it enabled on all of these services.",
-          "cstitle": null,
-          "cs": null
-        },
-        {
-          "answerId": "question-1-answer-2",
-          "answer": "No",
-          "value": "10",
-          "feedback": "You should think about enabling it for websites and services you use – it’s no silver bullet, but security experts recommend turning it on when you have the option.",
-          "endscreen": "Lots of web services, including Gmail, Microsoft Office 365, Dropbox, LinkedIn, WordPress and GitHub, now offer two-factor authentication as an option. It might sound complicated, but once it’s enabled it requires minimal effort.",
-          "cstitle": null,
-          "cs": null
-        },
-        {
-          "answerId": "question-1-answer-3",
-          "answer": "What’s two-factor authentication?",
-          "value": "20",
-          "feedback": "Put simply, it requires you to enter both something you know – a password – and something you have – generally a one-use code sent to your smartphone – when you log in to a service, making it less likely anyone else can get into your account.",
-          "endscreen": "Lots of web services, including Gmail, Microsoft Office 365, Dropbox, LinkedIn, WordPress and GitHub, now offer two-factor authentication as an option. It might sound complicated, but once it’s enabled it requires minimal effort.",
-          "cstitle": null,
-          "cs": null
+        "level": {
+            "title": "Take the test.<br>How secure is your business?",
+            "low": "Low risk",
+            "high": "High risk",
+            "summary-message": "Your answers are below as well as some tips to keep you more secure",
+            "results-bad": "Based on your results, your business needs improvement",
+            "results-medium": "Based on your results, MEDIUM",
+            "results-good": "Based on your results, GOOD"
         }
-      ]
-    },
-    {
-      "index": 3,
-      "topic": "Out and about",
-      "question": "The pace at which business gets done increases every year. Do you and others within your business ever do work on the move?",
-      "icon": "close.svg",
-      "questionId": "question-2",
-      "answers": [
-        {
-          "answerId": "question-2-answer-0",
-          "answer": "Yes",
-          "value": "1",
-          "feedback": "While great for convenience, using laptops or smartphones out of the office does bring with it certain risks. There’s no need to stop – but it’s worth checking you’re taking the right precautions.",
-          "endscreen": "Using devices on the move puts them at greater risk of loss or theft – so it’s even more important to follow good information-security practices. It’s also worth taking precautions when connecting to free Wi-Fi networks, such as in cafes or hotels. Spoof networks, given plausible-sounding names, are a threat, so it’s always worth checking the network’s name with staff. When you log on to websites, check that the URL starts with ”https” rather than ”http”: this means a secure connection is being used.",
-          "cstitle": null,
-          "cs": null
-        },
-        {
-          "answerId": "question-2-answer-1",
-          "answer": "No",
-          "value": "5",
-          "feedback": "That puts your devices – and the data on them – at lower risk of being stolen. It’s worth checking that your office environment itself is secure from an information-security perspective though.",
-          "endscreen": "Physical security plays a part in securing your office environment and preventing outsiders from getting access to company systems. Data should be disposed of correctly – with confidential documents shredded and hard drives securely wiped of any sensitive data before disposal. Wireless networks should be secured to prevent unauthorised access. Bear in mind that, for most businesses, the risk posed by disgruntled ex-employees is probably higher than that from hackers.",
-          "cstitle": null,
-          "cs": null
-        }
-      ]
-    },
-    {
-      "index": 4,
-      "topic": "Staying up to date",
-      "question": "It’s not glamorous, but it’s important. How frequently do you update software that you use?",
-      "icon": "close.svg",
-      "questionId": "question-3",
-      "answers": [
-        {
-          "answerId": "question-3-answer-0",
-          "answer": "As soon as a patch becomes available",
-          "value": "1",
-          "feedback": "Great. Using unpatched or outdated software is thought to be one the biggest causes of security vulnerabilities.",
-          "endscreen": "Since it sounds like you’re covered as far as company-mandated software goes, here’s something else to think about. Are employees at your business allowed to use their own devices – laptops, smartphones and tablets – for work? Although this allows more flexible working, it’s worth thinking about how this fits with the security arrangements your organisation has in place. Is there anything preventing keylogging software from unknowingly being installed on a personal device that’s used for work purposes, for example?",
-          "cstitle": null,
-          "cs": null
-        },
-        {
-          "answerId": "question-3-answer-1",
-          "answer": "As and when I get the chance",
-          "value": "5",
-          "feedback": "It’s good your software isn’t going entirely unpatched, but it makes sense to try and stay on top of this. Using unpatched or outdated software is thought to be one the biggest causes of security vulnerabilities.",
-          "endscreen": "You’re certainly not alone in letting this slip. Earlier this year it was reported that the Met Police still had 35,000 computers running Windows XP, 14 years after the operating system’s launch and more than a year after Microsoft ceased offering general support for it. But whereas the Met Police has the resources to pay for custom support from Microsoft, your organisation might not. Keeping software and operating systems you use up to date can help ensure you’re protected against known vulnerabilities.",
-          "cstitle": null,
-          "cs": null
-        },
-        {
-          "answerId": "question-3-answer-2",
-          "answer": "Don’t know/the IT department handle that",
-          "value": "10",
-          "feedback": "This might not be your responsibility, but someone within your organisation should definitely be keeping an eye on it. Using unpatched or outdated software is thought to be one the biggest causes of security vulnerabilities.",
-          "endscreen": "Even big organisations sometimes struggle to keep up to date. Earlier this year it was reported that the Met Police still had 35,000 computers running Windows XP, 14 years after the operating system’s launch and more than a year after Microsoft ceased offering general support for it. But whereas the Met Police has the resources to pay for custom support from Microsoft, your organisation might not. Keeping software and operating systems you use up to date can help ensure you’re protected against known vulnerabilities.",
-          "cstitle": null,
-          "cs": null
-        }
-      ]
-    },
-    {
-      "index": 5,
-      "topic": "In the cloud",
-      "question": "Do you or others within your business use cloud computing services?",
-      "icon": "close.svg",
-      "questionId": "question-4",
-      "answers": [
-        {
-          "answerId": "question-4-answer-0",
-          "answer": "Yes",
-          "value": "1",
-          "feedback": "Cloud services offer great convenience. But it’s worth checking a couple of things to ensure this isn’t at the expense of your data security.",
-          "endscreen": null,
-          "cstitle": null,
-          "cs": null
-        },
-        {
-          "answerId": "question-4-answer-1",
-          "answer": "No",
-          "value": "5",
-          "feedback": "Cloud computing has been one of the biggest trends in technology over the past few years. Even if you don’t use it yet, the chances are you will in the future, so it’s worth getting familiar with some of the things to think about when making the switch.",
-          "endscreen": null,
-          "cstitle": null,
-          "cs": null
-        },
-        {
-          "answerId": "question-4-answer-2",
-          "answer": "Not sure",
-          "value": "10",
-          "feedback": "Broadly speaking, cloud computing refers to use of either internet-based software or online storage space. Your company might have a use for it, so it’s worth getting familiar with some of the things you’ll need to consider when making the switch.",
-          "endscreen": null,
-          "cstitle": null,
-          "cs": null
-        }
-      ]
     }
-  ],
-  "button": {
-    "start": "Enter",
-    "next": "Next question",
-    "results": "See results",
-    "repeat": "Repeat test"
-  },
-  "view": {
-    "intro": {
-      "title": "Take the test",
-      "subtitle": "How secure is your business?"
-    }
-  }
 }
