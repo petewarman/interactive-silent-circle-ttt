@@ -1,5 +1,7 @@
 define( [
   'views/appView'
+
+
 ], function ( AppView ) {
 
   'use strict';

@@ -14,7 +14,12 @@
   }
 
   &.right {
-    text-align: right;
+    text-align: center;
+
+    @media(min-width: 980px) {
+      text-align: right;
+    }
+
   }
 
   &.enabled a {

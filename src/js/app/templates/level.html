@@ -2,13 +2,25 @@
 
     <div class="steps-container">
 
+        <div class="steps-container-inner absolute-center">
+
         {{#questions}}
 
-        <div id="{{question-id}}-step" data-index="{{question-index}}" class="step" style="background-image: url('{{assets}}/imgs/{{icon}}')"></div>
+        <div id="{{question-id}}-step" data-index="{{question-index}}" class="step" >
+            {{{svg}}}
+        </div>
+
+            <!--style="background-image: url('{{assets}}/imgs/{{icon}}')"-->
 
         {{/questions}}
 
-        <div id="summary-step" class="step" style="background-image: url('{{assets}}/imgs/close.svg')"></div>
+        <div id="summary-step" class="step">
+            {{{summary-svg}}}
+        </div>
+
+            <!--style="background-image: url('{{assets}}/imgs/close.svg')"-->
+
+            </div>
 
     </div>
 

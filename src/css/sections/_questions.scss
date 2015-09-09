@@ -41,12 +41,11 @@
 
               .endscreen {
                 display: block;
-                padding-bottom: 20px;
+//                padding-bottom: 20px;
               }
 
               .feedback {
-                display: block;
-                color: $accent-color
+                display: none !important;
               }
             }
           }

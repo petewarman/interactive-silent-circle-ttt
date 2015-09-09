@@ -2,18 +2,37 @@
   position: relative;
   text-align: center;
   padding: 0;
+  width: 100%;
+
   $step-size: 48px;
 
-  @include transform(scale(0.66, 0.66));
+  height: $step-size;
+  //  white-space: nowrap;
 
   @media(min-width: 660px) {
     padding: 10px 0;
-    @include transform(scale(0.75, 0.75));
-  }
 
+    height: $step-size + 20px;
+  }
   @media(min-width: 980px) {
     padding: 20px 0;
+
+    height: $step-size + 40px;
+  }
+
+  // Scale
+  @include css3-prefix(transform-origin, center center);
+  @include transform(scale(0.5, 0.5));
+  @media(min-width: 660px) {
+    @include transform(scale(0.75, 0.75));
+  }
+  @media(min-width: 980px) {
     @include transform(scale(1, 1));
+  }
+
+  .steps-container-inner {
+    white-space: nowrap;
+    width: 2000px;
   }
 
   .step {
@@ -30,9 +49,34 @@
     cursor: default;
     z-index: 2;
 
+    svg {
+      width: $step-size - 12px;
+      height: $step-size - 12px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      @include transform(translateX(-50%) translateY(-50%));
+
+      .color-fill {
+        fill: #666;
+      }
+
+      .color-stroke {
+        stroke: #666;
+      }
+    }
+
     &.current {
       border-color: $accent-color;
       cursor: default !important;
+
+      svg .color-fill {
+        fill: #FFF;
+      }
+
+      svg .color-stroke {
+        stroke: #FFF;
+      }
     }
 
     &.summary {
@@ -45,8 +89,16 @@
     }
 
     &.done {
-      background-color: rgba(255, 255, 255, 0.05);
+//      background-color: rgba(255, 255, 255, 0.05);
       cursor: pointer;
+
+      svg .color-fill {
+        fill: $accent-color !important;
+      }
+
+      svg .color-stroke {
+        stroke: $accent-color !important;
+      }
     }
 
     &:first-of-type {

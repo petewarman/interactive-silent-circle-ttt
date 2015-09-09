@@ -4,9 +4,14 @@ define( [
   'text!templates/level.html',
   'underscore',
   'velocity',
+
+  // Icon for summary
+  'text!summarySvg',
+
   'velocity-ui'
+
 //  'views/analytics'
-], function ( Backbone, Mustache, template, _, velocity ) {
+], function ( Backbone, Mustache, template, _, velocity, summarySvg ) {
   'use strict';
 
   return Backbone.View.extend( {
@@ -52,7 +57,8 @@ define( [
       // Render main template
       this.$el.html( Mustache.render( template, {
         questions: this.data.questions,
-        view: this.data.view.level
+        view: this.data.view.level,
+        'summary-svg': summarySvg
       } ) );
 
       this.setupElements();
@@ -80,6 +86,10 @@ define( [
       this.$steps.eq( idx ).addClass( 'current' );
 
       return this;
+    },
+
+    setSummaryCurrent: function () {
+      this.$( '#summary-step' ).addClass( 'current' );
     },
 
     setStepDone: function ( idx ) {

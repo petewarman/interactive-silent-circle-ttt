@@ -817,7 +817,12 @@ body {
   text-align: center;
 }
 .guInteractive .button.right {
-  text-align: right;
+  text-align: center;
+}
+@media (min-width: 980px) {
+  .guInteractive .button.right {
+    text-align: right;
+  }
 }
 .guInteractive .button.enabled a {
   background-color: #ff827f;
@@ -965,11 +970,9 @@ body {
 }
 .summary .guInteractive #questions-section > .inner .question .answers .answer-wrapper.selected .endscreen {
   display: block;
-  padding-bottom: 20px;
 }
 .summary .guInteractive #questions-section > .inner .question .answers .answer-wrapper.selected .feedback {
-  display: block;
-  color: #ff827f;
+  display: none !important;
 }
 .guInteractive #questions-section > .inner {
   margin: 0 auto;
@@ -1180,20 +1183,8 @@ body {
 }
 .guInteractive #level-section > .inner .bar-container {
   background-color: #3b3b3b;
-  padding: 10px;
-  margin: 0 10px;
-}
-@media (min-width: 660px) {
-  .guInteractive #level-section > .inner .bar-container {
-    margin: 0 10px;
-    padding: 15px;
-  }
-}
-@media (min-width: 980px) {
-  .guInteractive #level-section > .inner .bar-container {
-    margin: 0 20px;
-    padding: 20px;
-  }
+  padding: 20px;
+  margin: 0;
 }
 .guInteractive #level-section > .inner .bar-container h1 {
   font-weight: 400;
@@ -1280,14 +1271,31 @@ body {
   position: relative;
   text-align: center;
   padding: 0;
-  -webkit-transform: scale(0.66, 0.66);
-  -khtml-transform: scale(0.66, 0.66);
-  -ms-transform: scale(0.66, 0.66);
-  transform: scale(0.66, 0.66);
+  width: 100%;
+  height: 48px;
+  -webkit-transform-origin: center center;
+  -khtml-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+  -webkit-transform: scale(0.5, 0.5);
+  -khtml-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5);
 }
 @media (min-width: 660px) {
   .guInteractive #level-section > .inner .steps-container {
     padding: 10px 0;
+    height: 68px;
+  }
+}
+@media (min-width: 980px) {
+  .guInteractive #level-section > .inner .steps-container {
+    padding: 20px 0;
+    height: 88px;
+  }
+}
+@media (min-width: 660px) {
+  .guInteractive #level-section > .inner .steps-container {
     -webkit-transform: scale(0.75, 0.75);
     -khtml-transform: scale(0.75, 0.75);
     -ms-transform: scale(0.75, 0.75);
@@ -1296,12 +1304,15 @@ body {
 }
 @media (min-width: 980px) {
   .guInteractive #level-section > .inner .steps-container {
-    padding: 20px 0;
     -webkit-transform: scale(1, 1);
     -khtml-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
     transform: scale(1, 1);
   }
+}
+.guInteractive #level-section > .inner .steps-container .steps-container-inner {
+  white-space: nowrap;
+  width: 2000px;
 }
 .guInteractive #level-section > .inner .steps-container .step {
   -khtml-border-radius: 50%;
@@ -1319,9 +1330,32 @@ body {
   cursor: default;
   z-index: 2;
 }
+.guInteractive #level-section > .inner .steps-container .step svg {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -khtml-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+.guInteractive #level-section > .inner .steps-container .step svg .color-fill {
+  fill: #666;
+}
+.guInteractive #level-section > .inner .steps-container .step svg .color-stroke {
+  stroke: #666;
+}
 .guInteractive #level-section > .inner .steps-container .step.current {
   border-color: #ff827f;
   cursor: default !important;
+}
+.guInteractive #level-section > .inner .steps-container .step.current svg .color-fill {
+  fill: #FFF;
+}
+.guInteractive #level-section > .inner .steps-container .step.current svg .color-stroke {
+  stroke: #FFF;
 }
 .guInteractive #level-section > .inner .steps-container .step.summary {
   background-color: transparent !important;
@@ -1331,8 +1365,13 @@ body {
   border-color: #ff827f;
 }
 .guInteractive #level-section > .inner .steps-container .step.done {
-  background-color: rgba(255, 255, 255, 0.05);
   cursor: pointer;
+}
+.guInteractive #level-section > .inner .steps-container .step.done svg .color-fill {
+  fill: #ff827f !important;
+}
+.guInteractive #level-section > .inner .steps-container .step.done svg .color-stroke {
+  stroke: #ff827f !important;
 }
 .guInteractive #level-section > .inner .steps-container .step:first-of-type {
   margin-left: 0;

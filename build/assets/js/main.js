@@ -19486,6 +19486,8 @@ define( 'views/questionsView',[
 
     setupElements: function () {
 
+      this.$body = $( 'html, body' );
+
       this.$answerWrapper = this.$( '.answer-wrapper' );
       this.$answers = this.$( '.answers' );
       this.$questions = this.$( '.question' );
@@ -19513,6 +19515,9 @@ define( 'views/questionsView',[
       } else if ( this.app.currentState === 'summary' ) {
         this.app.restart();
       }
+
+      // Scroll to top
+      this.app.scrollTop();
 
     },
 
@@ -19670,7 +19675,10 @@ define( 'views/questionsView',[
 
 
 
-define('text!templates/level.html',[],function () { return '<div class="inner">\n\n    <div class="steps-container">\n\n        {{#questions}}\n\n        <div id="{{question-id}}-step" data-index="{{question-index}}" class="step" style="background-image: url(\'assets/imgs/{{icon}}\')"></div>\n\n        {{/questions}}\n\n        <div id="summary-step" class="step" style="background-image: url(\'assets/imgs/close.svg\')"></div>\n\n    </div>\n\n    <div class="bar-container">\n        <h1 class="title">\n            {{{view.title}}}\n        </h1>\n\n        <div class="label-container">\n            <span class="left">{{view.low}}</span>\n            <span class="right">{{view.high}}</span>\n        </div>\n\n        <div class="bar">\n            <div id="level-mask" class="level-mask"></div>\n        </div>\n\n        <div class="summary-message">{{{view.summary-message}}}</div>\n    </div>\n\n</div>';});
+define('text!templates/level.html',[],function () { return '<div class="inner">\n\n    <div class="steps-container">\n\n        <div class="steps-container-inner absolute-center">\n\n        {{#questions}}\n\n        <div id="{{question-id}}-step" data-index="{{question-index}}" class="step" >\n            {{{svg}}}\n        </div>\n\n            <!--style="background-image: url(\'assets/imgs/{{icon}}\')"-->\n\n        {{/questions}}\n\n        <div id="summary-step" class="step">\n            {{{summary-svg}}}\n        </div>\n\n            <!--style="background-image: url(\'assets/imgs/close.svg\')"-->\n\n            </div>\n\n    </div>\n\n    <div class="bar-container">\n        <h1 class="title">\n            {{{view.title}}}\n        </h1>\n\n        <div class="label-container">\n            <span class="left">{{view.low}}</span>\n            <span class="right">{{view.high}}</span>\n        </div>\n\n        <div class="bar">\n            <div id="level-mask" class="level-mask"></div>\n        </div>\n\n        <div class="summary-message">{{{view.summary-message}}}</div>\n    </div>\n\n</div>';});
+
+
+define('text!summarySvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<g>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-miterlimit="10" d="\r\n\t\tM24.778,41.193c-2.956,0-5.912,0.004-8.868-0.002c-0.872-0.002-1.722-0.148-2.516-0.527c-1.47-0.703-2.356-1.863-2.671-3.461\r\n\t\tc-0.121-0.617-0.131-1.238-0.106-1.861c0.028-0.68,0.046-1.361,0.114-2.037c0.17-1.652,0.469-3.281,1.125-4.822\r\n\t\tc0.381-0.891,0.863-1.719,1.527-2.436c0.826-0.89,1.852-1.415,3.035-1.636c0.352-0.065,0.714-0.075,1.07-0.109\r\n\t\tc0.16-0.016,0.311,0.017,0.446,0.099c0.289,0.173,0.578,0.344,0.86,0.525c0.48,0.307,0.95,0.632,1.437,0.929\r\n\t\tc0.614,0.376,1.285,0.624,1.967,0.841c0.97,0.309,1.964,0.455,2.981,0.424c0.937-0.031,1.842-0.221,2.729-0.52\r\n\t\tc0.895-0.301,1.72-0.729,2.492-1.27c0.383-0.268,0.786-0.508,1.175-0.768c0.312-0.21,0.642-0.285,1.019-0.257\r\n\t\tc1.076,0.076,2.07,0.382,2.965,0.989c0.664,0.449,1.177,1.045,1.61,1.711c0.677,1.039,1.118,2.176,1.411,3.375\r\n\t\tc0.293,1.205,0.496,2.424,0.557,3.66c0.035,0.719,0.063,1.439,0.053,2.156c-0.018,1.061-0.276,2.057-0.906,2.93\r\n\t\tc-0.719,0.998-1.701,1.604-2.89,1.889c-0.539,0.129-1.086,0.178-1.638,0.178C30.763,41.195,27.771,41.193,24.778,41.193\r\n\t\tL24.778,41.193z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-miterlimit="10" d="\r\n\t\tM32.702,15.797c0.08,4.25-3.562,7.877-7.786,7.801c-4.224,0.087-7.826-3.525-7.825-7.799c0.001-4.266,3.594-7.88,7.818-7.795\r\n\t\tC29.149,7.924,32.779,11.564,32.702,15.797z"/>\r\n</g>\r\n</svg>\r\n';});
 
 define( 'views/levelView',[
   'backbone',
@@ -19678,9 +19686,14 @@ define( 'views/levelView',[
   'text!templates/level.html',
   'underscore',
   'velocity',
+
+  // Icon for summary
+  'text!summarySvg',
+
   'velocity-ui'
+
 //  'views/analytics'
-], function ( Backbone, Mustache, template, _, velocity ) {
+], function ( Backbone, Mustache, template, _, velocity, summarySvg ) {
   'use strict';
 
   return Backbone.View.extend( {
@@ -19726,7 +19739,8 @@ define( 'views/levelView',[
       // Render main template
       this.$el.html( Mustache.render( template, {
         questions: this.data.questions,
-        view: this.data.view.level
+        view: this.data.view.level,
+        'summary-svg': summarySvg
       } ) );
 
       this.setupElements();
@@ -19754,6 +19768,10 @@ define( 'views/levelView',[
       this.$steps.eq( idx ).addClass( 'current' );
 
       return this;
+    },
+
+    setSummaryCurrent: function () {
+      this.$( '#summary-step' ).addClass( 'current' );
     },
 
     setStepDone: function ( idx ) {
@@ -19800,6 +19818,24 @@ define( 'views/levelView',[
 
 define('text!templates/app.html',[],function () { return '<div class="guInteractive">\n    <div id="content">\n\n        <header id="header-section" class="section"></header>\n\n        <div id="intro-section" class="section full-width"></div>\n\n        <div class="section top-sections-container">\n\n            <div id="level-section" class="section transparent"></div>\n\n            <div id="questions-section" class="section transparent"></div>\n\n            <div id="summary-section" class="section transparent"></div>\n\n        </div>\n\n        <div class="section full-width">\n\n            <div class="contentBlock" id="about-section">\n\n                <h4 class="sectionHeading">About Silent Circle</h4>\n\n                <div class="contentBlock-inner">\n                    <p class="half-width no-margin-top">\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elementum quis justo at blandit.\n                        Nulla ante neque, scelerisque eu ante ut, aliquam egestas dolor. Proin a auctor massa.\n                        Vestibulum\n                        bibendum neque sit amet metus dignissim viverra. Quisque pellentesque velit lectus, ac\n                        vestibulum mi\n                        suscipit sit amet. Fusce nec pharetra tellus, quis egestas sem. Aliquam quis sodales enim.\n                        Phasellus\n                        a risus non libero mattis pretium. Aliquam bibendum imperdiet neque ac vulputate. Morbi ut\n                        dignissim\n                        enim, sit amet sagittis lorem. Nulla sed auctor nisi. Nunc pharetra, eros vulputate tempor\n                        interdum.\n                    </p>\n                </div>\n            </div>\n\n            <div class="contentBlock" id="video-section">\n\n                <h4 class="sectionHeading">\n                    <span>Video</span>\n                    <!-- <img src="http://labs.theguardian.com/2015/aug/silent-circle-video/assets/imgs/quiz-gif.gif"> -->\n                </h4>\n\n                <div class="contentBlock-inner">\n                    <h2>Do we link to the videos?</h2>\n\n                    <p class="half-width">\n                        Click here to put your company to the test. Lorem ipsum dolor sit amet, consectetur adipiscing\n                        elit. Nullam elementum quis justo at blandit.\n                    </p>\n                </div>\n            </div>\n\n        </div>\n\n    </div>\n</div>\n';});
 
+
+define('text!sizeSvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<g>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM14.834,45.191c-1.674,0-3.348,0.004-5.021,0c-0.494,0-0.976-0.084-1.425-0.299c-0.832-0.396-1.334-1.055-1.512-1.959\r\n\t\tc-0.069-0.35-0.074-0.701-0.061-1.055c0.016-0.385,0.025-0.77,0.064-1.152c0.097-0.936,0.266-1.857,0.638-2.73\r\n\t\tc0.215-0.504,0.488-0.973,0.864-1.379c0.468-0.504,1.048-0.801,1.719-0.926c0.198-0.037,0.404-0.043,0.605-0.062\r\n\t\tc0.091-0.008,0.176,0.01,0.253,0.057c0.163,0.098,0.327,0.193,0.487,0.297c0.271,0.174,0.538,0.357,0.813,0.525\r\n\t\tc0.347,0.213,0.727,0.354,1.113,0.477c0.549,0.174,1.111,0.258,1.688,0.24c0.53-0.018,1.043-0.125,1.545-0.295\r\n\t\tc0.507-0.17,0.974-0.412,1.411-0.719c0.217-0.15,0.445-0.287,0.665-0.434c0.177-0.119,0.363-0.162,0.577-0.146\r\n\t\tc0.609,0.043,1.172,0.217,1.679,0.561c0.375,0.254,0.666,0.592,0.911,0.969c0.384,0.588,0.634,1.232,0.799,1.91\r\n\t\tc0.166,0.684,0.281,1.373,0.315,2.072c0.02,0.408,0.036,0.814,0.03,1.223c-0.011,0.6-0.157,1.164-0.514,1.658\r\n\t\tc-0.407,0.564-0.963,0.908-1.636,1.068c-0.305,0.074-0.615,0.102-0.928,0.102c-1.695,0-3.389,0-5.083,0\r\n\t\tC14.834,45.193,14.834,45.193,14.834,45.191z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM19.32,30.814c0.045,2.406-2.017,4.459-4.408,4.416c-2.392,0.049-4.431-1.996-4.431-4.416c0.001-2.414,2.035-4.461,4.427-4.412\r\n\t\tC17.309,26.357,19.364,28.418,19.32,30.814z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM35.029,45.141c-1.674,0-3.348,0.004-5.021,0c-0.494,0-0.975-0.084-1.424-0.299c-0.832-0.398-1.334-1.055-1.513-1.959\r\n\t\tc-0.069-0.35-0.074-0.701-0.06-1.055c0.016-0.385,0.025-0.77,0.064-1.152c0.096-0.938,0.265-1.857,0.637-2.73\r\n\t\tc0.215-0.504,0.488-0.973,0.864-1.379c0.468-0.504,1.048-0.801,1.719-0.926c0.198-0.037,0.404-0.043,0.606-0.062\r\n\t\tc0.09-0.008,0.176,0.01,0.252,0.057c0.164,0.098,0.328,0.193,0.487,0.297c0.272,0.174,0.538,0.357,0.813,0.525\r\n\t\tc0.348,0.213,0.727,0.354,1.113,0.477c0.549,0.174,1.111,0.258,1.688,0.24c0.531-0.018,1.043-0.125,1.545-0.295\r\n\t\tc0.507-0.17,0.975-0.412,1.412-0.719c0.217-0.15,0.444-0.287,0.664-0.434c0.177-0.119,0.363-0.162,0.577-0.146\r\n\t\tc0.609,0.043,1.172,0.217,1.679,0.561c0.375,0.254,0.666,0.592,0.912,0.969c0.383,0.588,0.633,1.232,0.799,1.91\r\n\t\tc0.166,0.682,0.281,1.373,0.314,2.072c0.02,0.408,0.036,0.814,0.03,1.221c-0.011,0.6-0.157,1.164-0.513,1.66\r\n\t\tc-0.408,0.564-0.964,0.906-1.637,1.068c-0.305,0.072-0.615,0.102-0.928,0.102c-1.695,0-3.389,0-5.082,0\r\n\t\tC35.029,45.143,35.029,45.143,35.029,45.141z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM39.516,30.764c0.045,2.406-2.018,4.459-4.409,4.416c-2.392,0.049-4.431-1.996-4.431-4.416c0.001-2.414,2.035-4.461,4.427-4.412\r\n\t\tC37.504,26.305,39.559,28.367,39.516,30.764z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM24.308,23.944c-1.674,0-3.348,0.003-5.021,0c-0.493,0-0.975-0.084-1.424-0.298c-0.832-0.398-1.334-1.055-1.513-1.959\r\n\t\tc-0.068-0.35-0.074-0.702-0.06-1.054c0.016-0.385,0.025-0.771,0.064-1.153c0.096-0.937,0.265-1.858,0.637-2.73\r\n\t\tc0.216-0.504,0.489-0.973,0.864-1.379c0.469-0.503,1.049-0.801,1.719-0.926c0.199-0.037,0.404-0.042,0.606-0.062\r\n\t\tc0.09-0.009,0.176,0.009,0.252,0.056c0.164,0.098,0.328,0.194,0.487,0.297c0.272,0.174,0.538,0.358,0.813,0.526\r\n\t\tc0.348,0.213,0.728,0.353,1.113,0.476c0.549,0.174,1.112,0.258,1.688,0.24c0.53-0.018,1.043-0.125,1.545-0.294\r\n\t\tc0.506-0.17,0.973-0.412,1.41-0.719c0.217-0.151,0.445-0.288,0.666-0.435c0.176-0.119,0.363-0.162,0.576-0.146\r\n\t\tc0.609,0.043,1.172,0.216,1.679,0.56c0.376,0.254,0.666,0.592,0.911,0.969c0.384,0.588,0.634,1.232,0.799,1.911\r\n\t\tc0.166,0.682,0.281,1.372,0.315,2.072c0.021,0.407,0.036,0.814,0.03,1.221c-0.01,0.6-0.156,1.164-0.514,1.659\r\n\t\tc-0.406,0.565-0.963,0.908-1.636,1.069c-0.305,0.073-0.614,0.101-0.927,0.101C27.695,23.945,26.001,23.945,24.308,23.944\r\n\t\tC24.308,23.945,24.308,23.945,24.308,23.944z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM28.793,9.566c0.045,2.406-2.016,4.46-4.408,4.417c-2.391,0.049-4.431-1.996-4.43-4.416c0-2.415,2.034-4.461,4.426-4.413\r\n\t\tC26.781,5.108,28.837,7.17,28.793,9.566z"/>\r\n</g>\r\n</svg>\r\n';});
+
+
+define('text!logOnSvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<path class="color-fill" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M37.371,21.843c0,2.847,0.013,5.694-0.004,8.54\r\n\tc-0.03,5.518-3.739,10.246-9.086,11.609c-6.84,1.744-13.845-2.906-14.762-9.881c-0.223-1.701-0.155-3.445-0.162-5.17\r\n\tc-0.019-4.604-0.014-9.206-0.003-13.808c0.008-3.197,1.938-6.007,4.915-7.055c0.812-0.286,1.708-0.451,2.569-0.467\r\n\tc3.015-0.055,6.031-0.031,9.048-0.019c4.136,0.017,7.467,3.356,7.482,7.5C37.381,16.009,37.371,18.926,37.371,21.843z\r\n\t M14.861,19.112c0,0.159,0,0.284,0,0.409c0,3.625-0.008,7.249,0.004,10.874c0.019,5.512,4.289,10.059,9.786,10.439\r\n\tc6.007,0.416,11.175-4.361,11.205-10.379c0.019-3.652,0.005-7.306,0.005-10.959c0-0.123-0.014-0.246-0.021-0.384\r\n\tC28.85,19.112,21.888,19.112,14.861,19.112z M24.589,17.571c0-3.518,0-6.979,0-10.469c-1.277,0-2.521-0.008-3.767,0.001\r\n\tc-3.315,0.025-5.94,2.663-5.958,5.983c-0.007,1.359-0.003,2.719-0.003,4.078c0,0.135,0,0.27,0,0.406\r\n\tC18.14,17.571,21.351,17.571,24.589,17.571z M26.133,7.016c0,3.609,0,7.071,0,10.549c3.249,0,6.47,0,9.729,0\r\n\tc0-0.124,0-0.219,0-0.315c-0.001-1.43,0.011-2.86-0.005-4.291c-0.029-2.669-1.905-5.156-4.535-5.641\r\n\tC29.645,7.01,27.891,7.105,26.133,7.016z"/>\r\n</svg>\r\n';});
+
+
+define('text!outAndAboutSvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n\t viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<path class="color-fill" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M25.108,4.807c4.741,11.374,9.444,22.654,14.169,33.988\r\n\tc-4.48,0-8.896,0-13.361,0c0,1.807,0,3.58,0,5.373c-0.529,0-1.009,0-1.521,0c0-1.775,0-3.539,0-5.346c-4.486,0-8.94,0-13.466,0\r\n\tC15.662,27.471,20.368,16.18,25.108,4.807z M30.254,29.662c-0.119,0.104-0.215,0.188-0.311,0.266\r\n\tc-1.266,1.047-2.535,2.086-3.789,3.145c-0.133,0.111-0.236,0.332-0.24,0.504c-0.023,1.09-0.012,2.18-0.012,3.27\r\n\tc0,0.137,0,0.273,0,0.416c3.721,0,7.391,0,11.105,0c-3.967-9.518-7.916-18.992-11.899-28.546\r\n\tC21.123,18.276,17.17,27.76,13.21,37.262c3.753,0,7.45,0,11.175,0c0-1.271,0.006-2.514-0.009-3.756\r\n\tc-0.001-0.113-0.11-0.25-0.207-0.33c-0.825-0.693-1.659-1.375-2.488-2.061c-0.569-0.471-1.137-0.941-1.722-1.428\r\n\tc0.334-0.404,0.641-0.773,0.955-1.154c1.161,0.953,2.283,1.875,3.471,2.85c0-0.568,0.002-1.039-0.001-1.51\r\n\tc-0.005-0.629,0.157-1.328-0.069-1.861c-0.229-0.535-0.856-0.893-1.292-1.346c-0.763-0.793-1.512-1.598-2.29-2.424\r\n\tc0.262-0.274,0.594-0.621,0.943-0.987c0.896,0.872,1.77,1.723,2.724,2.654c0-1.955,0-3.792,0-5.62c0.524,0,1.003,0,1.521,0\r\n\tc0,1.894,0,3.756,0,5.695c1.162-0.957,2.264-1.864,3.385-2.788c0.326,0.397,0.631,0.77,0.951,1.162\r\n\tc-1.109,0.917-2.148,1.878-3.293,2.691c-0.846,0.6-1.215,1.271-1.076,2.299c0.084,0.609,0.016,1.24,0.016,1.957\r\n\tc1.178-0.969,2.279-1.875,3.402-2.797C29.623,28.895,29.924,29.258,30.254,29.662z"/>\r\n</svg>\r\n';});
+
+
+define('text!upToDateSvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n\t viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<g>\r\n\t<path class="color-fill" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M23.897,9.464c0-1.062,0-2.122,0-3.262\r\n\t\tc2.93,1.619,5.792,3.201,8.72,4.818c-2.898,1.395-5.745,2.766-8.66,4.168c0-1.402,0-2.74,0-4.089"/>\r\n\t<path class="color-fill" fill="#FFFFFF" d="M25.263,41.777c-8.427,0-15.283-6.855-15.283-15.283S16.836,11.21,25.263,11.21V9.538\r\n\t\tc-9.35,0-16.955,7.606-16.955,16.956c0,9.35,7.605,16.955,16.955,16.955s16.956-7.605,16.956-16.955h-1.672\r\n\t\tC40.547,34.922,33.689,41.777,25.263,41.777z"/>\r\n</g>\r\n</svg>\r\n';});
+
+
+define('text!cloudSvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n\t viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<g>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-miterlimit="10" d="\r\n\t\tM19.22,18.396c2.08-4.128,6.126-5.692,9.623-5.093c2.253,0.386,4.104,1.473,5.538,3.241c1.43,1.765,2.098,3.809,2.055,6.039\r\n\t\tc0.661,0.133,1.299,0.203,1.901,0.392c2.813,0.881,4.669,3.638,4.483,6.604c-0.189,3.018-2.387,5.529-5.316,6.033\r\n\t\tc-0.586,0.1-1.193,0.098-1.791,0.098c-6.883,0.008-13.764-0.006-20.646,0.01c-4.278,0.008-7.541-3.326-7.258-7.59\r\n\t\tc0.193-2.901,1.726-4.958,4.396-6.138c0.201-0.089,0.336-0.171,0.391-0.416c0.648-2.839,3.707-4.491,6.46-3.235\r\n\t\tC19.102,18.362,19.151,18.373,19.22,18.396z"/>\r\n</g>\r\n</svg>\r\n';});
+
+
+define('text!responsabilitySvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<path class="color-fill" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M28.194,42.207c-0.251,1.787-1.318,2.877-2.872,2.953\r\n\tc-1.617,0.08-2.692-0.92-3.151-2.934c-0.32-0.062-0.65-0.102-0.964-0.193c-1.446-0.432-2.379-1.711-2.382-3.283\r\n\tc-0.007-3.15-0.005-6.301,0.005-9.451c0.001-0.299-0.07-0.486-0.339-0.66c-4.283-2.779-6.412-7.74-5.479-12.73\r\n\tc0.906-4.848,4.702-8.727,9.592-9.803C29.597,4.566,36.615,9.483,37.447,16.6c0.598,5.111-1.341,9.135-5.573,12.051\r\n\tc-0.24,0.164-0.34,0.318-0.339,0.613c0.012,3.061-0.049,6.121,0.03,9.18C31.612,40.271,30.51,42.049,28.194,42.207z M22.862,21.009\r\n\tc-0.699,0-1.364,0.035-2.024-0.008c-1.273-0.083-2.363-0.964-2.758-2.171c-0.402-1.235-0.041-2.597,0.946-3.423\r\n\tc1.005-0.842,2.146-1.042,3.353-0.522c1.261,0.542,1.894,1.558,1.956,2.92c0.025,0.57,0.004,1.143,0.004,1.74\r\n\tc0.588,0,1.123,0,1.737,0c0-0.721-0.044-1.417,0.009-2.106c0.124-1.618,1.586-2.849,3.286-2.816c1.599,0.032,3.001,1.38,3.077,2.959\r\n\tc0.094,1.92-1.257,3.385-3.185,3.443c-0.57,0.017-1.142,0.003-1.728,0.003c0,4.388,0,8.713,0,13.064c0.852,0,1.676,0,2.55,0\r\n\tc0-0.186,0-0.348,0-0.51c0-1.637,0.02-3.271-0.014-4.908c-0.01-0.482,0.132-0.734,0.562-0.98c4.035-2.316,6.198-7.005,5.309-11.43\r\n\tc-1.198-5.965-6.513-9.707-12.529-8.824c-5.03,0.739-9.094,5.34-9.143,10.424c-0.043,4.409,1.886,7.729,5.687,9.957\r\n\tc0.239,0.141,0.333,0.285,0.331,0.566c-0.014,1.695-0.007,3.393-0.007,5.09c0,0.191,0,0.385,0,0.605c0.886,0,1.722,0,2.581,0\r\n\tC22.862,29.734,22.862,25.422,22.862,21.009z M24.379,21.052c0,4.375,0,8.708,0,13.04c0.564,0,1.09,0,1.638,0\r\n\tc0-4.355,0-8.686,0-13.04C25.458,21.052,24.935,21.052,24.379,21.052z M30.087,35.602c-3.294,0-6.527,0-9.767,0\r\n\tc0,0.623,0,1.215,0,1.795c3.275,0,6.508,0,9.767,0c0-0.457,0-0.881,0-1.303C30.087,35.943,30.087,35.793,30.087,35.602z\r\n\t M20.305,38.914c0.086,1.025,0.783,1.781,1.734,1.793c2.105,0.027,4.211,0.029,6.316,0c0.943-0.012,1.705-0.857,1.698-1.793\r\n\tC26.805,38.914,23.556,38.914,20.305,38.914z M22.881,19.506c0-0.524,0.005-1.051-0.003-1.577c-0.002-0.166-0.021-0.333-0.057-0.494\r\n\tc-0.183-0.835-0.93-1.396-1.794-1.355c-0.859,0.041-1.553,0.708-1.649,1.589c-0.088,0.795,0.457,1.69,1.258,1.814\r\n\tC21.352,19.594,22.1,19.506,22.881,19.506z M27.537,19.545c0.698,0,1.352,0.048,1.995-0.011c0.871-0.081,1.493-0.882,1.465-1.784\r\n\tc-0.028-0.873-0.744-1.616-1.61-1.67c-0.896-0.057-1.745,0.55-1.835,1.404C27.481,18.153,27.537,18.835,27.537,19.545z\r\n\t M23.718,42.203c-0.012,0.834,0.617,1.482,1.435,1.504c0.837,0.023,1.514-0.639,1.528-1.504\r\n\tC25.693,42.203,24.705,42.203,23.718,42.203z"/>\r\n</svg>\r\n';});
+
 define( 'views/appView',[
   'backbone',
   'mustache',
@@ -19815,11 +19851,19 @@ define( 'views/appView',[
   // Templates
   'text!templates/app.html',
 
+  // Icons
+  'text!sizeSvg',
+  'text!logOnSvg',
+  'text!outAndAboutSvg',
+  'text!upToDateSvg',
+  'text!cloudSvg',
+  'text!responsabilitySvg',
+
   // Others
   'velocity-ui'
 
 //  'views/analytics'
-], function ( Backbone, Mustache, _, velocity, HeaderView, IntroView, QuestionsView, LevelView, appTpl ) {
+], function ( Backbone, Mustache, _, velocity, HeaderView, IntroView, QuestionsView, LevelView, appTpl, sizeSvg, logOnSvg, outAndAboutSvg, upToDateSvg, cloudSvg, responsabilitySvg ) {
   'use strict';
 
   return Backbone.View.extend( {
@@ -19836,11 +19880,21 @@ define( 'views/appView',[
 
     prepareData: function ( data ) {
 
+      var icon = [
+        sizeSvg,
+        logOnSvg,
+        outAndAboutSvg,
+        upToDateSvg,
+        cloudSvg,
+        responsabilitySvg
+      ];
+
       // Prepare questions (add IDs)
       data.questions.forEach( function ( q, i ) {
 
         q['question-id'] = "question-" + i;
         q['question-index'] = i;
+        q['svg'] = icon[i];
 
         q.answers.forEach( function ( a, j ) {
 
@@ -19940,6 +19994,9 @@ define( 'views/appView',[
         // Set the first answer active
         this.questionsView.activateFirstAnswer.call( this.questionsView );
 
+        // Scroll to top
+        this.scrollTop();
+
       }.bind( this ) );
 
     },
@@ -19957,7 +20014,7 @@ define( 'views/appView',[
       } else if ( _.isObject( i ) ) {
 
         var event = i;
-        var $step = $( event.target );
+        var $step = $( event.target ).closest( '.step' );
         var index = $step.data( 'index' );
 
       }
@@ -20023,6 +20080,7 @@ define( 'views/appView',[
       // Update button and step icons
       this.questionsView.updateButton();
       this.levelView.disableSteps();
+      this.levelView.setSummaryCurrent();
 
     },
 
@@ -20061,6 +20119,10 @@ define( 'views/appView',[
       // Remove summary class
       this.$el.removeClass( 'summary' );
 
+    },
+
+    scrollTop: function () {
+      this.$el.velocity( 'scroll', {duration: 400, easing: "swing"} );
     }
 
   } );
@@ -20069,6 +20131,8 @@ define( 'views/appView',[
 
 define( 'main',[
   'views/appView'
+
+
 ], function ( AppView ) {
 
   'use strict';

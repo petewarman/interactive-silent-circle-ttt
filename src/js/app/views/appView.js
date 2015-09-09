@@ -13,11 +13,19 @@ define( [
   // Templates
   'text!templates/app.html',
 
+  // Icons
+  'text!sizeSvg',
+  'text!logOnSvg',
+  'text!outAndAboutSvg',
+  'text!upToDateSvg',
+  'text!cloudSvg',
+  'text!responsabilitySvg',
+
   // Others
   'velocity-ui'
 
 //  'views/analytics'
-], function ( Backbone, Mustache, _, velocity, HeaderView, IntroView, QuestionsView, LevelView, appTpl ) {
+], function ( Backbone, Mustache, _, velocity, HeaderView, IntroView, QuestionsView, LevelView, appTpl, sizeSvg, logOnSvg, outAndAboutSvg, upToDateSvg, cloudSvg, responsabilitySvg ) {
   'use strict';
 
   return Backbone.View.extend( {
@@ -34,11 +42,21 @@ define( [
 
     prepareData: function ( data ) {
 
+      var icon = [
+        sizeSvg,
+        logOnSvg,
+        outAndAboutSvg,
+        upToDateSvg,
+        cloudSvg,
+        responsabilitySvg
+      ];
+
       // Prepare questions (add IDs)
       data.questions.forEach( function ( q, i ) {
 
         q['question-id'] = "question-" + i;
         q['question-index'] = i;
+        q['svg'] = icon[i];
 
         q.answers.forEach( function ( a, j ) {
 
@@ -138,6 +156,9 @@ define( [
         // Set the first answer active
         this.questionsView.activateFirstAnswer.call( this.questionsView );
 
+        // Scroll to top
+        this.scrollTop();
+
       }.bind( this ) );
 
     },
@@ -155,7 +176,7 @@ define( [
       } else if ( _.isObject( i ) ) {
 
         var event = i;
-        var $step = $( event.target );
+        var $step = $( event.target ).closest( '.step' );
         var index = $step.data( 'index' );
 
       }
@@ -221,6 +242,7 @@ define( [
       // Update button and step icons
       this.questionsView.updateButton();
       this.levelView.disableSteps();
+      this.levelView.setSummaryCurrent();
 
     },
 
@@ -259,6 +281,10 @@ define( [
       // Remove summary class
       this.$el.removeClass( 'summary' );
 
+    },
+
+    scrollTop: function () {
+      this.$el.velocity( 'scroll', {duration: 400, easing: "swing"} );
     }
 
   } );

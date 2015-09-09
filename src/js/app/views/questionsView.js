@@ -43,6 +43,8 @@ define( [
 
     setupElements: function () {
 
+      this.$body = $( 'html, body' );
+
       this.$answerWrapper = this.$( '.answer-wrapper' );
       this.$answers = this.$( '.answers' );
       this.$questions = this.$( '.question' );
@@ -70,6 +72,9 @@ define( [
       } else if ( this.app.currentState === 'summary' ) {
         this.app.restart();
       }
+
+      // Scroll to top
+      this.app.scrollTop();
 
     },
 
