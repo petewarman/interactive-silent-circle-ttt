@@ -73,6 +73,7 @@
     background-size: 100% auto;
     background-position: top left;
     position: relative;
+    z-index: 1;
 
     @media(min-width: 660px) {
       height: 25px;
@@ -85,9 +86,11 @@
     .level-mask {
       position: absolute;
       right: 0;
-      height: 100%;
+      top: 0;
       width: 99%;
       background-color: #555;
+      z-index: 10;
+      height: 100%;
 
       @include css3-prefix(transition-property, width);
       @include css3-prefix(transition-duration, 1s);

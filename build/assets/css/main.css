@@ -1294,6 +1294,7 @@ body {
   background-size: 100% auto;
   background-position: top left;
   position: relative;
+  z-index: 1;
 }
 @media (min-width: 660px) {
   .guInteractive #level-section > .inner .bar-container .bar {
@@ -1308,9 +1309,11 @@ body {
 .guInteractive #level-section > .inner .bar-container .bar .level-mask {
   position: absolute;
   right: 0;
-  height: 100%;
+  top: 0;
   width: 99%;
   background-color: #555;
+  z-index: 10;
+  height: 100%;
   -khtml-transition-property: width;
   transition-property: width;
   -khtml-transition-duration: 1s;
