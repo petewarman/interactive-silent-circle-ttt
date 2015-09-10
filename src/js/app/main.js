@@ -18,6 +18,10 @@ define( [
         this.isWeb = false;
       }
 
+      // Paths
+      this.rootPath = this.isWeb ? '{{remote-root}}' : '{{local-root}}';
+      this.assetsPath = this.rootPath + 'assets/';
+
       // Touch?
       this.isTouch = (('ontouchstart' in window) || ('ontouchstart' in document.documentElement) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
       if ( this.isTouch ) {
@@ -27,16 +31,11 @@ define( [
       }
 
       // Get JSON questions + lang
-      this.getJsonData( this.renderMainView.bind( this ) );
-
-    },
-
-    getJsonData: function ( callback ) {
 
       $.ajax( {
         dataType: 'json',
-        url: '{{assets}}/data/data.json',
-        success: callback
+        url: this.assetsPath + '/data/data.json',
+        success: this.renderMainView.bind( this )
       } );
 
     },
@@ -47,7 +46,8 @@ define( [
         el: this.el,
         isWeb: this.isWeb,
         data: data,
-        touch: this.isTouch
+        touch: this.isTouch,
+        assetsPath: this.assetsPath
       } );
       appView.render();
     }

@@ -37,6 +37,7 @@ define( [
       this.data = this.prepareData( options.data );
       this.isWeb = options.isWeb;
       this.isTouch = options.isTouch;
+      this.assetsPath = options.assetsPath;
 
     },
 
@@ -112,7 +113,8 @@ define( [
       // Render header, intro and questions
       this.headerView = new HeaderView( {
         el: this.$headerSection[0],
-        isWeb: this.isWeb
+        isWeb: this.isWeb,
+        assetsPath: this.assetsPath
       } );
 
 //      this.introView = new IntroView( {

@@ -14,6 +14,7 @@ define( [
     initialize: function ( options ) {
 
       this.isWeb = options.isWeb;
+      this.assetsPath = options.assetsPath;
 
     },
 
@@ -31,7 +32,8 @@ define( [
       // Render main template
       this.$el.html( Mustache.render( template, {
         questions: this.data,
-        isWeb: this.isWeb
+        isWeb: this.isWeb,
+        assets: this.assetsPath
       } ) );
 
       this.setupElements();

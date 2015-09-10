@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -10,21 +10,26 @@
 <!-- Use the same figure elm as NGW -->
 <figure class="element-interactive interactive"></figure>
 
-<!-- Libs -->
-<!--<script src="{{assets}}/js/curl.js"></script>-->
-<script src="{{assets}}/js/require.js"></script>
+<!-- Get require.js -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js"></script>
+<script>window.require || document.write( '<script src="assets/js/require.js"><\/script>' );</script>
+<!--<script src="{{assets}}/js/require.js"></script>-->
 
 <!-- Simulate boot.js -->
 <script>
-    var el = document.querySelector( '.interactive' );
-//        require = curl;
-//        curl( ['boot.js'], function ( app ) {
-//            app.boot( el );
-//        } );
 
+    // Paths
+    var guardianRoot = window.guardianRoot || "{{remote-root}}";
+    var localRoot = window.localRoot || "{{local-root}}";
+
+    // DOM element
+    var el = document.querySelector( '.interactive' );
+
+    // Boot
     require( ['boot.js'], function ( app ) {
         app.boot( el );
     } );
+
 </script>
 </body>
 </html>

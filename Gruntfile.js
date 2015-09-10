@@ -143,34 +143,16 @@ module.exports = function ( grunt ) {
     },
 
     replace: {
-      prod: {
+      build: {
         options: {
           patterns: [
             {
-              match: /{{assets}}/g,
-              replacement: pkg.config.cdn_url + 'assets-' + currentTime
-            }
-          ]
-        },
-        files: [
-          {
-            src: ['build/*.html', 'build/**/*.js', 'build/**/*.css'],
-            dest: './'
-          }
-        ]
-      },
-      local: {
-        options: {
-          patterns: [
-            {
-              match: /{{assets}}/g,
-              replacement: 'assets'
-//              replacement: 'http://localhost:' + pkg.config.port + '/build/assets'
+              match: /{{local-root}}/g,
+              replacement: ""
             },
             {
-              match: /\/\/pasteup\.guim\.co\.uk\/fonts\/0\.1\.0/g,
-              replacement: '/bower_components/guss-webfonts/webfonts'
-//              replacement: '../../../bower_components/guss-webfonts/webfonts'
+              match: /{{remote-root}}/g,
+              replacement: "//labs.theguardian.com/2015/aug/silent-circle-video/"
             }
           ]
         },
@@ -258,16 +240,16 @@ module.exports = function ( grunt ) {
     'sass',
     'autoprefixer',
     'requirejs',
-    'copy'
+    'copy',
+    'replace'
   ] );
 
-  grunt.registerTask( 'default', ['build', 'replace:local', 'connect', 'watch'] );
-//  grunt.registerTask( 'default', ['build', 'replace:local', 'watch'] );
+  grunt.registerTask( 'default', ['build', 'connect', 'watch'] );
 
   grunt.registerTask( 'deploy', [
     'build',
     'rename',
-    'replace:prod',
+    'replace',
     's3'
   ] );
 
