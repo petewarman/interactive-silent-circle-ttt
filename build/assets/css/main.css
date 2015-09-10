@@ -1126,7 +1126,17 @@ body {
 }
 .guInteractive #intro-section {
   position: relative;
-  height: 500px;
+  height: 280px;
+}
+@media (min-width: 660px) {
+  .guInteractive #intro-section {
+    height: 360px;
+  }
+}
+@media (min-width: 980px) {
+  .guInteractive #intro-section {
+    height: 500px;
+  }
 }
 .guInteractive #intro-section > .inner {
   position: relative;
@@ -1147,15 +1157,47 @@ body {
 .guInteractive #intro-section > .inner .titles-wrapper h1 {
   text-align: center;
   font-weight: 400;
+  font-size: 22px;
+}
+@media (min-width: 660px) {
+  .guInteractive #intro-section > .inner .titles-wrapper h1 {
+    font-size: 26px;
+  }
+}
+@media (min-width: 980px) {
+  .guInteractive #intro-section > .inner .titles-wrapper h1 {
+    font-size: 30px;
+  }
 }
 .guInteractive #intro-section > .inner .titles-wrapper h2 {
   text-align: center;
   font-weight: 400;
+  font-size: 17px;
+}
+@media (min-width: 660px) {
+  .guInteractive #intro-section > .inner .titles-wrapper h2 {
+    font-size: 21px;
+  }
+}
+@media (min-width: 980px) {
+  .guInteractive #intro-section > .inner .titles-wrapper h2 {
+    font-size: 25px;
+  }
 }
 .guInteractive #intro-section > .inner .button {
   position: absolute;
-  bottom: 40px;
   width: 100%;
+  bottom: 10px;
+}
+@media (min-width: 660px) {
+  .guInteractive #intro-section > .inner .button {
+    bottom: 20px;
+  }
+}
+@media (min-width: 980px) {
+  .guInteractive #intro-section > .inner .button {
+    bottom: 40px;
+  }
 }
 .guInteractive #intro-section > .inner .button a {
   padding: 8px 40px;
@@ -1187,12 +1229,16 @@ body {
   margin: 0;
 }
 .guInteractive #level-section > .inner .bar-container h1 {
-  font-weight: 400;
-  color: #ff827f;
+  font-weight: 100;
+  color: #9a6763;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
   margin-bottom: 10px;
+  -khtml-transition-property: color;
+  transition-property: color;
+  -khtml-transition-duration: 0.4s;
+  transition-duration: 0.4s;
 }
 @media (min-width: 660px) {
   .guInteractive #level-section > .inner .bar-container h1 {
@@ -1203,8 +1249,8 @@ body {
 }
 @media (min-width: 980px) {
   .guInteractive #level-section > .inner .bar-container h1 {
-    font-size: 30px;
-    line-height: 34px;
+    font-size: 32px;
+    line-height: 36px;
     margin-bottom: 20px;
   }
 }
@@ -1329,6 +1375,10 @@ body {
   margin-left: 14px;
   cursor: default;
   z-index: 2;
+  -khtml-transition-property: border-color;
+  transition-property: border-color;
+  -khtml-transition-duration: 0.4s;
+  transition-duration: 0.4s;
 }
 .guInteractive #level-section > .inner .steps-container .step svg {
   width: 36px;
@@ -1342,9 +1392,13 @@ body {
   transform: translateX(-50%) translateY(-50%);
 }
 .guInteractive #level-section > .inner .steps-container .step svg .color-fill {
+  -khtml-transition-duration: 0.4s;
+  transition-duration: 0.4s;
   fill: #666;
 }
 .guInteractive #level-section > .inner .steps-container .step svg .color-stroke {
+  -khtml-transition-duration: 0.4s;
+  transition-duration: 0.4s;
   stroke: #666;
 }
 .guInteractive #level-section > .inner .steps-container .step.current {
@@ -1358,10 +1412,10 @@ body {
   stroke: #FFF;
 }
 .guInteractive #level-section > .inner .steps-container .step.summary {
-  background-color: transparent !important;
   cursor: default !important;
 }
 .guInteractive #level-section > .inner .steps-container .step.summary:last-of-type {
+  background-color: #ff827f !important;
   border-color: #ff827f;
 }
 .guInteractive #level-section > .inner .steps-container .step.done {
@@ -1392,7 +1446,7 @@ body {
 }
 .guInteractive #level-section > .inner .summary-message {
   text-align: center;
-  color: #ff827f;
+  color: #9a6763;
   font-size: 14px;
   line-height: 30px;
   padding: 20px 0 0 0;

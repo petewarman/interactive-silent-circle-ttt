@@ -59,7 +59,7 @@ define( [
 
       var click = this.isTouch ? 'touchstart' : 'click';
 
-      $( document ).on( click, '.answer-wrapper:not(.selected) label, .answer-wrapper:not(.selected) span', this.activateAnswer.bind( this ) );
+      $( document ).on( click, '.answer-wrapper:not(.selected) label, .answer-wrapper:not(.selected) span, .answer-wrapper:not(.selected) input', this.activateAnswer.bind( this ) );
 
       $( document ).on( click, '.button.enabled a', this.buttonClicked.bind( this ) );
 
@@ -113,6 +113,7 @@ define( [
         $selectedAnswer = e.closest( '.answer-wrapper' );
         $question = e.closest( '.question' );
       } else {
+        e.stopPropagation(); // important!
         var $el = $( e.currentTarget );
         $selectedAnswer = $el.closest( '.answer-wrapper' );
         $radio = $selectedAnswer.find( 'input[type=radio]' );
@@ -221,7 +222,7 @@ define( [
     hide: function ( callback ) {
 
       this.$el.velocity( "fadeOut", {
-        duration: 400,
+        duration: 800,
         complete: callback
       } );
 

@@ -25,20 +25,20 @@
     </div>
 
     <div class="bar-container">
-        <h1 class="title">
-            {{{view.title}}}
+        <h1 id="bar-title" class="title">
+            {{{texts.title}}}
         </h1>
 
         <div class="label-container">
-            <span class="left">{{view.low}}</span>
-            <span class="right">{{view.high}}</span>
+            <span class="left">{{texts.low}}</span>
+            <span class="right">{{texts.high}}</span>
         </div>
 
         <div class="bar">
             <div id="level-mask" class="level-mask"></div>
         </div>
 
-        <div class="summary-message">{{{view.summary-message}}}</div>
+        <div id="summary-message" class="summary-message"></div>
     </div>
 
 </div>

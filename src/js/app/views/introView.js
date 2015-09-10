@@ -25,21 +25,21 @@ define( [
 
     },
 
-    show: function(callback) {
+    show: function ( callback ) {
 
-      this.$el.velocity("fadeIn", {
+      this.$el.velocity( "fadeIn", {
         duration: 200,
         complete: callback
-      });
+      } );
 
     },
 
-    hide: function(callback) {
+    hide: function ( callback ) {
 
-      this.$el.velocity("fadeOut", {
+      this.$el.velocity( "fadeOut", {
         duration: 200,
         complete: callback
-      });
+      } );
 
     },
 

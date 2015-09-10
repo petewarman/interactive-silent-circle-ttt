@@ -8,10 +8,18 @@
       "title": "Take the test.<br>How secure is your business?",
       "low": "Low risk",
       "high": "High risk",
-      "summary-message": "Your answers are below as well as some tips to keep you more secure",
-      "results-bad": "Based on your results, your business needs improvement",
-      "results-medium": "Based on your results, MEDIUM",
-      "results-good": "Based on your results, GOOD"
+      "summary": {
+        "title": {
+          "good": "Based on your results,<br>your business is very secure",
+          "medium": "Based on your results,<br>your business is reasonably secure",
+          "bad": "Based on your results,<br>your business needs improvement"
+        },
+        "message": {
+          "good": "Here are some tips to keep you secure",
+          "medium": "Here are some tips to get more secure",
+          "bad": "Here are some tips to get more secure"
+        }
+      }
     }
   },
 

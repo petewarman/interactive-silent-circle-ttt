@@ -49,6 +49,9 @@
     cursor: default;
     z-index: 2;
 
+    @include css3-prefix(transition-property, border-color);
+    @include css3-prefix(transition-duration, 0.4s);
+
     svg {
       width: $step-size - 12px;
       height: $step-size - 12px;
@@ -58,10 +61,12 @@
       @include transform(translateX(-50%) translateY(-50%));
 
       .color-fill {
+        @include css3-prefix(transition-duration, 0.4s);
         fill: #666;
       }
 
       .color-stroke {
+        @include css3-prefix(transition-duration, 0.4s);
         stroke: #666;
       }
     }
@@ -80,10 +85,11 @@
     }
 
     &.summary {
-      background-color: transparent !important;
+//      background-color: transparent !important;
       cursor: default !important;
 
       &:last-of-type {
+        background-color: $accent-color !important;
         border-color: $accent-color;
       }
     }

@@ -1,6 +1,14 @@
 #intro-section {
   position: relative;
-  height: 500px;
+  height: 280px;
+
+  @media(min-width: 660px) {
+    height: 360px;
+  }
+
+  @media(min-width: 980px) {
+    height: 500px;
+  }
 
   > .inner {
     position: relative;
@@ -21,19 +29,45 @@
       h1 {
         text-align: center;
         font-weight: 400;
+        font-size: 22px;
+
+        @media(min-width: 660px) {
+          font-size: 26px;
+        }
+
+        @media(min-width: 980px) {
+          font-size: 30px;
+        }
       }
 
       h2 {
         text-align: center;
         font-weight: 400;
+        font-size: 17px;
+
+        @media(min-width: 660px) {
+          font-size: 21px;
+        }
+
+        @media(min-width: 980px) {
+          font-size: 25px;
+        }
       }
 
     }
 
     .button {
       position: absolute;
-      bottom: 40px;
       width: 100%;
+      bottom: 10px;
+
+      @media(min-width: 660px) {
+        bottom: 20px;
+      }
+
+      @media(min-width: 980px) {
+        bottom: 40px;
+      }
 
       a {
         padding: 8px 40px;

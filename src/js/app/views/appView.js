@@ -115,15 +115,17 @@ define( [
         isWeb: this.isWeb
       } );
 
-      this.introView = new IntroView( {
-        el: this.$introSection[0],
-        data: this.data
-      } );
+//      this.introView = new IntroView( {
+//        el: this.$introSection[0],
+//        data: this.data
+//      } );
 
       this.headerView.render();
-      this.introView.render();
+//      this.introView.render();
 
       this.setupEvents();
+
+      this.start();
 
       return this;
     },
@@ -230,7 +232,30 @@ define( [
 
     start: function () {
 
-      this.introView.hide( this.renderLevel.bind( this, this.renderQuestions.bind( this ) ) );
+//      this.introView.hide(  );
+
+      this.renderLevel( this.renderQuestions.bind( this ) );
+
+    },
+
+    updateTexts: function () {
+
+      if ( this.currentState === 'summary' ) {
+
+        var levelPercent = this.levelView.getLevel() || 0;
+        var security = "good";
+
+        if ( levelPercent <= 100 * 0.3 ) {
+          security = "bad";
+        } else if ( levelPercent <= 100 * 0.6 ) {
+          security = "medium";
+        }
+
+        this.levelView.updateSummaryText( security );
+
+        console.log( 'security level: ' + security );
+
+      }
 
     },
 
@@ -243,6 +268,9 @@ define( [
       this.questionsView.updateButton();
       this.levelView.disableSteps();
       this.levelView.setSummaryCurrent();
+
+      // Update texts
+      this.updateTexts();
 
     },
 
@@ -273,6 +301,9 @@ define( [
 
       // Show first question
       this.showQuestion( 0 );
+
+      // Reset levelView title + texts
+      this.levelView.resetTexts();
 
       // Update button and steps
       this.questionsView.updateButton();

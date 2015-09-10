@@ -20,6 +20,7 @@ define( [
 
       this.data = options.data;
       this.questions = options.data.questions;
+      this.texts = this.data.view.level;
 
       this.maxLevel = this.getMaxLevel();
 
@@ -28,6 +29,9 @@ define( [
     setupElements: function () {
       this.$steps = this.$( '.step' );
       this.$levelMask = this.$( '#level-mask' );
+
+      this.$title = this.$( '#bar-title' );
+      this.$summaryMessage = this.$( '#summary-message' );
     },
 
     setupEvents: function () {
@@ -57,7 +61,7 @@ define( [
       // Render main template
       this.$el.html( Mustache.render( template, {
         questions: this.data.questions,
-        view: this.data.view.level,
+        texts: this.texts,
         'summary-svg': summarySvg
       } ) );
 
@@ -71,7 +75,10 @@ define( [
 
       this.currentLevelRatio = answersTotal / this.maxLevel;
       this.setLevel( 100 * this.currentLevelRatio );
+    },
 
+    getLevel: function () {
+      return parseInt( this.$levelMask[0].style.width );
     },
 
     setLevel: function ( percent ) {
@@ -111,10 +118,27 @@ define( [
 
     },
 
+    resetTexts: function() {
+
+      this.$title.html( this.texts.title );
+      this.$summaryMessage.html('');
+
+    },
+
+    updateSummaryText: function ( security ) {
+
+      this.summaryTitle = this.texts.summary.title[security];
+      this.summaryMessage = this.texts.summary.message[security];
+
+      this.$title.html( this.summaryTitle );
+      this.$summaryMessage.html( this.summaryMessage );
+
+    },
+
     show: function ( callback ) {
 
       this.$el.velocity( "fadeIn", {
-        duration: 0,
+        duration: 400,
         complete: callback
       } );
 

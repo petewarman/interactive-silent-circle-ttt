@@ -10,12 +10,17 @@
 
             {{#answers}}
             <div class="answer-wrapper">
+
                 <input type="radio"
                        name="{{question-id}}-radio"
                        id="{{answer-id}}"
                        value="{{value}}"
                        data-index="{{answer-index}}">
-                <label><span></span>{{answer}}</label>
+
+                <label>
+                    <span></span>
+                    {{answer}}
+                </label>
 
                 <div class="endscreen">{{endscreen}}</div>
 

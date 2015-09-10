@@ -19402,21 +19402,21 @@ define( 'views/introView',[
 
     },
 
-    show: function(callback) {
+    show: function ( callback ) {
 
-      this.$el.velocity("fadeIn", {
+      this.$el.velocity( "fadeIn", {
         duration: 200,
         complete: callback
-      });
+      } );
 
     },
 
-    hide: function(callback) {
+    hide: function ( callback ) {
 
-      this.$el.velocity("fadeOut", {
+      this.$el.velocity( "fadeOut", {
         duration: 200,
         complete: callback
-      });
+      } );
 
     },
 
@@ -19439,7 +19439,7 @@ define( 'views/introView',[
 
 
 
-define('text!templates/questions.html',[],function () { return '<div class="inner">\n\n    {{#questions}}\n\n    <div id="{{question-id}}" data-index="{{question-index}}" class="question">\n\n        <h2><i>{{index}}. {{topic}}.</i> {{question}}</h2>\n\n        <fieldset class="answers">\n\n            {{#answers}}\n            <div class="answer-wrapper">\n                <input type="radio"\n                       name="{{question-id}}-radio"\n                       id="{{answer-id}}"\n                       value="{{value}}"\n                       data-index="{{answer-index}}">\n                <label><span></span>{{answer}}</label>\n\n                <div class="endscreen">{{endscreen}}</div>\n\n                <div class="feedback">{{feedback}}</div>\n            </div>\n            {{/answers}}\n\n        </fieldset>\n\n    </div>\n\n    {{/questions}}\n\n</div>\n\n<div class="button right">\n    <a href="#">{{button.next}}</a>\n</div>\n\n\n';});
+define('text!templates/questions.html',[],function () { return '<div class="inner">\n\n    {{#questions}}\n\n    <div id="{{question-id}}" data-index="{{question-index}}" class="question">\n\n        <h2><i>{{index}}. {{topic}}.</i> {{question}}</h2>\n\n        <fieldset class="answers">\n\n            {{#answers}}\n            <div class="answer-wrapper">\n\n                <input type="radio"\n                       name="{{question-id}}-radio"\n                       id="{{answer-id}}"\n                       value="{{value}}"\n                       data-index="{{answer-index}}">\n\n                <label>\n                    <span></span>\n                    {{answer}}\n                </label>\n\n                <div class="endscreen">{{endscreen}}</div>\n\n                <div class="feedback">{{feedback}}</div>\n            </div>\n            {{/answers}}\n\n        </fieldset>\n\n    </div>\n\n    {{/questions}}\n\n</div>\n\n<div class="button right">\n    <a href="#">{{button.next}}</a>\n</div>\n\n\n';});
 
 define( 'views/questionsView',[
   'backbone',
@@ -19502,7 +19502,7 @@ define( 'views/questionsView',[
 
       var click = this.isTouch ? 'touchstart' : 'click';
 
-      $( document ).on( click, '.answer-wrapper:not(.selected) label, .answer-wrapper:not(.selected) span', this.activateAnswer.bind( this ) );
+      $( document ).on( click, '.answer-wrapper:not(.selected) label, .answer-wrapper:not(.selected) span, .answer-wrapper:not(.selected) input', this.activateAnswer.bind( this ) );
 
       $( document ).on( click, '.button.enabled a', this.buttonClicked.bind( this ) );
 
@@ -19556,6 +19556,7 @@ define( 'views/questionsView',[
         $selectedAnswer = e.closest( '.answer-wrapper' );
         $question = e.closest( '.question' );
       } else {
+        e.stopPropagation(); // important!
         var $el = $( e.currentTarget );
         $selectedAnswer = $el.closest( '.answer-wrapper' );
         $radio = $selectedAnswer.find( 'input[type=radio]' );
@@ -19664,7 +19665,7 @@ define( 'views/questionsView',[
     hide: function ( callback ) {
 
       this.$el.velocity( "fadeOut", {
-        duration: 400,
+        duration: 800,
         complete: callback
       } );
 
@@ -19675,7 +19676,7 @@ define( 'views/questionsView',[
 
 
 
-define('text!templates/level.html',[],function () { return '<div class="inner">\n\n    <div class="steps-container">\n\n        <div class="steps-container-inner absolute-center">\n\n        {{#questions}}\n\n        <div id="{{question-id}}-step" data-index="{{question-index}}" class="step" >\n            {{{svg}}}\n        </div>\n\n            <!--style="background-image: url(\'assets/imgs/{{icon}}\')"-->\n\n        {{/questions}}\n\n        <div id="summary-step" class="step">\n            {{{summary-svg}}}\n        </div>\n\n            <!--style="background-image: url(\'assets/imgs/close.svg\')"-->\n\n            </div>\n\n    </div>\n\n    <div class="bar-container">\n        <h1 class="title">\n            {{{view.title}}}\n        </h1>\n\n        <div class="label-container">\n            <span class="left">{{view.low}}</span>\n            <span class="right">{{view.high}}</span>\n        </div>\n\n        <div class="bar">\n            <div id="level-mask" class="level-mask"></div>\n        </div>\n\n        <div class="summary-message">{{{view.summary-message}}}</div>\n    </div>\n\n</div>';});
+define('text!templates/level.html',[],function () { return '<div class="inner">\n\n    <div class="steps-container">\n\n        <div class="steps-container-inner absolute-center">\n\n        {{#questions}}\n\n        <div id="{{question-id}}-step" data-index="{{question-index}}" class="step" >\n            {{{svg}}}\n        </div>\n\n            <!--style="background-image: url(\'assets/imgs/{{icon}}\')"-->\n\n        {{/questions}}\n\n        <div id="summary-step" class="step">\n            {{{summary-svg}}}\n        </div>\n\n            <!--style="background-image: url(\'assets/imgs/close.svg\')"-->\n\n            </div>\n\n    </div>\n\n    <div class="bar-container">\n        <h1 id="bar-title" class="title">\n            {{{texts.title}}}\n        </h1>\n\n        <div class="label-container">\n            <span class="left">{{texts.low}}</span>\n            <span class="right">{{texts.high}}</span>\n        </div>\n\n        <div class="bar">\n            <div id="level-mask" class="level-mask"></div>\n        </div>\n\n        <div id="summary-message" class="summary-message"></div>\n    </div>\n\n</div>';});
 
 
 define('text!summarySvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<g>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-miterlimit="10" d="\r\n\t\tM24.778,41.193c-2.956,0-5.912,0.004-8.868-0.002c-0.872-0.002-1.722-0.148-2.516-0.527c-1.47-0.703-2.356-1.863-2.671-3.461\r\n\t\tc-0.121-0.617-0.131-1.238-0.106-1.861c0.028-0.68,0.046-1.361,0.114-2.037c0.17-1.652,0.469-3.281,1.125-4.822\r\n\t\tc0.381-0.891,0.863-1.719,1.527-2.436c0.826-0.89,1.852-1.415,3.035-1.636c0.352-0.065,0.714-0.075,1.07-0.109\r\n\t\tc0.16-0.016,0.311,0.017,0.446,0.099c0.289,0.173,0.578,0.344,0.86,0.525c0.48,0.307,0.95,0.632,1.437,0.929\r\n\t\tc0.614,0.376,1.285,0.624,1.967,0.841c0.97,0.309,1.964,0.455,2.981,0.424c0.937-0.031,1.842-0.221,2.729-0.52\r\n\t\tc0.895-0.301,1.72-0.729,2.492-1.27c0.383-0.268,0.786-0.508,1.175-0.768c0.312-0.21,0.642-0.285,1.019-0.257\r\n\t\tc1.076,0.076,2.07,0.382,2.965,0.989c0.664,0.449,1.177,1.045,1.61,1.711c0.677,1.039,1.118,2.176,1.411,3.375\r\n\t\tc0.293,1.205,0.496,2.424,0.557,3.66c0.035,0.719,0.063,1.439,0.053,2.156c-0.018,1.061-0.276,2.057-0.906,2.93\r\n\t\tc-0.719,0.998-1.701,1.604-2.89,1.889c-0.539,0.129-1.086,0.178-1.638,0.178C30.763,41.195,27.771,41.193,24.778,41.193\r\n\t\tL24.778,41.193z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-miterlimit="10" d="\r\n\t\tM32.702,15.797c0.08,4.25-3.562,7.877-7.786,7.801c-4.224,0.087-7.826-3.525-7.825-7.799c0.001-4.266,3.594-7.88,7.818-7.795\r\n\t\tC29.149,7.924,32.779,11.564,32.702,15.797z"/>\r\n</g>\r\n</svg>\r\n';});
@@ -19702,6 +19703,7 @@ define( 'views/levelView',[
 
       this.data = options.data;
       this.questions = options.data.questions;
+      this.texts = this.data.view.level;
 
       this.maxLevel = this.getMaxLevel();
 
@@ -19710,6 +19712,9 @@ define( 'views/levelView',[
     setupElements: function () {
       this.$steps = this.$( '.step' );
       this.$levelMask = this.$( '#level-mask' );
+
+      this.$title = this.$( '#bar-title' );
+      this.$summaryMessage = this.$( '#summary-message' );
     },
 
     setupEvents: function () {
@@ -19739,7 +19744,7 @@ define( 'views/levelView',[
       // Render main template
       this.$el.html( Mustache.render( template, {
         questions: this.data.questions,
-        view: this.data.view.level,
+        texts: this.texts,
         'summary-svg': summarySvg
       } ) );
 
@@ -19753,7 +19758,10 @@ define( 'views/levelView',[
 
       this.currentLevelRatio = answersTotal / this.maxLevel;
       this.setLevel( 100 * this.currentLevelRatio );
+    },
 
+    getLevel: function () {
+      return parseInt( this.$levelMask[0].style.width );
     },
 
     setLevel: function ( percent ) {
@@ -19793,10 +19801,27 @@ define( 'views/levelView',[
 
     },
 
+    resetTexts: function() {
+
+      this.$title.html( this.texts.title );
+      this.$summaryMessage.html('');
+
+    },
+
+    updateSummaryText: function ( security ) {
+
+      this.summaryTitle = this.texts.summary.title[security];
+      this.summaryMessage = this.texts.summary.message[security];
+
+      this.$title.html( this.summaryTitle );
+      this.$summaryMessage.html( this.summaryMessage );
+
+    },
+
     show: function ( callback ) {
 
       this.$el.velocity( "fadeIn", {
-        duration: 0,
+        duration: 400,
         complete: callback
       } );
 
@@ -19816,10 +19841,10 @@ define( 'views/levelView',[
 
 
 
-define('text!templates/app.html',[],function () { return '<div class="guInteractive">\n    <div id="content">\n\n        <header id="header-section" class="section"></header>\n\n        <div id="intro-section" class="section full-width"></div>\n\n        <div class="section top-sections-container">\n\n            <div id="level-section" class="section transparent"></div>\n\n            <div id="questions-section" class="section transparent"></div>\n\n            <div id="summary-section" class="section transparent"></div>\n\n        </div>\n\n        <div class="section full-width">\n\n            <div class="contentBlock" id="about-section">\n\n                <h4 class="sectionHeading">About Silent Circle</h4>\n\n                <div class="contentBlock-inner">\n                    <p class="half-width no-margin-top">\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elementum quis justo at blandit.\n                        Nulla ante neque, scelerisque eu ante ut, aliquam egestas dolor. Proin a auctor massa.\n                        Vestibulum\n                        bibendum neque sit amet metus dignissim viverra. Quisque pellentesque velit lectus, ac\n                        vestibulum mi\n                        suscipit sit amet. Fusce nec pharetra tellus, quis egestas sem. Aliquam quis sodales enim.\n                        Phasellus\n                        a risus non libero mattis pretium. Aliquam bibendum imperdiet neque ac vulputate. Morbi ut\n                        dignissim\n                        enim, sit amet sagittis lorem. Nulla sed auctor nisi. Nunc pharetra, eros vulputate tempor\n                        interdum.\n                    </p>\n                </div>\n            </div>\n\n            <div class="contentBlock" id="video-section">\n\n                <h4 class="sectionHeading">\n                    <span>Video</span>\n                    <!-- <img src="http://labs.theguardian.com/2015/aug/silent-circle-video/assets/imgs/quiz-gif.gif"> -->\n                </h4>\n\n                <div class="contentBlock-inner">\n                    <h2>Do we link to the videos?</h2>\n\n                    <p class="half-width">\n                        Click here to put your company to the test. Lorem ipsum dolor sit amet, consectetur adipiscing\n                        elit. Nullam elementum quis justo at blandit.\n                    </p>\n                </div>\n            </div>\n\n        </div>\n\n    </div>\n</div>\n';});
+define('text!templates/app.html',[],function () { return '<div class="guInteractive">\n    <div id="content">\n\n        <header id="header-section" class="section"></header>\n\n        <!--<div id="intro-section" class="section full-width"></div>-->\n\n        <div class="section top-sections-container">\n\n            <div id="level-section" class="section transparent"></div>\n\n            <div id="questions-section" class="section transparent"></div>\n\n            <div id="summary-section" class="section transparent"></div>\n\n        </div>\n\n        <div class="section full-width">\n\n            <div class="contentBlock" id="about-section">\n\n                <h4 class="sectionHeading">About Silent Circle</h4>\n\n                <div class="contentBlock-inner">\n                    <p class="half-width no-margin-top">\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elementum quis justo at blandit.\n                        Nulla ante neque, scelerisque eu ante ut, aliquam egestas dolor. Proin a auctor massa.\n                        Vestibulum\n                        bibendum neque sit amet metus dignissim viverra. Quisque pellentesque velit lectus, ac\n                        vestibulum mi\n                        suscipit sit amet. Fusce nec pharetra tellus, quis egestas sem. Aliquam quis sodales enim.\n                        Phasellus\n                        a risus non libero mattis pretium. Aliquam bibendum imperdiet neque ac vulputate. Morbi ut\n                        dignissim\n                        enim, sit amet sagittis lorem. Nulla sed auctor nisi. Nunc pharetra, eros vulputate tempor\n                        interdum.\n                    </p>\n                </div>\n            </div>\n\n            <div class="contentBlock" id="video-section">\n\n                <h4 class="sectionHeading">\n                    <span>Video</span>\n                    <!-- <img src="http://labs.theguardian.com/2015/aug/silent-circle-video/assets/imgs/quiz-gif.gif"> -->\n                </h4>\n\n                <div class="contentBlock-inner">\n                    <h2>Do we link to the videos?</h2>\n\n                    <p class="half-width">\n                        Click here to put your company to the test. Lorem ipsum dolor sit amet, consectetur adipiscing\n                        elit. Nullam elementum quis justo at blandit.\n                    </p>\n                </div>\n            </div>\n\n        </div>\n\n    </div>\n</div>\n';});
 
 
-define('text!sizeSvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<g>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM14.834,45.191c-1.674,0-3.348,0.004-5.021,0c-0.494,0-0.976-0.084-1.425-0.299c-0.832-0.396-1.334-1.055-1.512-1.959\r\n\t\tc-0.069-0.35-0.074-0.701-0.061-1.055c0.016-0.385,0.025-0.77,0.064-1.152c0.097-0.936,0.266-1.857,0.638-2.73\r\n\t\tc0.215-0.504,0.488-0.973,0.864-1.379c0.468-0.504,1.048-0.801,1.719-0.926c0.198-0.037,0.404-0.043,0.605-0.062\r\n\t\tc0.091-0.008,0.176,0.01,0.253,0.057c0.163,0.098,0.327,0.193,0.487,0.297c0.271,0.174,0.538,0.357,0.813,0.525\r\n\t\tc0.347,0.213,0.727,0.354,1.113,0.477c0.549,0.174,1.111,0.258,1.688,0.24c0.53-0.018,1.043-0.125,1.545-0.295\r\n\t\tc0.507-0.17,0.974-0.412,1.411-0.719c0.217-0.15,0.445-0.287,0.665-0.434c0.177-0.119,0.363-0.162,0.577-0.146\r\n\t\tc0.609,0.043,1.172,0.217,1.679,0.561c0.375,0.254,0.666,0.592,0.911,0.969c0.384,0.588,0.634,1.232,0.799,1.91\r\n\t\tc0.166,0.684,0.281,1.373,0.315,2.072c0.02,0.408,0.036,0.814,0.03,1.223c-0.011,0.6-0.157,1.164-0.514,1.658\r\n\t\tc-0.407,0.564-0.963,0.908-1.636,1.068c-0.305,0.074-0.615,0.102-0.928,0.102c-1.695,0-3.389,0-5.083,0\r\n\t\tC14.834,45.193,14.834,45.193,14.834,45.191z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM19.32,30.814c0.045,2.406-2.017,4.459-4.408,4.416c-2.392,0.049-4.431-1.996-4.431-4.416c0.001-2.414,2.035-4.461,4.427-4.412\r\n\t\tC17.309,26.357,19.364,28.418,19.32,30.814z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM35.029,45.141c-1.674,0-3.348,0.004-5.021,0c-0.494,0-0.975-0.084-1.424-0.299c-0.832-0.398-1.334-1.055-1.513-1.959\r\n\t\tc-0.069-0.35-0.074-0.701-0.06-1.055c0.016-0.385,0.025-0.77,0.064-1.152c0.096-0.938,0.265-1.857,0.637-2.73\r\n\t\tc0.215-0.504,0.488-0.973,0.864-1.379c0.468-0.504,1.048-0.801,1.719-0.926c0.198-0.037,0.404-0.043,0.606-0.062\r\n\t\tc0.09-0.008,0.176,0.01,0.252,0.057c0.164,0.098,0.328,0.193,0.487,0.297c0.272,0.174,0.538,0.357,0.813,0.525\r\n\t\tc0.348,0.213,0.727,0.354,1.113,0.477c0.549,0.174,1.111,0.258,1.688,0.24c0.531-0.018,1.043-0.125,1.545-0.295\r\n\t\tc0.507-0.17,0.975-0.412,1.412-0.719c0.217-0.15,0.444-0.287,0.664-0.434c0.177-0.119,0.363-0.162,0.577-0.146\r\n\t\tc0.609,0.043,1.172,0.217,1.679,0.561c0.375,0.254,0.666,0.592,0.912,0.969c0.383,0.588,0.633,1.232,0.799,1.91\r\n\t\tc0.166,0.682,0.281,1.373,0.314,2.072c0.02,0.408,0.036,0.814,0.03,1.221c-0.011,0.6-0.157,1.164-0.513,1.66\r\n\t\tc-0.408,0.564-0.964,0.906-1.637,1.068c-0.305,0.072-0.615,0.102-0.928,0.102c-1.695,0-3.389,0-5.082,0\r\n\t\tC35.029,45.143,35.029,45.143,35.029,45.141z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM39.516,30.764c0.045,2.406-2.018,4.459-4.409,4.416c-2.392,0.049-4.431-1.996-4.431-4.416c0.001-2.414,2.035-4.461,4.427-4.412\r\n\t\tC37.504,26.305,39.559,28.367,39.516,30.764z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM24.308,23.944c-1.674,0-3.348,0.003-5.021,0c-0.493,0-0.975-0.084-1.424-0.298c-0.832-0.398-1.334-1.055-1.513-1.959\r\n\t\tc-0.068-0.35-0.074-0.702-0.06-1.054c0.016-0.385,0.025-0.771,0.064-1.153c0.096-0.937,0.265-1.858,0.637-2.73\r\n\t\tc0.216-0.504,0.489-0.973,0.864-1.379c0.469-0.503,1.049-0.801,1.719-0.926c0.199-0.037,0.404-0.042,0.606-0.062\r\n\t\tc0.09-0.009,0.176,0.009,0.252,0.056c0.164,0.098,0.328,0.194,0.487,0.297c0.272,0.174,0.538,0.358,0.813,0.526\r\n\t\tc0.348,0.213,0.728,0.353,1.113,0.476c0.549,0.174,1.112,0.258,1.688,0.24c0.53-0.018,1.043-0.125,1.545-0.294\r\n\t\tc0.506-0.17,0.973-0.412,1.41-0.719c0.217-0.151,0.445-0.288,0.666-0.435c0.176-0.119,0.363-0.162,0.576-0.146\r\n\t\tc0.609,0.043,1.172,0.216,1.679,0.56c0.376,0.254,0.666,0.592,0.911,0.969c0.384,0.588,0.634,1.232,0.799,1.911\r\n\t\tc0.166,0.682,0.281,1.372,0.315,2.072c0.021,0.407,0.036,0.814,0.03,1.221c-0.01,0.6-0.156,1.164-0.514,1.659\r\n\t\tc-0.406,0.565-0.963,0.908-1.636,1.069c-0.305,0.073-0.614,0.101-0.927,0.101C27.695,23.945,26.001,23.945,24.308,23.944\r\n\t\tC24.308,23.945,24.308,23.945,24.308,23.944z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM28.793,9.566c0.045,2.406-2.016,4.46-4.408,4.417c-2.391,0.049-4.431-1.996-4.43-4.416c0-2.415,2.034-4.461,4.426-4.413\r\n\t\tC26.781,5.108,28.837,7.17,28.793,9.566z"/>\r\n</g>\r\n</svg>\r\n';});
+define('text!sizeSvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n\t width="50px" height="50px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<g>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM14.834,43.191c-1.674,0-3.348,0.004-5.021,0c-0.494,0-0.976-0.084-1.425-0.299c-0.832-0.396-1.334-1.055-1.512-1.959\r\n\t\tc-0.069-0.35-0.074-0.701-0.061-1.055c0.016-0.385,0.025-0.77,0.064-1.152c0.097-0.936,0.266-1.857,0.638-2.73\r\n\t\tc0.215-0.504,0.488-0.973,0.864-1.379c0.468-0.504,1.048-0.801,1.719-0.926c0.198-0.037,0.404-0.043,0.605-0.062\r\n\t\tc0.091-0.008,0.176,0.01,0.253,0.057c0.163,0.098,0.327,0.193,0.487,0.297c0.271,0.174,0.538,0.357,0.813,0.525\r\n\t\tc0.347,0.213,0.727,0.354,1.113,0.477c0.549,0.174,1.111,0.258,1.688,0.24c0.53-0.018,1.043-0.125,1.545-0.295\r\n\t\tc0.507-0.17,0.974-0.412,1.411-0.719c0.217-0.15,0.445-0.287,0.665-0.434c0.177-0.119,0.363-0.162,0.577-0.146\r\n\t\tc0.609,0.043,1.172,0.217,1.679,0.561c0.375,0.254,0.666,0.592,0.911,0.969c0.384,0.588,0.634,1.232,0.799,1.91\r\n\t\tc0.166,0.684,0.281,1.373,0.315,2.072c0.02,0.408,0.036,0.814,0.03,1.223c-0.011,0.6-0.157,1.164-0.514,1.658\r\n\t\tc-0.407,0.564-0.963,0.908-1.636,1.068c-0.305,0.074-0.615,0.102-0.928,0.102c-1.695,0-3.389,0-5.083,0\r\n\t\tC14.834,43.193,14.834,43.193,14.834,43.191z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM19.32,28.814c0.045,2.406-2.017,4.459-4.408,4.416c-2.392,0.049-4.431-1.996-4.431-4.416c0.001-2.414,2.035-4.461,4.427-4.412\r\n\t\tC17.309,24.357,19.364,26.418,19.32,28.814z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM35.029,43.141c-1.674,0-3.348,0.004-5.021,0c-0.494,0-0.975-0.084-1.424-0.299c-0.832-0.398-1.334-1.055-1.513-1.959\r\n\t\tc-0.069-0.35-0.074-0.701-0.06-1.055c0.016-0.385,0.025-0.77,0.064-1.152c0.096-0.938,0.265-1.857,0.637-2.73\r\n\t\tc0.215-0.504,0.488-0.973,0.864-1.379c0.468-0.504,1.048-0.801,1.719-0.926c0.198-0.037,0.404-0.043,0.606-0.062\r\n\t\tc0.09-0.008,0.176,0.01,0.252,0.057c0.164,0.098,0.328,0.193,0.487,0.297c0.272,0.174,0.538,0.357,0.813,0.525\r\n\t\tc0.348,0.213,0.727,0.354,1.113,0.477c0.549,0.174,1.111,0.258,1.688,0.24c0.531-0.018,1.043-0.125,1.545-0.295\r\n\t\tc0.507-0.17,0.975-0.412,1.412-0.719c0.217-0.15,0.444-0.287,0.664-0.434c0.177-0.119,0.363-0.162,0.577-0.146\r\n\t\tc0.609,0.043,1.172,0.217,1.679,0.561c0.375,0.254,0.666,0.592,0.912,0.969c0.383,0.588,0.633,1.232,0.799,1.91\r\n\t\tc0.166,0.682,0.281,1.373,0.314,2.072c0.02,0.408,0.036,0.814,0.03,1.221c-0.011,0.6-0.157,1.164-0.513,1.66\r\n\t\tc-0.408,0.564-0.964,0.906-1.637,1.068c-0.305,0.072-0.615,0.102-0.928,0.102c-1.695,0-3.389,0-5.082,0\r\n\t\tC35.029,43.143,35.029,43.143,35.029,43.141z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM39.516,28.764c0.045,2.406-2.018,4.459-4.409,4.416c-2.392,0.049-4.431-1.996-4.431-4.416c0.001-2.414,2.035-4.461,4.427-4.412\r\n\t\tC37.504,24.305,39.559,26.367,39.516,28.764z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM24.308,21.944c-1.674,0-3.348,0.003-5.021,0c-0.493,0-0.975-0.084-1.424-0.298c-0.832-0.398-1.334-1.055-1.513-1.959\r\n\t\tc-0.068-0.35-0.074-0.702-0.06-1.054c0.016-0.385,0.025-0.771,0.064-1.153c0.096-0.937,0.265-1.858,0.637-2.73\r\n\t\tc0.216-0.504,0.489-0.973,0.864-1.379c0.469-0.503,1.049-0.801,1.719-0.926c0.199-0.037,0.404-0.042,0.606-0.062\r\n\t\tc0.09-0.009,0.176,0.009,0.252,0.056c0.164,0.098,0.328,0.194,0.487,0.297c0.272,0.174,0.538,0.358,0.813,0.526\r\n\t\tc0.348,0.213,0.728,0.353,1.113,0.476c0.549,0.174,1.112,0.258,1.688,0.24c0.53-0.018,1.043-0.125,1.545-0.294\r\n\t\tc0.506-0.17,0.973-0.412,1.41-0.719c0.217-0.151,0.445-0.288,0.666-0.435c0.176-0.119,0.363-0.162,0.576-0.146\r\n\t\tc0.609,0.043,1.172,0.216,1.679,0.56c0.376,0.254,0.666,0.592,0.911,0.969c0.384,0.588,0.634,1.232,0.799,1.911\r\n\t\tc0.166,0.682,0.281,1.372,0.315,2.072c0.021,0.407,0.036,0.814,0.03,1.221c-0.01,0.6-0.156,1.164-0.514,1.659\r\n\t\tc-0.406,0.565-0.963,0.908-1.636,1.069c-0.305,0.073-0.614,0.101-0.927,0.101C27.695,21.945,26.001,21.945,24.308,21.944\r\n\t\tC24.308,21.945,24.308,21.945,24.308,21.944z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM28.793,7.566c0.045,2.406-2.016,4.46-4.408,4.417c-2.391,0.049-4.431-1.996-4.43-4.416c0-2.415,2.034-4.461,4.426-4.413\r\n\t\tC26.781,3.108,28.837,5.17,28.793,7.566z"/>\r\n</g>\r\n</svg>\r\n';});
 
 
 define('text!logOnSvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<path class="color-fill" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M37.371,21.843c0,2.847,0.013,5.694-0.004,8.54\r\n\tc-0.03,5.518-3.739,10.246-9.086,11.609c-6.84,1.744-13.845-2.906-14.762-9.881c-0.223-1.701-0.155-3.445-0.162-5.17\r\n\tc-0.019-4.604-0.014-9.206-0.003-13.808c0.008-3.197,1.938-6.007,4.915-7.055c0.812-0.286,1.708-0.451,2.569-0.467\r\n\tc3.015-0.055,6.031-0.031,9.048-0.019c4.136,0.017,7.467,3.356,7.482,7.5C37.381,16.009,37.371,18.926,37.371,21.843z\r\n\t M14.861,19.112c0,0.159,0,0.284,0,0.409c0,3.625-0.008,7.249,0.004,10.874c0.019,5.512,4.289,10.059,9.786,10.439\r\n\tc6.007,0.416,11.175-4.361,11.205-10.379c0.019-3.652,0.005-7.306,0.005-10.959c0-0.123-0.014-0.246-0.021-0.384\r\n\tC28.85,19.112,21.888,19.112,14.861,19.112z M24.589,17.571c0-3.518,0-6.979,0-10.469c-1.277,0-2.521-0.008-3.767,0.001\r\n\tc-3.315,0.025-5.94,2.663-5.958,5.983c-0.007,1.359-0.003,2.719-0.003,4.078c0,0.135,0,0.27,0,0.406\r\n\tC18.14,17.571,21.351,17.571,24.589,17.571z M26.133,7.016c0,3.609,0,7.071,0,10.549c3.249,0,6.47,0,9.729,0\r\n\tc0-0.124,0-0.219,0-0.315c-0.001-1.43,0.011-2.86-0.005-4.291c-0.029-2.669-1.905-5.156-4.535-5.641\r\n\tC29.645,7.01,27.891,7.105,26.133,7.016z"/>\r\n</svg>\r\n';});
@@ -19953,15 +19978,17 @@ define( 'views/appView',[
         isWeb: this.isWeb
       } );
 
-      this.introView = new IntroView( {
-        el: this.$introSection[0],
-        data: this.data
-      } );
+//      this.introView = new IntroView( {
+//        el: this.$introSection[0],
+//        data: this.data
+//      } );
 
       this.headerView.render();
-      this.introView.render();
+//      this.introView.render();
 
       this.setupEvents();
+
+      this.start();
 
       return this;
     },
@@ -20068,7 +20095,30 @@ define( 'views/appView',[
 
     start: function () {
 
-      this.introView.hide( this.renderLevel.bind( this, this.renderQuestions.bind( this ) ) );
+//      this.introView.hide(  );
+
+      this.renderLevel( this.renderQuestions.bind( this ) );
+
+    },
+
+    updateTexts: function () {
+
+      if ( this.currentState === 'summary' ) {
+
+        var levelPercent = this.levelView.getLevel() || 0;
+        var security = "good";
+
+        if ( levelPercent <= 100 * 0.3 ) {
+          security = "bad";
+        } else if ( levelPercent <= 100 * 0.6 ) {
+          security = "medium";
+        }
+
+        this.levelView.updateSummaryText( security );
+
+        console.log( 'security level: ' + security );
+
+      }
 
     },
 
@@ -20081,6 +20131,9 @@ define( 'views/appView',[
       this.questionsView.updateButton();
       this.levelView.disableSteps();
       this.levelView.setSummaryCurrent();
+
+      // Update texts
+      this.updateTexts();
 
     },
 
@@ -20111,6 +20164,9 @@ define( 'views/appView',[
 
       // Show first question
       this.showQuestion( 0 );
+
+      // Reset levelView title + texts
+      this.levelView.resetTexts();
 
       // Update button and steps
       this.questionsView.updateButton();
