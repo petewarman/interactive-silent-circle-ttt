@@ -888,7 +888,7 @@ body {
 .guInteractive #header-section:after {
   content: ' ';
   height: 1px;
-  border-bottom: 4px solid #ff827f;
+  border-bottom: 2px solid #ff827f;
   display: block;
 }
 .guInteractive #header-section #sc-logo {
