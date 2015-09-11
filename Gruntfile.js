@@ -93,8 +93,8 @@ module.exports = function ( grunt ) {
           'src/boot.js',
           'src/js/app/templates/*.html'
         ],
-//        tasks: ['jshint', 'requirejs','replace:local'],
-        tasks: ['requirejs', 'replace:local'],
+
+        tasks: ['requirejs', 'replace'],
         options: {
           spawn: false,
           livereload: true
@@ -103,7 +103,7 @@ module.exports = function ( grunt ) {
 
       html: {
         files: ['src/*.html', 'src/**/*.html'],
-        tasks: ['copy', 'replace:local'],
+        tasks: ['copy', 'replace'],
         options: {
           spawn: false,
           livereload: true
@@ -112,7 +112,7 @@ module.exports = function ( grunt ) {
 
       css: {
         files: ['src/css/**/*.*'],
-        tasks: ['sass', 'autoprefixer', 'replace:local'],
+        tasks: ['sass', 'autoprefixer', 'replace'],
         options: {
           spawn: false,
           livereload: true

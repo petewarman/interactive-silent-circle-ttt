@@ -22,7 +22,7 @@ See ```Gruntfile.js```
 
 ## Check paths
 
-If necessary, open ```Gruntfile.js``` and fix the file paths in the ```replace:local``` task.
+If necessary, open ```Gruntfile.js``` and fix the file paths in the ```replace``` task.
 
 
 ## @TODO
