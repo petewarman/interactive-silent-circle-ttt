@@ -34,7 +34,7 @@ define( [
 
       $.ajax( {
         dataType: 'json',
-        url: this.assetsPath + '/data/data.json',
+        url: this.assetsPath + 'data/data.json',
         success: this.renderMainView.bind( this )
       } );
 
