@@ -104,7 +104,10 @@ define( [
       this.$el.html( Mustache.render( appTpl, {
         button: this.button,
         questions: this.questions,
-        isWeb: this.isWeb
+        isWeb: this.isWeb,
+        path: {
+          assets: this.assetsPath //
+        }
       } ) );
 
       // Setup elements and events
