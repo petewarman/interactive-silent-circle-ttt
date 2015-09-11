@@ -18563,7 +18563,7 @@ define('text',['module'], function (module) {
 });
 
 
-define('text!templates/header.html',[],function () { return '<div id="sc-logo">\n    <a href="#"><img src="{{assets}}/imgs/sc-logo.png"></a>\n</div>';});
+define('text!templates/header.html',[],function () { return '<div id="sc-logo">\n    <a href="#"><img src="{{assets}}imgs/sc-logo.png"></a>\n</div>';});
 
 /**********************
    Velocity UI Pack

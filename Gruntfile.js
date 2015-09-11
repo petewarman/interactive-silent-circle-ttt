@@ -54,7 +54,7 @@ module.exports = function ( grunt ) {
     },
 
     requirejs: {
-      compile: {
+      build: {
         options: {
           baseUrl: './src/js/app/',
           mainConfigFile: './src/js/libs/configPaths.js',
