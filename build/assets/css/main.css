@@ -979,6 +979,7 @@ body {
   padding-bottom: 0px;
   margin-bottom: 0px;
   font-size: 18px;
+  line-height: 21px;
   letter-spacing: 0.4px;
 }
 .summary .guInteractive #questions-section > .inner .question:last-of-type {
@@ -999,6 +1000,9 @@ body {
   -khtml-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
+}
+.summary .guInteractive #questions-section > .inner .question .answers {
+  padding-top: 5px;
 }
 .summary .guInteractive #questions-section > .inner .question .answers .answer-wrapper {
   display: none;
