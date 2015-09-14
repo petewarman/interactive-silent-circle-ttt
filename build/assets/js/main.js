@@ -19598,15 +19598,17 @@ define( 'views/questionsView',[
 
     showFeedback: function ( $visibleFeedbacks, $allFeedbacks, $selectedFeedback ) {
 
+      var duration = this.app.currentState === 'questions' ? 400 : 0;
+
       $allFeedbacks.velocity( 'finish' );
 
       if ( $visibleFeedbacks.length ) {
-        $visibleFeedbacks.velocity( 'slideUp', {duration: 400, complete: function () {
-          $selectedFeedback.velocity( 'slideDown', {duration: 400} );
+        $visibleFeedbacks.velocity( 'slideUp', {duration: duration, complete: function () {
+          $selectedFeedback.velocity( 'slideDown', {duration: duration} );
           $allFeedbacks.not( $selectedFeedback ).hide();
         }} );
       } else {
-        $selectedFeedback.velocity( 'slideDown', {duration: 400} );
+        $selectedFeedback.velocity( 'slideDown', {duration: duration} );
         $allFeedbacks.not( $selectedFeedback ).hide();
       }
 
@@ -19658,7 +19660,7 @@ define( 'views/questionsView',[
     show: function ( callback ) {
 
       this.$el.velocity( "fadeIn", {
-        duration: 800,
+        duration: 1000,
         complete: callback
       } );
 
@@ -19667,7 +19669,7 @@ define( 'views/questionsView',[
     hide: function ( callback ) {
 
       this.$el.velocity( "fadeOut", {
-        duration: 800,
+        duration: 1000,
         complete: callback
       } );
 
@@ -19678,7 +19680,7 @@ define( 'views/questionsView',[
 
 
 
-define('text!templates/level.html',[],function () { return '<div class="inner">\n\n    <div class="steps-container">\n\n        <div class="steps-container-inner absolute-center">\n\n        {{#questions}}\n\n        <div id="{{question-id}}-step" data-index="{{question-index}}" class="step" >\n            {{{svg}}}\n        </div>\n\n            <!--style="background-image: url(\'{{assets}}/imgs/{{icon}}\')"-->\n\n        {{/questions}}\n\n        <div id="summary-step" class="step">\n            {{{summary-svg}}}\n        </div>\n\n            <!--style="background-image: url(\'{{assets}}/imgs/close.svg\')"-->\n\n            </div>\n\n    </div>\n\n    <div class="bar-container">\n        <h1 id="bar-title" class="title">\n            {{{texts.title}}}\n        </h1>\n\n        <div class="label-container">\n            <span class="left">{{texts.low}}</span>\n            <span class="right">{{texts.high}}</span>\n        </div>\n\n        <div class="bar">\n            <div id="level-mask" class="level-mask"></div>\n        </div>\n\n        <div id="summary-message" class="summary-message"></div>\n    </div>\n\n</div>';});
+define('text!templates/level.html',[],function () { return '<div class="inner">\n\n    <div class="steps-container">\n\n        <div class="steps-container-inner absolute-center">\n\n        {{#questions}}\n\n        <div id="{{question-id}}-step" data-index="{{question-index}}" class="step" >\n            {{{svg}}}\n        </div>\n\n            <!--style="background-image: url(\'{{assets}}/imgs/{{icon}}\')"-->\n\n        {{/questions}}\n\n        <div id="summary-step" class="step">\n            {{{summary-svg}}}\n        </div>\n\n            <!--style="background-image: url(\'{{assets}}/imgs/close.svg\')"-->\n\n            </div>\n\n    </div>\n\n    <div class="bar-container">\n        <h1 id="bar-title" class="title">\n            {{{texts.title}}}\n        </h1>\n\n        <div class="label-container">\n            <span class="left">{{texts.low}}</span>\n            <span class="right">{{texts.high}}</span>\n        </div>\n\n        <div class="bar">\n            <div id="level-mask" class="level-mask"></div>\n        </div>\n    </div>\n\n</div>\n\n<div id="summary-message" class="summary-message"><span></span></div>';});
 
 
 define('text!summarySvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<g>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-miterlimit="10" d="\r\n\t\tM24.778,41.193c-2.956,0-5.912,0.004-8.868-0.002c-0.872-0.002-1.722-0.148-2.516-0.527c-1.47-0.703-2.356-1.863-2.671-3.461\r\n\t\tc-0.121-0.617-0.131-1.238-0.106-1.861c0.028-0.68,0.046-1.361,0.114-2.037c0.17-1.652,0.469-3.281,1.125-4.822\r\n\t\tc0.381-0.891,0.863-1.719,1.527-2.436c0.826-0.89,1.852-1.415,3.035-1.636c0.352-0.065,0.714-0.075,1.07-0.109\r\n\t\tc0.16-0.016,0.311,0.017,0.446,0.099c0.289,0.173,0.578,0.344,0.86,0.525c0.48,0.307,0.95,0.632,1.437,0.929\r\n\t\tc0.614,0.376,1.285,0.624,1.967,0.841c0.97,0.309,1.964,0.455,2.981,0.424c0.937-0.031,1.842-0.221,2.729-0.52\r\n\t\tc0.895-0.301,1.72-0.729,2.492-1.27c0.383-0.268,0.786-0.508,1.175-0.768c0.312-0.21,0.642-0.285,1.019-0.257\r\n\t\tc1.076,0.076,2.07,0.382,2.965,0.989c0.664,0.449,1.177,1.045,1.61,1.711c0.677,1.039,1.118,2.176,1.411,3.375\r\n\t\tc0.293,1.205,0.496,2.424,0.557,3.66c0.035,0.719,0.063,1.439,0.053,2.156c-0.018,1.061-0.276,2.057-0.906,2.93\r\n\t\tc-0.719,0.998-1.701,1.604-2.89,1.889c-0.539,0.129-1.086,0.178-1.638,0.178C30.763,41.195,27.771,41.193,24.778,41.193\r\n\t\tL24.778,41.193z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-miterlimit="10" d="\r\n\t\tM32.702,15.797c0.08,4.25-3.562,7.877-7.786,7.801c-4.224,0.087-7.826-3.525-7.825-7.799c0.001-4.266,3.594-7.88,7.818-7.795\r\n\t\tC29.149,7.924,32.779,11.564,32.702,15.797z"/>\r\n</g>\r\n</svg>\r\n';});
@@ -19716,7 +19718,7 @@ define( 'views/levelView',[
       this.$levelMask = this.$( '#level-mask' );
 
       this.$title = this.$( '#bar-title' );
-      this.$summaryMessage = this.$( '#summary-message' );
+      this.$summaryMessage = this.$( '#summary-message' ).find( 'span' );
     },
 
     setupEvents: function () {
@@ -19803,10 +19805,10 @@ define( 'views/levelView',[
 
     },
 
-    resetTexts: function() {
+    resetTexts: function () {
 
       this.$title.html( this.texts.title );
-      this.$summaryMessage.html('');
+      this.$summaryMessage.html( '' );
 
     },
 
@@ -20151,36 +20153,57 @@ define( 'views/appView',[
         q.done = false;
       } );
 
-      // Uncheck all radios
-      this.questionsView.$answerWrapper.find( 'input[type=radio]' ).prop( 'checked', false );
-
-      // Remove class 'done' from all questions
-      this.questionsView.$questions.removeClass( 'done' );
-
-      // Hide all feedbacks
-      this.questionsView.$feedbacks.hide();
-
-      // Remove class 'selected' from all answers
-      this.questionsView.$answerWrapper.removeClass( 'selected' );
-
-      // Set current state to 'questions'
-      this.currentState = 'questions';
-
-      // Activate the first answer
-      this.questionsView.activateFirstAnswer();
-
-      // Show first question
-      this.showQuestion( 0 );
-
       // Reset levelView title + texts
       this.levelView.resetTexts();
+
+      // Force hide summary message
+      this.levelView.$summaryMessage.parent().addClass( 'transparent' );
 
       // Update button and steps
       this.questionsView.updateButton();
       this.updateSteps();
 
+      // Remove class 'done' and 'current' from all questions
+      this.questionsView.$questions.removeClass( 'done current' );
+      this.questionsView.$questions.eq( 0 ).addClass( 'current transparent' );
+
       // Remove summary class
-      this.$el.removeClass( 'summary' );
+      this.questionsView.hide( function () {
+
+        // Remove class 'selected' from all answers
+        this.questionsView.$answerWrapper.removeClass( 'selected' );
+
+        // Uncheck all radios
+        this.questionsView.$answerWrapper.find( 'input[type=radio]' ).prop( 'checked', false );
+
+        // Hide all feedbacks
+        this.questionsView.$feedbacks.hide();
+
+        // Activate the first answer
+        setTimeout( function () {
+
+          // Show first question
+          this.showQuestion( 0 );
+          this.questionsView.activateFirstAnswer();
+          this.questionsView.$questions.eq( 0 ).removeClass( 'transparent' );
+
+          // Reset summary message
+          this.levelView.$summaryMessage.parent().removeClass( 'transparent' );
+
+          // Set current state to 'questions'
+          this.currentState = 'questions';
+
+        }.bind( this ), 400 );
+
+        this.$el.removeClass( 'summary' );
+
+        // Reset summary message opacity
+        this.levelView.$summaryMessage.parent()[0].style.opacity = '';
+
+        this.questionsView.el.style.display = '';
+        this.questionsView.el.style.opacity = '1';
+
+      }.bind( this ) );
 
     },
 

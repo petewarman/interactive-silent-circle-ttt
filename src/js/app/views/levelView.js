@@ -31,7 +31,7 @@ define( [
       this.$levelMask = this.$( '#level-mask' );
 
       this.$title = this.$( '#bar-title' );
-      this.$summaryMessage = this.$( '#summary-message' );
+      this.$summaryMessage = this.$( '#summary-message' ).find( 'span' );
     },
 
     setupEvents: function () {
@@ -118,10 +118,10 @@ define( [
 
     },
 
-    resetTexts: function() {
+    resetTexts: function () {
 
       this.$title.html( this.texts.title );
-      this.$summaryMessage.html('');
+      this.$summaryMessage.html( '' );
 
     },
 

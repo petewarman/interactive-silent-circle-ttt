@@ -67,7 +67,7 @@
 
   .bar {
     overflow: hidden;
-    height: 20px;
+    height: 25px;
     background-image: url('#{$imgs-path}level-bg.png');
     background-repeat: repeat-y;
     background-size: 100% auto;
@@ -75,9 +75,9 @@
     position: relative;
     z-index: 1;
 
-    @media(min-width: 660px) {
-      height: 25px;
-    }
+//    @media(min-width: 660px) {
+//      height: 25px;
+//    }
 
     @media(min-width: 980px) {
       height: 35px;

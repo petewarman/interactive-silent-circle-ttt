@@ -286,36 +286,57 @@ define( [
         q.done = false;
       } );
 
-      // Uncheck all radios
-      this.questionsView.$answerWrapper.find( 'input[type=radio]' ).prop( 'checked', false );
-
-      // Remove class 'done' from all questions
-      this.questionsView.$questions.removeClass( 'done' );
-
-      // Hide all feedbacks
-      this.questionsView.$feedbacks.hide();
-
-      // Remove class 'selected' from all answers
-      this.questionsView.$answerWrapper.removeClass( 'selected' );
-
-      // Set current state to 'questions'
-      this.currentState = 'questions';
-
-      // Activate the first answer
-      this.questionsView.activateFirstAnswer();
-
-      // Show first question
-      this.showQuestion( 0 );
-
       // Reset levelView title + texts
       this.levelView.resetTexts();
+
+      // Force hide summary message
+      this.levelView.$summaryMessage.parent().addClass( 'transparent' );
 
       // Update button and steps
       this.questionsView.updateButton();
       this.updateSteps();
 
+      // Remove class 'done' and 'current' from all questions
+      this.questionsView.$questions.removeClass( 'done current' );
+      this.questionsView.$questions.eq( 0 ).addClass( 'current transparent' );
+
       // Remove summary class
-      this.$el.removeClass( 'summary' );
+      this.questionsView.hide( function () {
+
+        // Remove class 'selected' from all answers
+        this.questionsView.$answerWrapper.removeClass( 'selected' );
+
+        // Uncheck all radios
+        this.questionsView.$answerWrapper.find( 'input[type=radio]' ).prop( 'checked', false );
+
+        // Hide all feedbacks
+        this.questionsView.$feedbacks.hide();
+
+        // Activate the first answer
+        setTimeout( function () {
+
+          // Show first question
+          this.showQuestion( 0 );
+          this.questionsView.activateFirstAnswer();
+          this.questionsView.$questions.eq( 0 ).removeClass( 'transparent' );
+
+          // Reset summary message
+          this.levelView.$summaryMessage.parent().removeClass( 'transparent' );
+
+          // Set current state to 'questions'
+          this.currentState = 'questions';
+
+        }.bind( this ), 400 );
+
+        this.$el.removeClass( 'summary' );
+
+        // Reset summary message opacity
+        this.levelView.$summaryMessage.parent()[0].style.opacity = '';
+
+        this.questionsView.el.style.display = '';
+        this.questionsView.el.style.opacity = '1';
+
+      }.bind( this ) );
 
     },
 

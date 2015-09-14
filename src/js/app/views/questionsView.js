@@ -153,15 +153,17 @@ define( [
 
     showFeedback: function ( $visibleFeedbacks, $allFeedbacks, $selectedFeedback ) {
 
+      var duration = this.app.currentState === 'questions' ? 400 : 0;
+
       $allFeedbacks.velocity( 'finish' );
 
       if ( $visibleFeedbacks.length ) {
-        $visibleFeedbacks.velocity( 'slideUp', {duration: 400, complete: function () {
-          $selectedFeedback.velocity( 'slideDown', {duration: 400} );
+        $visibleFeedbacks.velocity( 'slideUp', {duration: duration, complete: function () {
+          $selectedFeedback.velocity( 'slideDown', {duration: duration} );
           $allFeedbacks.not( $selectedFeedback ).hide();
         }} );
       } else {
-        $selectedFeedback.velocity( 'slideDown', {duration: 400} );
+        $selectedFeedback.velocity( 'slideDown', {duration: duration} );
         $allFeedbacks.not( $selectedFeedback ).hide();
       }
 
@@ -213,7 +215,7 @@ define( [
     show: function ( callback ) {
 
       this.$el.velocity( "fadeIn", {
-        duration: 800,
+        duration: 1000,
         complete: callback
       } );
 
@@ -222,7 +224,7 @@ define( [
     hide: function ( callback ) {
 
       this.$el.velocity( "fadeOut", {
-        duration: 800,
+        duration: 1000,
         complete: callback
       } );
 

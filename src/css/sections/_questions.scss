@@ -2,14 +2,35 @@
 
   background-color: $content-bg-secondary-color;
 
+  @include css3-prefix(transition-property, transform);
+  @include css3-prefix(transition-duration, 1s);
+  @include transform(translateY(-35px));
+
+  @media(min-width: 980px) {
+    @include transform(translateY(-55px));
+  }
+
   .summary & {
+
+    @include transform(translateY(0));
+
     > .inner {
+
+      background-color: #3b3b3b;
+      padding-top: 20px;
+
       .question {
         display: block;
         padding-bottom: 80px;
+        opacity: 1;
 
         > h2 {
-          padding-bottom: 20px;
+//          padding-bottom: 20px;
+          padding-bottom: 0px;
+          margin-bottom: 0px;
+          //        font-size: 26px;
+          font-size: 18px;
+          letter-spacing: 0.4px;
         }
 
         &:last-of-type {
@@ -36,11 +57,17 @@
           .answer-wrapper {
             display: none;
 
+            label {
+              font-size: 16px;
+            }
+
             &.selected {
               display: block;
 
               .endscreen {
+                padding-top: 10px;
                 display: block;
+                font-size: 16px;
 //                padding-bottom: 20px;
               }
 
@@ -58,6 +85,7 @@
 
   > .inner {
 
+    @include css3-prefix(transition-duration, 1s);
     margin: 0 auto;
 
     @media(min-width: 980px) {
@@ -68,6 +96,9 @@
       padding: 0px 20px;
       display: none;
       position: relative;
+      opacity: 1;
+
+      @include css3-prefix(transition-duration, 1s);
 
       //      @media(min-width: 660px) {
       //        padding: 10px;
@@ -77,8 +108,13 @@
       //        padding: 20px;
       //      }
 
+      &.transparent {
+        opacity: 0;
+      }
+
       &.current {
         display: block;
+//        opacity: 1;
       }
 
       h2 {
