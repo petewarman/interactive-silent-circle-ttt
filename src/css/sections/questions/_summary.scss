@@ -1,0 +1,152 @@
+
+.summary & {
+  @include transform(translateY(0));
+
+  @media(min-width: 980px) {
+    @include transform(translateY(20px));
+  }
+
+  > .inner {
+
+    background-color: #3b3b3b;
+    padding-top: 20px;
+
+    .question {
+      display: block;
+      padding-bottom: 60px;
+
+      @media(min-width: 980px) {
+        opacity: 0;
+
+        @include css3-prefix(transition-duration, 1s);
+
+        &.show {
+          opacity: 1;
+        }
+      }
+
+      .endscreen-header {
+        display: block;
+        font-size: 0;
+
+        .icon,
+        .topic {
+          position: relative;
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        .icon {
+          width: 40px;
+          margin-right: 20px;
+
+          @media(min-width: 660px) {
+            width: 10%;
+            margin-right: 5%;
+          }
+
+          svg {
+            display: block;
+            width: 100%;
+
+            .color-fill {
+              fill: $accent-color;
+            }
+
+            .color-stroke {
+              stroke: $accent-color;
+            }
+          }
+        }
+
+        .topic {
+          color: $accent-color;
+          font-size: 20px;
+          line-height: 60px;
+
+          @media(min-width: 660px) {
+            font-size: 22px;
+            line-height: normal;
+          }
+        }
+
+      }
+
+      > fieldset {
+        padding: 0;
+        margin: 0;
+
+        .endscreen {
+          padding: 0 !important;
+          font-size: 14px !important;
+
+          @media(min-width: 660px) {
+            font-size: 16px !important;
+            padding: 0 0 0 15% !important;
+          }
+        }
+      }
+
+      > h2 {
+        display: none;
+
+        //          padding-bottom: 20px;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+        //        font-size: 26px;
+        font-size: 18px;
+        line-height: 21px;
+        letter-spacing: 0.4px;
+      }
+
+      &:last-of-type {
+        padding-bottom: 20px;
+
+        &:after {
+          display: none;
+        }
+      }
+
+      &:after {
+        content: ' ';
+        width: 200px;
+        height: 2px;
+        background-color: #666;
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        @include transform(translateX(-50%));
+      }
+
+      .answers {
+        padding-top: 5px;
+
+        .answer-wrapper {
+          display: none;
+
+          label {
+            display: none;
+            font-size: 16px;
+          }
+
+          &.selected {
+            display: block;
+
+            .endscreen {
+              padding-top: 10px;
+              display: block;
+              font-size: 16px;
+              //                padding-bottom: 20px;
+            }
+
+            .feedback {
+              display: none !important;
+            }
+          }
+        }
+
+      }
+
+    }
+  }
+}

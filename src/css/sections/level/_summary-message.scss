@@ -1,23 +1,13 @@
 .summary-message {
-//  position: relative;
   text-align: center;
-  color: #FFF; // $accent-color-dark;
-  font-style: italic;
-  background-color: $accent-color;
-  font-size: 14px;
-  line-height: 25px;
-  padding: 0;
+  color: $accent-color;
+  padding: 8px 0;
   opacity: 0;
-  height: 25px;
   overflow: hidden;
-
   margin: 10px 20px;
 
   @media(min-width: 980px) {
     margin: 0 200px;
-    font-size: 18px;
-    height: 35px;
-    line-height: 35px;
   }
 
   @include css3-prefix(transform-origin, 50% 150%);
@@ -28,6 +18,32 @@
     @include css3-prefix(transition-delay, 1.5s);
     @include css3-prefix(transition-duration, 1s);
     opacity: 0;
+    display: block;
+    text-align: center;
+
+    &#summary-title {
+
+      font-size: 20px;
+      line-height: 25px;
+
+      @media(min-width: 980px) {
+        font-size: 22px;
+      }
+
+    }
+
+    &#summary-message {
+      margin-top: 10px;
+      font-size: 13px;
+      line-height: 25px;
+      font-style: italic;
+
+      @media(min-width: 980px) {
+        margin-top: 5px;
+        font-size: 16px;
+      }
+
+    }
   }
 
   &.transparent {

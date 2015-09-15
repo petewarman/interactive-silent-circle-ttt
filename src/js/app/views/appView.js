@@ -305,7 +305,7 @@ define( [
       this.levelView.resetTexts();
 
       // Force hide summary message
-      this.levelView.$title.removeClass( 'bad medium good' );
+      this.levelView.$summaryTitle.removeClass( 'bad medium good' );
       this.levelView.$summaryMessage.parent().addClass( 'transparent' );
 
       // Remove class 'done' and 'current' from all questions

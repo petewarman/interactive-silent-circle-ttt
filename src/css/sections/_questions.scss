@@ -1,102 +1,12 @@
 #questions-section {
 
-  background-color: $content-bg-secondary-color;
-
   @include css3-prefix(transition-property, transform);
   @include css3-prefix(transition-duration, 1s);
-  @include transform(translateY(-15px));
+  @include transform(translateY(-20px));
 
-  @media(min-width: 980px) {
-    @include transform(translateY(-35px));
-  }
+  @import 'questions/summary';
 
-  .summary & {
-
-    @include transform(translateY(10px));
-
-    @media(min-width: 980px) {
-      @include transform(translateY(20px));
-    }
-
-    > .inner {
-
-      background-color: #3b3b3b;
-      padding-top: 20px;
-
-      .question {
-        display: block;
-        padding-bottom: 80px;
-
-        @media(min-width: 980px) {
-          opacity: 0;
-
-          @include css3-prefix(transition-duration, 1s);
-
-          &.show {
-            opacity: 1;
-          }
-        }
-
-        > h2 {
-          //          padding-bottom: 20px;
-          padding-bottom: 0px;
-          margin-bottom: 0px;
-          //        font-size: 26px;
-          font-size: 18px;
-          line-height: 21px;
-          letter-spacing: 0.4px;
-        }
-
-        &:last-of-type {
-          padding-bottom: 20px;
-
-          &:after {
-            display: none;
-          }
-        }
-
-        &:after {
-          content: ' ';
-          width: 200px;
-          height: 2px;
-          background-color: #666;
-          position: absolute;
-          bottom: 40px;
-          left: 50%;
-          @include transform(translateX(-50%));
-        }
-
-        .answers {
-          padding-top: 5px;
-
-          .answer-wrapper {
-            display: none;
-
-            label {
-              font-size: 16px;
-            }
-
-            &.selected {
-              display: block;
-
-              .endscreen {
-                padding-top: 10px;
-                display: block;
-                font-size: 16px;
-                //                padding-bottom: 20px;
-              }
-
-              .feedback {
-                display: none !important;
-              }
-            }
-          }
-
-        }
-
-      }
-    }
-  }
+  background-color: #424242;
 
   > .inner {
 
@@ -111,17 +21,12 @@
       padding: 0px 20px;
       display: none;
       position: relative;
-      //      opacity: 0;
-
       @include css3-prefix(transition-duration, 1s);
 
-      //      @media(min-width: 660px) {
-      //        padding: 10px;
-      //      }
-      //
-      //      @media(min-width: 980px) {
-      //        padding: 20px;
-      //      }
+      .topic,
+      .icon {
+        display: none;
+      }
 
       &.transparent {
         opacity: 0;
@@ -129,7 +34,6 @@
 
       &.current {
         display: block;
-        //        opacity: 1;
       }
 
       h2 {

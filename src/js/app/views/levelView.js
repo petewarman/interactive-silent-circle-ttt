@@ -36,8 +36,8 @@ define( [
       this.$steps = this.$( '.step' );
       this.$levelMask = this.$( '#level-mask' );
 
-      this.$title = this.$( '#bar-title' );
-      this.$summaryMessage = this.$( '#summary-message' ).find( 'span' );
+      this.$summaryTitle = this.$( '#summary-title' );
+      this.$summaryMessage = this.$( '#summary-message' ); //.find( 'span' );
     },
 
     setupEvents: function () {
@@ -148,7 +148,7 @@ define( [
 
     resetTexts: function () {
 
-      this.$title.html( this.texts.title );
+      this.$summaryTitle.html( '' );
       this.$summaryMessage.html( '' );
 
     },
@@ -158,9 +158,9 @@ define( [
       this.summaryTitle = this.texts.summary.title[security];
       this.summaryMessage = this.texts.summary.message[security];
 
-      this.$title.html( this.summaryTitle );
+      this.$summaryTitle.html( this.summaryTitle );
 //      this.$title.addClass( security );
-      this.$summaryMessage.html( this.summaryMessage );
+      this.$summaryMessage.html( this.summaryMessage ); //
 
     },
 
