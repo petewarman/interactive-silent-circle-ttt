@@ -74,7 +74,8 @@ define( [
       }
 
       // Scroll to top
-      this.app.scrollTop();
+      if (this.app.currentState === 'questions')
+        this.app.scrollTop();
 
     },
 

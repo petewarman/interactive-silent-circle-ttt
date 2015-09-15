@@ -19519,7 +19519,8 @@ define( 'views/questionsView',[
       }
 
       // Scroll to top
-      this.app.scrollTop();
+      if (this.app.currentState === 'questions')
+        this.app.scrollTop();
 
     },
 
@@ -20159,10 +20160,6 @@ define( 'views/appView',[
       // Force hide summary message
       this.levelView.$summaryMessage.parent().addClass( 'transparent' );
 
-      // Update button and steps
-      this.questionsView.updateButton();
-      this.updateSteps();
-
       // Remove class 'done' and 'current' from all questions
       this.questionsView.$questions.removeClass( 'done current' );
       this.questionsView.$questions.eq( 0 ).addClass( 'current transparent' );
@@ -20193,6 +20190,13 @@ define( 'views/appView',[
           // Set current state to 'questions'
           this.currentState = 'questions';
 
+          // Update button and steps
+          this.questionsView.updateButton();
+          this.updateSteps();
+
+          // Scroll to top
+          this.scrollTop();
+
         }.bind( this ), 400 );
 
         this.$el.removeClass( 'summary' );
@@ -20208,6 +20212,7 @@ define( 'views/appView',[
     },
 
     scrollTop: function () {
+      console.log( 'top' );
       this.$el.velocity( 'scroll', {duration: 400, easing: "swing"} );
     }
 
