@@ -20734,7 +20734,7 @@ define( 'main',[
       }
 
       // Paths
-      this.rootPath = this.isWeb ? '//labs.theguardian.com/2015/aug/silent-circle-video/' : '';
+      this.rootPath = this.isWeb ? '//labs.theguardian.com/2015/aug/silent-circle-interactive/' : '';
       this.assetsPath = this.rootPath + 'assets/';
 
       // Touch?
