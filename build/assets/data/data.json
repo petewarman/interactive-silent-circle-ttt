@@ -97,7 +97,7 @@
         {
           "answerId": "question-2-answer-1",
           "answer": "No",
-          "value": "5",
+          "value": "10",
           "feedback": "That puts your devices – and the data on them – at lower risk of being stolen. It’s worth checking that your office environment itself is secure from an information-security perspective though.",
           "endscreen": "Physical security plays a part in securing your office environment and preventing outsiders from getting access to company systems. Data should be disposed of correctly – with confidential documents shredded and hard drives securely wiped of any sensitive data before disposal. Wireless networks should be secured to prevent unauthorised access. Bear in mind that, for most businesses, the risk posed by disgruntled ex-employees is probably higher than that from hackers.",
           "cstitle": null,
@@ -193,7 +193,7 @@
         {
           "answerId": "question-5-answer-1",
           "answer": "No",
-          "value": "5",
+          "value": "10",
           "feedback": "You might want to give serious thought to bringing in some form of training. People can be the weakest points in any organisation’s security arrangements, so it makes sense to focus your efforts on this area.",
           "endscreen": "In a survey carried out by PwC on information security breaches, inadvertent human error was identified as a contributing factor in almost half (48%) of the worst incidents experienced by respondents. Training doesn’t need to be hugely technical for everyone within the organisation. In fact, it’s more likely to be taken on board if it’s tailored to people’s roles and the type of information they use in their day-to-day job.",
           "cstitle": null,
@@ -220,8 +220,8 @@
       "summary": {
         "title": {
           "good": "Based on your results,<br>your business is very secure",
-          "medium": "Based on your results,<br>your business is reasonably secure",
-          "bad": "Based on your results,<br>your business needs improvement"
+          "medium": "Based on your results,<br>your business needs improvements",
+          "bad": "Based on your results,<br>your business is at risk"
         },
         "message": {
           "good": "Here are some tips to keep you secure",

@@ -19,6 +19,8 @@ define( [
       this.questions = options.data.questions;
       this.app = options.app;
 
+      this.mediator = options.mediator;
+
       this.questionsCount = this.questions.length;
 
       this.app.currentState = 'questions';
@@ -63,6 +65,11 @@ define( [
 
       $( document ).on( click, '.button.enabled a', this.buttonClicked.bind( this ) );
 
+      // Subscribe to the resize event
+      this.mediator.subscribe( 'resize', this.onResize.bind( this ) );
+
+      // Trigger a resize to get questions height
+      this.onResize()
     },
 
     buttonClicked: function () {
@@ -74,7 +81,7 @@ define( [
       }
 
       // Scroll to top
-      if (this.app.currentState === 'questions')
+      if ( this.app.currentState === 'questions' )
         this.app.scrollTop();
 
     },
@@ -213,6 +220,22 @@ define( [
 
     },
 
+    showEach: function () {
+
+      var delay = 0;
+
+      this.$questions.each( function (i, el) {
+
+        setTimeout( function () {
+          $( el ).addClass( 'show' );
+        }.bind( this ), delay );
+
+        delay += 400;
+
+      }.bind( this ) );
+
+    },
+
     show: function ( callback ) {
 
       this.$el.velocity( "fadeIn", {
@@ -228,6 +251,11 @@ define( [
         duration: 1000,
         complete: callback
       } );
+
+    },
+
+    onResize: function ( e ) {
+
 
     }
 

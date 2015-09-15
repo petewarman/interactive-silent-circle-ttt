@@ -38,6 +38,7 @@ define( [
       this.isWeb = options.isWeb;
       this.isTouch = options.isTouch;
       this.assetsPath = options.assetsPath;
+      this.mediator = options.mediator;
 
     },
 
@@ -152,6 +153,7 @@ define( [
 
       this.questionsView = new QuestionsView( {
         el: this.$questionsSection[0],
+        mediator: this.mediator,
         app: this,
         data: this.data,
         isWeb: this.isWeb
@@ -247,18 +249,25 @@ define( [
 
       if ( this.currentState === 'summary' ) {
 
-        var levelPercent = this.levelView.getLevel() || 0;
+        var levelAbsValue = this.getAnswersTotal();
+//        var levelPercent = this.levelView.getLevel() || 0;
         var security = "good";
 
-        if ( levelPercent <= 100 * 0.3 ) {
+//        if ( levelPercent <= 100 * 0.3 ) {
+//          security = "bad";
+//        } else if ( levelPercent <= 100 * 0.6 ) {
+//          security = "medium";
+//        }
+
+        if ( levelAbsValue >= this.levelView.medLevel ) {
           security = "bad";
-        } else if ( levelPercent <= 100 * 0.6 ) {
+        } else if ( levelAbsValue > this.levelView.minLevel ) {
           security = "medium";
         }
 
         this.levelView.updateSummaryText( security );
 
-        console.log( 'security level: ' + security );
+        console.log( 'security level: ', security, levelAbsValue );
 
       }
 
@@ -277,6 +286,12 @@ define( [
       // Update texts
       this.updateTexts();
 
+      // Show questions
+      this.questionsView.showEach();
+
+      // Scroll to top
+      this.scrollTop();
+
     },
 
     restart: function () {
@@ -290,10 +305,11 @@ define( [
       this.levelView.resetTexts();
 
       // Force hide summary message
+      this.levelView.$title.removeClass( 'bad medium good' );
       this.levelView.$summaryMessage.parent().addClass( 'transparent' );
 
       // Remove class 'done' and 'current' from all questions
-      this.questionsView.$questions.removeClass( 'done current' );
+      this.questionsView.$questions.removeClass( 'done current show' );
       this.questionsView.$questions.eq( 0 ).addClass( 'current transparent' );
 
       // Remove summary class
@@ -344,8 +360,9 @@ define( [
     },
 
     scrollTop: function () {
-      console.log( 'top' );
+
       this.$el.velocity( 'scroll', {duration: 400, easing: "swing"} );
+
     }
 
   } );

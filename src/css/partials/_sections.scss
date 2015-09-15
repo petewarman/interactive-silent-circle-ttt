@@ -16,9 +16,19 @@
     margin: 0;
   }
 
+  &#main-section {
+
+    .summary & {
+      padding-bottom: 0;
+
+      @media(min-width: 980px) {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
   &.top-sections-container {
     position: relative;
-//    min-height: 500px;
     background-color: #424242;
   }
 

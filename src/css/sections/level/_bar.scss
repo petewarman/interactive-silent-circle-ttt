@@ -23,7 +23,19 @@
     text-align: center;
     margin-bottom: 10px;
     @include css3-prefix(transition-property, color);
-    @include css3-prefix(transition-duration, 0.4s);
+    @include css3-prefix(transition-duration, 1s);
+
+    &.good {
+      color: #5fb85c;
+    }
+
+    &.medium {
+      color: #eaad38;
+    }
+
+    &.bad {
+      color: #f77f80;
+    }
 
     @media(min-width: 660px) {
       font-size: 24px;

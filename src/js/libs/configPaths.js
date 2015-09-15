@@ -5,13 +5,16 @@ require.config( {
     'underscore': '../libs/underscore',
     'jquery': '../libs/jquery',
     'backbone': '../libs/backbone',
-    'crossdomain': '../libs/Backbone.CrossDomain',
+//    'crossdomain': '../libs/Backbone.CrossDomain',
     'velocity': '../libs/velocity',
     'velocity-ui': '../libs/velocity.ui',
     'text': '../libs/text',
-    'json': '../libs/json',
+//    'json': '../libs/json',
     'mustache': '../libs/mustache',
-//    'mediator-js': '../libs/mediator',
+    'mediator-js': '../libs/mediator',
+
+    // Events
+    'resize': '../app/events/resize',
 
     // Icons - SVG
     'sizeSvg': '../../imgs/icons/size.svg',

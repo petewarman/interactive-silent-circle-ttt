@@ -19464,6 +19464,8 @@ define( 'views/questionsView',[
       this.questions = options.data.questions;
       this.app = options.app;
 
+      this.mediator = options.mediator;
+
       this.questionsCount = this.questions.length;
 
       this.app.currentState = 'questions';
@@ -19508,6 +19510,11 @@ define( 'views/questionsView',[
 
       $( document ).on( click, '.button.enabled a', this.buttonClicked.bind( this ) );
 
+      // Subscribe to the resize event
+      this.mediator.subscribe( 'resize', this.onResize.bind( this ) );
+
+      // Trigger a resize to get questions height
+      this.onResize()
     },
 
     buttonClicked: function () {
@@ -19519,7 +19526,7 @@ define( 'views/questionsView',[
       }
 
       // Scroll to top
-      if (this.app.currentState === 'questions')
+      if ( this.app.currentState === 'questions' )
         this.app.scrollTop();
 
     },
@@ -19658,6 +19665,22 @@ define( 'views/questionsView',[
 
     },
 
+    showEach: function () {
+
+      var delay = 0;
+
+      this.$questions.each( function (i, el) {
+
+        setTimeout( function () {
+          $( el ).addClass( 'show' );
+        }.bind( this ), delay );
+
+        delay += 400;
+
+      }.bind( this ) );
+
+    },
+
     show: function ( callback ) {
 
       this.$el.velocity( "fadeIn", {
@@ -19673,6 +19696,11 @@ define( 'views/questionsView',[
         duration: 1000,
         complete: callback
       } );
+
+    },
+
+    onResize: function ( e ) {
+
 
     }
 
@@ -19711,6 +19739,12 @@ define( 'views/levelView',[
       this.texts = this.data.view.level;
 
       this.maxLevel = this.getMaxLevel();
+      this.minLevel = this.getMinLevel();
+      this.medLevel = this.minLevel + ((this.maxLevel - this.minLevel) / 2);
+
+      console.log( 'Min: ', this.minLevel );
+      console.log( 'Med:', this.medLevel );
+      console.log( 'Max: ', this.maxLevel );
 
     },
 
@@ -19735,6 +19769,8 @@ define( 'views/levelView',[
           return parseInt( a.value );
         } );
 
+        console.log( highestValueAnswer.value );
+
         max += parseInt( highestValueAnswer.value );
 
       } );
@@ -19742,6 +19778,26 @@ define( 'views/levelView',[
 //      console.log( max );
 
       return max;
+    },
+
+    getMinLevel: function () {
+      var min = 0;
+
+      this.questions.forEach( function ( q, i ) {
+
+        var lowestValueAnswer = _.min( q.answers, function ( a ) {
+          return parseInt( a.value );
+        } );
+
+//        console.log( lowestValueAnswer.value );
+
+        min += parseInt( lowestValueAnswer.value );
+
+      } );
+
+//      console.log( min );
+
+      return min;
     },
 
     render: function () {
@@ -19819,6 +19875,7 @@ define( 'views/levelView',[
       this.summaryMessage = this.texts.summary.message[security];
 
       this.$title.html( this.summaryTitle );
+//      this.$title.addClass( security );
       this.$summaryMessage.html( this.summaryMessage );
 
     },
@@ -19846,7 +19903,7 @@ define( 'views/levelView',[
 
 
 
-define('text!templates/app.html',[],function () { return '<div class="guInteractive">\n    <div id="content">\n\n        <header id="header-section" class="section"></header>\n\n        <!--<div id="intro-section" class="section full-width"></div>-->\n\n        <div class="section top-sections-container">\n\n            <div id="level-section" class="section transparent"></div>\n\n            <div id="questions-section" class="section transparent"></div>\n\n            <div id="summary-section" class="section transparent"></div>\n\n        </div>\n\n        <div class="section full-width">\n\n            <div class="contentBlock" id="about-section">\n\n                <h4 class="sectionHeading">About Silent Circle</h4>\n\n                <div class="contentBlock-inner">\n                    <p class="half-width no-margin-top">\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elementum quis justo at blandit.\n                        Nulla ante neque, scelerisque eu ante ut, aliquam egestas dolor. Proin a auctor massa.\n                        Vestibulum\n                        bibendum neque sit amet metus dignissim viverra. Quisque pellentesque velit lectus, ac\n                        vestibulum mi\n                        suscipit sit amet. Fusce nec pharetra tellus, quis egestas sem. Aliquam quis sodales enim.\n                        Phasellus\n                        a risus non libero mattis pretium. Aliquam bibendum imperdiet neque ac vulputate. Morbi ut\n                        dignissim\n                        enim, sit amet sagittis lorem. Nulla sed auctor nisi. Nunc pharetra, eros vulputate tempor\n                        interdum.\n                    </p>\n                </div>\n            </div>\n\n            <div class="contentBlock" id="video-section">\n\n                <h4 class="sectionHeading">\n                    <span>Video</span>\n                    <img src="{{path.assets}}imgs/video-gif.gif">\n                </h4>\n\n                <div class="contentBlock-inner">\n                    <h2>Do we link to the videos?</h2>\n\n                    <p class="half-width">\n                        Click here to put your company to the test. Lorem ipsum dolor sit amet, consectetur adipiscing\n                        elit. Nullam elementum quis justo at blandit.\n                    </p>\n                </div>\n            </div>\n\n        </div>\n\n    </div>\n</div>\n';});
+define('text!templates/app.html',[],function () { return '<div class="guInteractive">\n    <div id="content">\n\n        <header id="header-section" class="section"></header>\n\n        <!--<div id="intro-section" class="section full-width"></div>-->\n\n        <div id="main-section" class="section top-sections-container">\n\n            <div id="level-section" class="section transparent"></div>\n\n            <div id="questions-section" class="section transparent"></div>\n\n            <div id="summary-section" class="section transparent"></div>\n\n        </div>\n\n        <div class="section full-width">\n\n            <div class="contentBlock" id="about-section">\n\n                <h4 class="sectionHeading">About Silent Circle</h4>\n\n                <div class="contentBlock-inner">\n                    <p class="half-width no-margin-top">\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elementum quis justo at blandit.\n                        Nulla ante neque, scelerisque eu ante ut, aliquam egestas dolor. Proin a auctor massa.\n                        Vestibulum\n                        bibendum neque sit amet metus dignissim viverra. Quisque pellentesque velit lectus, ac\n                        vestibulum mi\n                        suscipit sit amet. Fusce nec pharetra tellus, quis egestas sem. Aliquam quis sodales enim.\n                        Phasellus\n                        a risus non libero mattis pretium. Aliquam bibendum imperdiet neque ac vulputate. Morbi ut\n                        dignissim\n                        enim, sit amet sagittis lorem. Nulla sed auctor nisi. Nunc pharetra, eros vulputate tempor\n                        interdum.\n                    </p>\n                </div>\n            </div>\n\n            <div class="contentBlock" id="video-section">\n\n                <h4 class="sectionHeading">\n                    <span>Video</span>\n                    <img src="{{path.assets}}imgs/video-gif.gif">\n                </h4>\n\n                <div class="contentBlock-inner">\n                    <h2>Do we link to the videos?</h2>\n\n                    <p class="half-width">\n                        Click here to put your company to the test. Lorem ipsum dolor sit amet, consectetur adipiscing\n                        elit. Nullam elementum quis justo at blandit.\n                    </p>\n                </div>\n            </div>\n\n        </div>\n\n    </div>\n</div>\n';});
 
 
 define('text!sizeSvg',[],function () { return '\r\n<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\r\n\t width="50px" height="50px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">\r\n<g>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM14.834,43.191c-1.674,0-3.348,0.004-5.021,0c-0.494,0-0.976-0.084-1.425-0.299c-0.832-0.396-1.334-1.055-1.512-1.959\r\n\t\tc-0.069-0.35-0.074-0.701-0.061-1.055c0.016-0.385,0.025-0.77,0.064-1.152c0.097-0.936,0.266-1.857,0.638-2.73\r\n\t\tc0.215-0.504,0.488-0.973,0.864-1.379c0.468-0.504,1.048-0.801,1.719-0.926c0.198-0.037,0.404-0.043,0.605-0.062\r\n\t\tc0.091-0.008,0.176,0.01,0.253,0.057c0.163,0.098,0.327,0.193,0.487,0.297c0.271,0.174,0.538,0.357,0.813,0.525\r\n\t\tc0.347,0.213,0.727,0.354,1.113,0.477c0.549,0.174,1.111,0.258,1.688,0.24c0.53-0.018,1.043-0.125,1.545-0.295\r\n\t\tc0.507-0.17,0.974-0.412,1.411-0.719c0.217-0.15,0.445-0.287,0.665-0.434c0.177-0.119,0.363-0.162,0.577-0.146\r\n\t\tc0.609,0.043,1.172,0.217,1.679,0.561c0.375,0.254,0.666,0.592,0.911,0.969c0.384,0.588,0.634,1.232,0.799,1.91\r\n\t\tc0.166,0.684,0.281,1.373,0.315,2.072c0.02,0.408,0.036,0.814,0.03,1.223c-0.011,0.6-0.157,1.164-0.514,1.658\r\n\t\tc-0.407,0.564-0.963,0.908-1.636,1.068c-0.305,0.074-0.615,0.102-0.928,0.102c-1.695,0-3.389,0-5.083,0\r\n\t\tC14.834,43.193,14.834,43.193,14.834,43.191z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM19.32,28.814c0.045,2.406-2.017,4.459-4.408,4.416c-2.392,0.049-4.431-1.996-4.431-4.416c0.001-2.414,2.035-4.461,4.427-4.412\r\n\t\tC17.309,24.357,19.364,26.418,19.32,28.814z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM35.029,43.141c-1.674,0-3.348,0.004-5.021,0c-0.494,0-0.975-0.084-1.424-0.299c-0.832-0.398-1.334-1.055-1.513-1.959\r\n\t\tc-0.069-0.35-0.074-0.701-0.06-1.055c0.016-0.385,0.025-0.77,0.064-1.152c0.096-0.938,0.265-1.857,0.637-2.73\r\n\t\tc0.215-0.504,0.488-0.973,0.864-1.379c0.468-0.504,1.048-0.801,1.719-0.926c0.198-0.037,0.404-0.043,0.606-0.062\r\n\t\tc0.09-0.008,0.176,0.01,0.252,0.057c0.164,0.098,0.328,0.193,0.487,0.297c0.272,0.174,0.538,0.357,0.813,0.525\r\n\t\tc0.348,0.213,0.727,0.354,1.113,0.477c0.549,0.174,1.111,0.258,1.688,0.24c0.531-0.018,1.043-0.125,1.545-0.295\r\n\t\tc0.507-0.17,0.975-0.412,1.412-0.719c0.217-0.15,0.444-0.287,0.664-0.434c0.177-0.119,0.363-0.162,0.577-0.146\r\n\t\tc0.609,0.043,1.172,0.217,1.679,0.561c0.375,0.254,0.666,0.592,0.912,0.969c0.383,0.588,0.633,1.232,0.799,1.91\r\n\t\tc0.166,0.682,0.281,1.373,0.314,2.072c0.02,0.408,0.036,0.814,0.03,1.221c-0.011,0.6-0.157,1.164-0.513,1.66\r\n\t\tc-0.408,0.564-0.964,0.906-1.637,1.068c-0.305,0.072-0.615,0.102-0.928,0.102c-1.695,0-3.389,0-5.082,0\r\n\t\tC35.029,43.143,35.029,43.143,35.029,43.141z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM39.516,28.764c0.045,2.406-2.018,4.459-4.409,4.416c-2.392,0.049-4.431-1.996-4.431-4.416c0.001-2.414,2.035-4.461,4.427-4.412\r\n\t\tC37.504,24.305,39.559,26.367,39.516,28.764z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM24.308,21.944c-1.674,0-3.348,0.003-5.021,0c-0.493,0-0.975-0.084-1.424-0.298c-0.832-0.398-1.334-1.055-1.513-1.959\r\n\t\tc-0.068-0.35-0.074-0.702-0.06-1.054c0.016-0.385,0.025-0.771,0.064-1.153c0.096-0.937,0.265-1.858,0.637-2.73\r\n\t\tc0.216-0.504,0.489-0.973,0.864-1.379c0.469-0.503,1.049-0.801,1.719-0.926c0.199-0.037,0.404-0.042,0.606-0.062\r\n\t\tc0.09-0.009,0.176,0.009,0.252,0.056c0.164,0.098,0.328,0.194,0.487,0.297c0.272,0.174,0.538,0.358,0.813,0.526\r\n\t\tc0.348,0.213,0.728,0.353,1.113,0.476c0.549,0.174,1.112,0.258,1.688,0.24c0.53-0.018,1.043-0.125,1.545-0.294\r\n\t\tc0.506-0.17,0.973-0.412,1.41-0.719c0.217-0.151,0.445-0.288,0.666-0.435c0.176-0.119,0.363-0.162,0.576-0.146\r\n\t\tc0.609,0.043,1.172,0.216,1.679,0.56c0.376,0.254,0.666,0.592,0.911,0.969c0.384,0.588,0.634,1.232,0.799,1.911\r\n\t\tc0.166,0.682,0.281,1.372,0.315,2.072c0.021,0.407,0.036,0.814,0.03,1.221c-0.01,0.6-0.156,1.164-0.514,1.659\r\n\t\tc-0.406,0.565-0.963,0.908-1.636,1.069c-0.305,0.073-0.614,0.101-0.927,0.101C27.695,21.945,26.001,21.945,24.308,21.944\r\n\t\tC24.308,21.945,24.308,21.945,24.308,21.944z"/>\r\n\t<path class="color-stroke" fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-miterlimit="10" d="\r\n\t\tM28.793,7.566c0.045,2.406-2.016,4.46-4.408,4.417c-2.391,0.049-4.431-1.996-4.43-4.416c0-2.415,2.034-4.461,4.426-4.413\r\n\t\tC26.781,3.108,28.837,5.17,28.793,7.566z"/>\r\n</g>\r\n</svg>\r\n';});
@@ -19906,6 +19963,7 @@ define( 'views/appView',[
       this.isWeb = options.isWeb;
       this.isTouch = options.isTouch;
       this.assetsPath = options.assetsPath;
+      this.mediator = options.mediator;
 
     },
 
@@ -20020,6 +20078,7 @@ define( 'views/appView',[
 
       this.questionsView = new QuestionsView( {
         el: this.$questionsSection[0],
+        mediator: this.mediator,
         app: this,
         data: this.data,
         isWeb: this.isWeb
@@ -20115,18 +20174,25 @@ define( 'views/appView',[
 
       if ( this.currentState === 'summary' ) {
 
-        var levelPercent = this.levelView.getLevel() || 0;
+        var levelAbsValue = this.getAnswersTotal();
+//        var levelPercent = this.levelView.getLevel() || 0;
         var security = "good";
 
-        if ( levelPercent <= 100 * 0.3 ) {
+//        if ( levelPercent <= 100 * 0.3 ) {
+//          security = "bad";
+//        } else if ( levelPercent <= 100 * 0.6 ) {
+//          security = "medium";
+//        }
+
+        if ( levelAbsValue >= this.levelView.medLevel ) {
           security = "bad";
-        } else if ( levelPercent <= 100 * 0.6 ) {
+        } else if ( levelAbsValue > this.levelView.minLevel ) {
           security = "medium";
         }
 
         this.levelView.updateSummaryText( security );
 
-        console.log( 'security level: ' + security );
+        console.log( 'security level: ', security, levelAbsValue );
 
       }
 
@@ -20145,6 +20211,12 @@ define( 'views/appView',[
       // Update texts
       this.updateTexts();
 
+      // Show questions
+      this.questionsView.showEach();
+
+      // Scroll to top
+      this.scrollTop();
+
     },
 
     restart: function () {
@@ -20158,10 +20230,11 @@ define( 'views/appView',[
       this.levelView.resetTexts();
 
       // Force hide summary message
+      this.levelView.$title.removeClass( 'bad medium good' );
       this.levelView.$summaryMessage.parent().addClass( 'transparent' );
 
       // Remove class 'done' and 'current' from all questions
-      this.questionsView.$questions.removeClass( 'done current' );
+      this.questionsView.$questions.removeClass( 'done current show' );
       this.questionsView.$questions.eq( 0 ).addClass( 'current transparent' );
 
       // Remove summary class
@@ -20212,19 +20285,433 @@ define( 'views/appView',[
     },
 
     scrollTop: function () {
-      console.log( 'top' );
+
       this.$el.velocity( 'scroll', {duration: 400, easing: "swing"} );
+
     }
 
   } );
 } );
 
 
+/*jslint bitwise: true, nomen: true, plusplus: true, white: true */
+
+/*!
+* Mediator.js Library v0.9.8
+* https://github.com/ajacksified/Mediator.js
+*
+* Copyright 2013, Jack Lawson
+* MIT Licensed (http://www.opensource.org/licenses/mit-license.php)
+*
+* For more information: http://thejacklawson.com/2011/06/mediators-for-modularized-asynchronous-programming-in-javascript/index.html
+* Project on GitHub: https://github.com/ajacksified/Mediator.js
+*
+* Last update: October 19 2013
+*/
+
+(function(global, factory) {
+  'use strict';
+
+  if (typeof define === 'function' && define.amd) {
+    // AMD
+    define('mediator-js', [], function() {
+      global.Mediator = factory();
+      return global.Mediator;
+    });
+  } else if (typeof exports !== 'undefined') {
+    // Node/CommonJS
+    exports.Mediator = factory();
+  } else {
+    // Browser global
+    global.Mediator = factory();
+  }
+}(this, function() {
+  'use strict';
+
+  // We'll generate guids for class instances for easy referencing later on.
+  // Subscriber instances will have an id that can be refernced for quick
+  // lookups.
+
+  function guidGenerator() {
+    var S4 = function() {
+       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    };
+
+    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+  }
+
+  // Subscribers are instances of Mediator Channel registrations. We generate
+  // an object instance so that it can be updated later on without having to
+  // unregister and re-register. Subscribers are constructed with a function
+  // to be called, options object, and context.
+
+  function Subscriber(fn, options, context) {
+    if (!(this instanceof Subscriber)) {
+      return new Subscriber(fn, options, context);
+    }
+
+    this.id = guidGenerator();
+    this.fn = fn;
+    this.options = options;
+    this.context = context;
+    this.channel = null;
+  }
+
+  // Mediator.update on a subscriber instance can update its function,context,
+  // or options object. It takes in an object and looks for fn, context, or
+  // options keys.
+  Subscriber.prototype.update = function(options) {
+    if (options) {
+      this.fn = options.fn || this.fn;
+      this.context = options.context || this.context;
+      this.options = options.options || this.options;
+      if (this.channel && this.options && this.options.priority !== undefined) {
+          this.channel.setPriority(this.id, this.options.priority);
+      }
+    }
+  }
+
+
+  function Channel(namespace, parent) {
+    if (!(this instanceof Channel)) {
+      return new Channel(namespace);
+    }
+
+    this.namespace = namespace || "";
+    this._subscribers = [];
+    this._channels = {};
+    this._parent = parent;
+    this.stopped = false;
+  }
+
+  // A Mediator channel holds a list of sub-channels and subscribers to be fired
+  // when Mediator.publish is called on the Mediator instance. It also contains
+  // some methods to manipulate its lists of data; only setPriority and
+  // StopPropagation are meant to be used. The other methods should be accessed
+  // through the Mediator instance.
+  Channel.prototype.addSubscriber = function(fn, options, context) {
+    var subscriber = new Subscriber(fn, options, context);
+
+    if (options && options.priority !== undefined) {
+      // Cheap hack to either parse as an int or turn it into 0. Runs faster
+      // in many browsers than parseInt with the benefit that it won't
+      // return a NaN.
+      options.priority = options.priority >> 0;
+
+      if (options.priority < 0) { options.priority = 0; }
+      if (options.priority >= this._subscribers.length) { options.priority = this._subscribers.length-1; }
+
+      this._subscribers.splice(options.priority, 0, subscriber);
+    }else{
+      this._subscribers.push(subscriber);
+    }
+
+    subscriber.channel = this;
+
+    return subscriber;
+  }
+
+  // The channel instance is passed as an argument to the mediator subscriber,
+  // and further subscriber propagation can be called with
+  // channel.StopPropagation().
+  Channel.prototype.stopPropagation = function() {
+    this.stopped = true;
+  }
+
+  Channel.prototype.getSubscriber = function(identifier) {
+    var x = 0,
+        y = this._subscribers.length;
+
+    for(x, y; x < y; x++) {
+      if (this._subscribers[x].id === identifier || this._subscribers[x].fn === identifier) {
+        return this._subscribers[x];
+      }
+    }
+  }
+
+  // Channel.setPriority is useful in updating the order in which Subscribers
+  // are called, and takes an identifier (subscriber id or named function) and
+  // an array index. It will not search recursively through subchannels.
+
+  Channel.prototype.setPriority = function(identifier, priority) {
+    var oldIndex = 0,
+        x = 0,
+        sub, firstHalf, lastHalf, y;
+
+    for(x = 0, y = this._subscribers.length; x < y; x++) {
+      if (this._subscribers[x].id === identifier || this._subscribers[x].fn === identifier) {
+        break;
+      }
+      oldIndex ++;
+    }
+
+    sub = this._subscribers[oldIndex];
+    firstHalf = this._subscribers.slice(0, oldIndex);
+    lastHalf = this._subscribers.slice(oldIndex+1);
+
+    this._subscribers = firstHalf.concat(lastHalf);
+    this._subscribers.splice(priority, 0, sub);
+  }
+
+  Channel.prototype.addChannel = function(channel) {
+    this._channels[channel] = new Channel((this.namespace ? this.namespace + ':' : '') + channel, this);
+  }
+
+  Channel.prototype.hasChannel = function(channel) {
+    return this._channels.hasOwnProperty(channel);
+  }
+
+  Channel.prototype.returnChannel = function(channel) {
+    return this._channels[channel];
+  }
+
+  Channel.prototype.removeSubscriber = function(identifier) {
+    var x = this._subscribers.length - 1;
+
+    // If we don't pass in an id, we're clearing all
+    if (!identifier) {
+      this._subscribers = [];
+      return;
+    }
+
+    // Going backwards makes splicing a whole lot easier.
+    for(x; x >= 0; x--) {
+      if (this._subscribers[x].fn === identifier || this._subscribers[x].id === identifier) {
+        this._subscribers[x].channel = null;
+        this._subscribers.splice(x,1);
+      }
+    }
+  }
+
+    // This will publish arbitrary arguments to a subscriber and then to parent
+    // channels.
+
+  Channel.prototype.publish = function(data) {
+    var x = 0,
+        y = this._subscribers.length,
+        shouldCall = false,
+        subscriber, l,
+        subsBefore,subsAfter;
+
+    // Priority is preserved in the _subscribers index.
+    for(x, y; x < y; x++) {
+      // By default set the flag to false
+      shouldCall = false;
+      subscriber = this._subscribers[x];
+
+      if (!this.stopped) {
+        subsBefore = this._subscribers.length;
+        if (subscriber.options !== undefined && typeof subscriber.options.predicate === "function") {
+          if (subscriber.options.predicate.apply(subscriber.context, data)) {
+            // The predicate matches, the callback function should be called
+            shouldCall = true;
+          }
+        }else{
+          // There is no predicate to match, the callback should always be called
+          shouldCall = true;
+        }
+      }
+
+      // Check if the callback should be called
+      if (shouldCall) {
+        // Check if the subscriber has options and if this include the calls options
+        if (subscriber.options && subscriber.options.calls !== undefined) {
+          // Decrease the number of calls left by one
+          subscriber.options.calls--;
+          // Once the number of calls left reaches zero or less we need to remove the subscriber
+          if (subscriber.options.calls < 1) {
+            this.removeSubscriber(subscriber.id);
+          }
+        }
+        // Now we call the callback, if this in turns publishes to the same channel it will no longer
+        // cause the callback to be called as we just removed it as a subscriber
+        subscriber.fn.apply(subscriber.context, data);
+
+        subsAfter = this._subscribers.length;
+        y = subsAfter;
+        if (subsAfter === subsBefore - 1) {
+          x--;
+        }
+      }
+    }
+
+    if (this._parent) {
+      this._parent.publish(data);
+    }
+
+    this.stopped = false;
+  }
+
+  function Mediator() {
+    if (!(this instanceof Mediator)) {
+      return new Mediator();
+    }
+
+    this._channels = new Channel('');
+  }
+
+  // A Mediator instance is the interface through which events are registered
+  // and removed from publish channels.
+
+  // Returns a channel instance based on namespace, for example
+  // application:chat:message:received. If readOnly is true we
+  // will refrain from creating non existing channels.
+  Mediator.prototype.getChannel = function(namespace, readOnly) {
+    var channel = this._channels,
+        namespaceHierarchy = namespace.split(':'),
+        x = 0,
+        y = namespaceHierarchy.length;
+
+    if (namespace === '') {
+      return channel;
+    }
+
+    if (namespaceHierarchy.length > 0) {
+      for(x, y; x < y; x++) {
+
+        if (!channel.hasChannel(namespaceHierarchy[x])) {
+          if (readOnly) {
+            break;
+          } else {
+            channel.addChannel(namespaceHierarchy[x]);
+          }
+        }
+
+        channel = channel.returnChannel(namespaceHierarchy[x]);
+      }
+    }
+
+    return channel;
+  }
+
+  // Pass in a channel namespace, function to be called, options, and context
+  // to call the function in to Subscribe. It will create a channel if one
+  // does not exist. Options can include a predicate to determine if it
+  // should be called (based on the data published to it) and a priority
+  // index.
+
+  Mediator.prototype.subscribe = function(channelName, fn, options, context) {
+    var channel = this.getChannel(channelName || "", false);
+
+    options = options || {};
+    context = context || {};
+
+    return channel.addSubscriber(fn, options, context);
+  }
+
+  // Pass in a channel namespace, function to be called, options, and context
+  // to call the function in to Subscribe. It will create a channel if one
+  // does not exist. Options can include a predicate to determine if it
+  // should be called (based on the data published to it) and a priority
+  // index.
+
+  Mediator.prototype.once = function(channelName, fn, options, context) {
+    options = options || {};
+    options.calls = 1;
+
+    return this.subscribe(channelName, fn, options, context);
+  }
+
+  // Returns a subscriber for a given subscriber id / named function and
+  // channel namespace
+
+  Mediator.prototype.getSubscriber = function(identifier, channelName) {
+    var channel = this.getChannel(channelName || "", true);
+    // We have to check if channel within the hierarchy exists and if it is
+    // an exact match for the requested channel
+    if (channel.namespace !== channelName) {
+      return null;
+    }
+
+    return channel.getSubscriber(identifier);
+  }
+
+  // Remove a subscriber from a given channel namespace recursively based on
+  // a passed-in subscriber id or named function.
+
+  Mediator.prototype.remove = function(channelName, identifier) {
+    var channel = this.getChannel(channelName || "", true);
+    if (channel.namespace !== channelName) {
+      return false;
+    }
+
+    channel.removeSubscriber(identifier);
+  }
+
+  // Publishes arbitrary data to a given channel namespace. Channels are
+  // called recursively downwards; a post to application:chat will post to
+  // application:chat:receive and application:chat:derp:test:beta:bananas.
+  // Called using Mediator.publish("application:chat", [ args ]);
+
+  Mediator.prototype.publish = function(channelName) {
+    var channel = this.getChannel(channelName || "", true);
+    if (channel.namespace !== channelName) {
+      return null;
+    }
+
+    var args = Array.prototype.slice.call(arguments, 1);
+
+    args.push(channel);
+
+    channel.publish(args);
+  }
+
+  // Alias some common names for easy interop
+  Mediator.prototype.on = Mediator.prototype.subscribe;
+  Mediator.prototype.bind = Mediator.prototype.subscribe;
+  Mediator.prototype.emit = Mediator.prototype.publish;
+  Mediator.prototype.trigger = Mediator.prototype.publish;
+  Mediator.prototype.off = Mediator.prototype.remove;
+
+  // Finally, expose it all.
+
+  Mediator.Channel = Channel;
+  Mediator.Subscriber = Subscriber;
+  Mediator.version = "0.9.8";
+
+  return Mediator;
+}));
+
+define( 'resize',['require','underscore'],function ( require ) {
+
+  var _ = require( 'underscore' );
+
+  var Event = function ( mediator ) {
+
+    this.mediator = mediator;
+
+    this.initialize();
+
+  };
+
+  Event.prototype = {
+    initialize: function () {
+
+      this.callback = _.debounce( this.onResize, 100 ).bind( this );
+
+      window.addEventListener( 'resize', this.callback );
+
+    },
+    onResize: function () {
+
+      this.mediator.publish( 'resize', {
+        width: window.innerWidth, //this.$win.width(),
+        height: window.innerHeight //this.$win.height()
+      } );
+
+    }
+  };
+
+  return Event;
+
+} );
 define( 'main',[
-  'views/appView'
+  'views/appView',
+  'mediator-js',
+  'resize'
 
 
-], function ( AppView ) {
+], function ( AppView, Mediator ) {
 
   'use strict';
 
@@ -20233,6 +20720,12 @@ define( 'main',[
     init: function init( el ) {
 
       this.el = el;
+
+      // Init mediator + resize
+      // Global Events - pub/sub
+      this.mediator = new Mediator();
+      var ResizeEvent = require( 'resize' );
+      new ResizeEvent( this.mediator );
 
       // Check if in app or on website
       this.isWeb = true;
@@ -20264,8 +20757,11 @@ define( 'main',[
 
     renderMainView: function ( data ) {
 
+      console.log( data );
+
       var appView = new AppView( {
         el: this.el,
+        mediator: this.mediator,
         isWeb: this.isWeb,
         data: data,
         touch: this.isTouch,

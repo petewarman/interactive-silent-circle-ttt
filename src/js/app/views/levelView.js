@@ -23,6 +23,12 @@ define( [
       this.texts = this.data.view.level;
 
       this.maxLevel = this.getMaxLevel();
+      this.minLevel = this.getMinLevel();
+      this.medLevel = this.minLevel + ((this.maxLevel - this.minLevel) / 2);
+
+      console.log( 'Min: ', this.minLevel );
+      console.log( 'Med:', this.medLevel );
+      console.log( 'Max: ', this.maxLevel );
 
     },
 
@@ -47,6 +53,8 @@ define( [
           return parseInt( a.value );
         } );
 
+        console.log( highestValueAnswer.value );
+
         max += parseInt( highestValueAnswer.value );
 
       } );
@@ -54,6 +62,26 @@ define( [
 //      console.log( max );
 
       return max;
+    },
+
+    getMinLevel: function () {
+      var min = 0;
+
+      this.questions.forEach( function ( q, i ) {
+
+        var lowestValueAnswer = _.min( q.answers, function ( a ) {
+          return parseInt( a.value );
+        } );
+
+//        console.log( lowestValueAnswer.value );
+
+        min += parseInt( lowestValueAnswer.value );
+
+      } );
+
+//      console.log( min );
+
+      return min;
     },
 
     render: function () {
@@ -131,6 +159,7 @@ define( [
       this.summaryMessage = this.texts.summary.message[security];
 
       this.$title.html( this.summaryTitle );
+//      this.$title.addClass( security );
       this.$summaryMessage.html( this.summaryMessage );
 
     },

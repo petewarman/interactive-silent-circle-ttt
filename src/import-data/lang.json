@@ -11,8 +11,8 @@
       "summary": {
         "title": {
           "good": "Based on your results,<br>your business is very secure",
-          "medium": "Based on your results,<br>your business is reasonably secure",
-          "bad": "Based on your results,<br>your business needs improvement"
+          "medium": "Based on your results,<br>your business needs improvements",
+          "bad": "Based on your results,<br>your business is at risk"
         },
         "message": {
           "good": "Here are some tips to keep you secure",

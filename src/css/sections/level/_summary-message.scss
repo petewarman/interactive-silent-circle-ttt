@@ -14,7 +14,7 @@
   margin: 10px 20px;
 
   @media(min-width: 980px) {
-    margin: 20px 200px;
+    margin: 0 200px;
     font-size: 18px;
     height: 35px;
     line-height: 35px;
@@ -35,9 +35,13 @@
   }
 
   .summary & {
-    @include transform(translateY(0) scale(1, 1));
+    @include transform(translateY(5px) scale(1, 1));
     @include css3-prefix(transition-duration, 0s);
     opacity: 1;
+
+    @media(min-width: 980px) {
+      @include transform(translateY(20px) scale(1, 1));
+    }
 
     > span {
       @include css3-prefix(transition-delay, 0s);

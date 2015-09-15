@@ -875,6 +875,14 @@ body {
 .guInteractive .section.full-width {
   margin: 0;
 }
+.summary .guInteractive .section#main-section {
+  padding-bottom: 0;
+}
+@media (min-width: 980px) {
+  .summary .guInteractive .section#main-section {
+    padding-bottom: 20px;
+  }
+}
 .guInteractive .section.top-sections-container {
   position: relative;
   background-color: #424242;
@@ -947,24 +955,32 @@ body {
   transition-property: transform;
   -khtml-transition-duration: 1s;
   transition-duration: 1s;
-  -webkit-transform: translateY(-35px);
-  -khtml-transform: translateY(-35px);
-  -ms-transform: translateY(-35px);
-  transform: translateY(-35px);
+  -webkit-transform: translateY(-15px);
+  -khtml-transform: translateY(-15px);
+  -ms-transform: translateY(-15px);
+  transform: translateY(-15px);
 }
 @media (min-width: 980px) {
   .guInteractive #questions-section {
-    -webkit-transform: translateY(-55px);
-    -khtml-transform: translateY(-55px);
-    -ms-transform: translateY(-55px);
-    transform: translateY(-55px);
+    -webkit-transform: translateY(-35px);
+    -khtml-transform: translateY(-35px);
+    -ms-transform: translateY(-35px);
+    transform: translateY(-35px);
   }
 }
 .summary .guInteractive #questions-section {
-  -webkit-transform: translateY(0);
-  -khtml-transform: translateY(0);
-  -ms-transform: translateY(0);
-  transform: translateY(0);
+  -webkit-transform: translateY(10px);
+  -khtml-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+  transform: translateY(10px);
+}
+@media (min-width: 980px) {
+  .summary .guInteractive #questions-section {
+    -webkit-transform: translateY(20px);
+    -khtml-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    transform: translateY(20px);
+  }
 }
 .summary .guInteractive #questions-section > .inner {
   background-color: #3b3b3b;
@@ -973,7 +989,16 @@ body {
 .summary .guInteractive #questions-section > .inner .question {
   display: block;
   padding-bottom: 80px;
-  opacity: 1;
+}
+@media (min-width: 980px) {
+  .summary .guInteractive #questions-section > .inner .question {
+    opacity: 0;
+    -khtml-transition-duration: 1s;
+    transition-duration: 1s;
+  }
+  .summary .guInteractive #questions-section > .inner .question.show {
+    opacity: 1;
+  }
 }
 .summary .guInteractive #questions-section > .inner .question > h2 {
   padding-bottom: 0px;
@@ -1035,7 +1060,6 @@ body {
   padding: 0px 20px;
   display: none;
   position: relative;
-  opacity: 1;
   -khtml-transition-duration: 1s;
   transition-duration: 1s;
 }
@@ -1292,8 +1316,17 @@ body {
   margin-bottom: 10px;
   -khtml-transition-property: color;
   transition-property: color;
-  -khtml-transition-duration: 0.4s;
-  transition-duration: 0.4s;
+  -khtml-transition-duration: 1s;
+  transition-duration: 1s;
+}
+.guInteractive #level-section > .inner .bar-container h1.good {
+  color: #5fb85c;
+}
+.guInteractive #level-section > .inner .bar-container h1.medium {
+  color: #eaad38;
+}
+.guInteractive #level-section > .inner .bar-container h1.bad {
+  color: #f77f80;
 }
 @media (min-width: 660px) {
   .guInteractive #level-section > .inner .bar-container h1 {
@@ -1522,7 +1555,7 @@ body {
 }
 @media (min-width: 980px) {
   .guInteractive #level-section .summary-message {
-    margin: 20px 200px;
+    margin: 0 200px;
     font-size: 18px;
     height: 35px;
     line-height: 35px;
@@ -1539,13 +1572,21 @@ body {
   opacity: 0 !important;
 }
 .summary .guInteractive #level-section .summary-message {
-  -webkit-transform: translateY(0) scale(1, 1);
-  -khtml-transform: translateY(0) scale(1, 1);
-  -ms-transform: translateY(0) scale(1, 1);
-  transform: translateY(0) scale(1, 1);
+  -webkit-transform: translateY(5px) scale(1, 1);
+  -khtml-transform: translateY(5px) scale(1, 1);
+  -ms-transform: translateY(5px) scale(1, 1);
+  transform: translateY(5px) scale(1, 1);
   -khtml-transition-duration: 0s;
   transition-duration: 0s;
   opacity: 1;
+}
+@media (min-width: 980px) {
+  .summary .guInteractive #level-section .summary-message {
+    -webkit-transform: translateY(20px) scale(1, 1);
+    -khtml-transform: translateY(20px) scale(1, 1);
+    -ms-transform: translateY(20px) scale(1, 1);
+    transform: translateY(20px) scale(1, 1);
+  }
 }
 .summary .guInteractive #level-section .summary-message > span {
   -khtml-transition-delay: 0s;
