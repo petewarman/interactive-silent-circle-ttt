@@ -21,7 +21,7 @@ See ```package.json``` and ```bower.json```
 Content is stored in a single JSON file: ```/src/data/data.json```
 
 This JSON file is automatically generated from 2 sources:
-- a Google Spreadsheet, that contains the Test data (questions, answers and their values): https://docs.google.com/spreadsheets/d/1oApMvBX6k8ijToreNOj0HFnHlhL7W6_y7k1d5jjSK7s/pubhtml?gid=0&single=true
+- a Google Spreadsheet, that contains the Test data (questions, answers and their scores): https://docs.google.com/spreadsheets/d/1oApMvBX6k8ijToreNOj0HFnHlhL7W6_y7k1d5jjSK7s/pubhtml?gid=0&single=true
 - another static JSON file, that contains copy and texts for UI elements: ```/src/data/lang.json```
 
 To generate an updated JSON file:
