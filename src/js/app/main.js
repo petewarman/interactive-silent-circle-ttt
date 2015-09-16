@@ -50,7 +50,7 @@ define( [
 
     renderMainView: function ( data ) {
 
-      console.log( data );
+//      console.log( data );
 
       var appView = new AppView( {
         el: this.el,

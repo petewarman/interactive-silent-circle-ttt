@@ -50,7 +50,7 @@ define( [
       this.$answerWrapper = this.$( '.answer-wrapper' );
       this.$answers = this.$( '.answers' );
       this.$questions = this.$( '.question' );
-      this.$button = this.$( '.button' );
+      this.$button = this.$( '.btn' );
       this.$buttonLink = this.$button.find( 'a' );
 
       this.$feedbacks = this.$( '.feedback' );
@@ -63,7 +63,7 @@ define( [
 
       $( document ).on( click, '.answer-wrapper:not(.selected) label, .answer-wrapper:not(.selected) span, .answer-wrapper:not(.selected) input', this.activateAnswer.bind( this ) );
 
-      $( document ).on( click, '.button.enabled a', this.buttonClicked.bind( this ) );
+      $( document ).on( click, '.btn.enabled a', this.buttonClicked.bind( this ) );
 
       // Subscribe to the resize event
       this.mediator.subscribe( 'resize', this.onResize.bind( this ) );
@@ -224,7 +224,7 @@ define( [
 
       var delay = 0;
 
-      this.$questions.each( function (i, el) {
+      this.$questions.each( function ( i, el ) {
 
         setTimeout( function () {
           $( el ).addClass( 'show' );
@@ -236,19 +236,19 @@ define( [
 
     },
 
-    show: function ( callback ) {
+    show: function ( callback, duration ) {
 
       this.$el.velocity( "fadeIn", {
-        duration: 1000,
+        duration: _.isNumber( duration ) ? duration : 1000,
         complete: callback
       } );
 
     },
 
-    hide: function ( callback ) {
+    hide: function ( callback, duration ) {
 
       this.$el.velocity( "fadeOut", {
-        duration: 1000,
+        duration: _.isNumber( duration ) ? duration : 1000,
         complete: callback
       } );
 

@@ -37,7 +37,7 @@
 
   .step {
     @include border-radius(50%);
-    border: 2px solid #666;
+    border: 2px solid #7e7e7e;
     width: $step-size;
     height: $step-size;
     position: relative;
@@ -62,12 +62,14 @@
 
       .color-fill {
         @include css3-prefix(transition-duration, 0.4s);
-        fill: #666;
+//        fill: #666;
+        fill: #7e7e7e;
       }
 
       .color-stroke {
         @include css3-prefix(transition-duration, 0.4s);
-        stroke: #666;
+//        stroke: #666;
+        stroke: #7e7e7e;
       }
     }
 

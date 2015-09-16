@@ -10,9 +10,9 @@
       "high": "High risk",
       "summary": {
         "title": {
-          "good": "Based on your results,<br>your business is very secure",
-          "medium": "Based on your results,<br>your business needs improvements",
-          "bad": "Based on your results,<br>your business is at risk"
+          "good": "Your business is<br><strong>relatively secure</strong>",
+          "medium": "Your business<br><strong>needs improvement</strong>",
+          "bad": "Your business is<br><strong>at risk</strong>"
         },
         "message": {
           "good": "Here are some tips to keep you secure",

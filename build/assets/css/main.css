@@ -800,35 +800,35 @@ body {
 .guInteractive #shareButtons button#shareTumblr:hover {
   background-color: #232e3d;
 }
-.guInteractive .button {
+.guInteractive .btn {
   padding: 20px;
 }
 @media (min-width: 660px) {
-  .guInteractive .button {
+  .guInteractive .btn {
     padding: 20px 10px;
   }
 }
 @media (min-width: 980px) {
-  .guInteractive .button {
+  .guInteractive .btn {
     padding: 20px 0;
   }
 }
-.guInteractive .button.center {
+.guInteractive .btn.center {
   text-align: center;
 }
-.guInteractive .button.right {
+.guInteractive .btn.right {
   text-align: center;
 }
 @media (min-width: 980px) {
-  .guInteractive .button.right {
+  .guInteractive .btn.right {
     text-align: right;
   }
 }
-.guInteractive .button.enabled a {
+.guInteractive .btn.enabled a {
   background-color: #ff827f;
   cursor: pointer;
 }
-.guInteractive .button a {
+.guInteractive .btn a {
   cursor: default;
   display: inline-block;
   padding: 5px 18px;
@@ -841,18 +841,18 @@ body {
   font-size: 13px;
 }
 @media (min-width: 660px) {
-  .guInteractive .button a {
+  .guInteractive .btn a {
     font-size: 14px;
     padding: 7px 20px;
   }
 }
 @media (min-width: 980px) {
-  .guInteractive .button a {
+  .guInteractive .btn a {
     font-size: 15px;
     padding: 8px 21px;
   }
 }
-.guInteractive .button a:hover {
+.guInteractive .btn a:hover {
   text-decoration: none;
 }
 .guInteractive .section {
@@ -877,6 +877,15 @@ body {
 }
 .guInteractive .section#main-section {
   padding-bottom: 0;
+}
+.guInteractive .section#main-section .cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #424242;
+  z-index: 1000;
 }
 @media (min-width: 980px) {
   .summary .guInteractive .section#main-section {
@@ -980,11 +989,12 @@ body {
 }
 .summary .guInteractive #questions-section > .inner .question {
   display: block;
-  padding-bottom: 60px;
+  padding-bottom: 40px;
 }
-@media (min-width: 980px) {
+@media (min-width: 660px) {
   .summary .guInteractive #questions-section > .inner .question {
     opacity: 0;
+    padding-bottom: 60px;
     -khtml-transition-duration: 1s;
     transition-duration: 1s;
   }
@@ -1026,6 +1036,7 @@ body {
   color: #ff827f;
   font-size: 20px;
   line-height: 60px;
+  font-weight: normal;
 }
 @media (min-width: 660px) {
   .summary .guInteractive #questions-section > .inner .question .endscreen-header .topic {
@@ -1040,6 +1051,7 @@ body {
 .summary .guInteractive #questions-section > .inner .question > fieldset .endscreen {
   padding: 0 !important;
   font-size: 14px !important;
+  font-weight: normal;
 }
 @media (min-width: 660px) {
   .summary .guInteractive #questions-section > .inner .question > fieldset .endscreen {
@@ -1067,12 +1079,17 @@ body {
   height: 2px;
   background-color: #666;
   position: absolute;
-  bottom: 30px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -khtml-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
+  bottom: 20px;
+}
+@media (min-width: 660px) {
+  .summary .guInteractive #questions-section > .inner .question:after {
+    bottom: 30px;
+  }
 }
 .summary .guInteractive #questions-section > .inner .question .answers {
   padding-top: 5px;
@@ -1163,6 +1180,7 @@ body {
   font-size: 13px;
   padding: 5px 0 5px 25px;
   display: none;
+  font-weight: normal;
 }
 .guInteractive #questions-section > .inner .question .answers .answer-wrapper .endscreen {
   font-size: 13px;
@@ -1173,9 +1191,10 @@ body {
   cursor: default;
 }
 .guInteractive #questions-section > .inner .question .answers .answer-wrapper label {
+  font-weight: normal;
   position: relative;
   font-size: 16px;
-  color: #999;
+  color: #bbb;
   padding-left: 25px;
   display: inline-block;
   cursor: pointer;
@@ -1362,7 +1381,7 @@ body {
 }
 .guInteractive #level-section > .inner .bar-container h1 {
   font-weight: 100;
-  color: #9a6763;
+  color: #ff827f;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
@@ -1449,9 +1468,6 @@ body {
   -khtml-transition-duration: 1s;
   transition-duration: 1s;
 }
-.summary .guInteractive #level-section > .inner .bar-container .bar .level-mask {
-  border-left: 4px solid #FFF;
-}
 .guInteractive #level-section > .inner .steps-container {
   position: relative;
   text-align: center;
@@ -1503,7 +1519,7 @@ body {
   -khtml-border-radius: 50%;
   -o-border-radius: 50%;
   border-radius: 50%;
-  border: 2px solid #666;
+  border: 2px solid #7e7e7e;
   width: 48px;
   height: 48px;
   position: relative;
@@ -1533,12 +1549,12 @@ body {
 .guInteractive #level-section > .inner .steps-container .step svg .color-fill {
   -khtml-transition-duration: 0.4s;
   transition-duration: 0.4s;
-  fill: #666;
+  fill: #7e7e7e;
 }
 .guInteractive #level-section > .inner .steps-container .step svg .color-stroke {
   -khtml-transition-duration: 0.4s;
   transition-duration: 0.4s;
-  stroke: #666;
+  stroke: #7e7e7e;
 }
 .guInteractive #level-section > .inner .steps-container .step.current {
   border-color: #ff827f;
@@ -1617,17 +1633,17 @@ body {
 }
 .guInteractive #level-section .summary-message > span#summary-title {
   font-size: 20px;
-  line-height: 25px;
+  line-height: 26px;
 }
 @media (min-width: 980px) {
   .guInteractive #level-section .summary-message > span#summary-title {
     font-size: 22px;
+    line-height: 28px;
   }
 }
 .guInteractive #level-section .summary-message > span#summary-message {
   margin-top: 10px;
-  font-size: 13px;
-  line-height: 25px;
+  font-size: 14px;
   font-style: italic;
 }
 @media (min-width: 980px) {

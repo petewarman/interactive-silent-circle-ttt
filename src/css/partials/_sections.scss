@@ -19,6 +19,16 @@
   &#main-section {
     padding-bottom: 0;
 
+    .cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #424242;
+      z-index: 1000;
+    }
+
     .summary & {
       @media(min-width: 980px) {
         padding-bottom: 20px;

@@ -26,9 +26,9 @@ define( [
       this.minLevel = this.getMinLevel();
       this.medLevel = this.minLevel + ((this.maxLevel - this.minLevel) / 2);
 
-      console.log( 'Min: ', this.minLevel );
-      console.log( 'Med:', this.medLevel );
-      console.log( 'Max: ', this.maxLevel );
+//      console.log( 'Min: ', this.minLevel );
+//      console.log( 'Med:', this.medLevel );
+//      console.log( 'Max: ', this.maxLevel );
 
     },
 
@@ -53,7 +53,7 @@ define( [
           return parseInt( a.value );
         } );
 
-        console.log( highestValueAnswer.value );
+//        console.log( highestValueAnswer.value );
 
         max += parseInt( highestValueAnswer.value );
 
@@ -164,23 +164,23 @@ define( [
 
     },
 
-    show: function ( callback ) {
+    show: function ( callback, duration ) {
 
       this.$el.velocity( "fadeIn", {
-        duration: 400,
+        duration: _.isNumber( duration ) ? duration : 400,
         complete: callback
       } );
 
     },
 
-    hide: function ( callback ) {
+    hide: function ( callback, duration ) {
 
       this.$el.velocity( "fadeOut", {
-        duration: 400,
+        duration: _.isNumber( duration ) ? duration : 400,
         complete: callback
       } );
 
-    }
+    },
 
   } );
 } );

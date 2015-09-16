@@ -19,10 +19,11 @@ define( [
   'text!outAndAboutSvg',
   'text!upToDateSvg',
   'text!cloudSvg',
-  'text!responsabilitySvg',
+  'text!responsabilitySvg'
+//  ,
 
   // Others
-  'velocity-ui'
+//  'velocity-ui'
 
 //  'views/analytics'
 ], function ( Backbone, Mustache, _, velocity, HeaderView, IntroView, QuestionsView, LevelView, appTpl, sizeSvg, logOnSvg, outAndAboutSvg, upToDateSvg, cloudSvg, responsabilitySvg ) {
@@ -81,13 +82,15 @@ define( [
       this.$introSection = this.$( '#intro-section' );
       this.$levelSection = this.$( '#level-section' );
 
+      this.$cover = this.$( '.cover' );
+
     },
 
     setupEvents: function () {
       var click = this.isTouch ? 'touchstart' : 'click';
 
       // Disable buttons <a> default behavior
-      this.$el.on( click, '.button a', function ( e ) {
+      this.$el.on( click, '.btn a', function ( e ) {
         e.preventDefault();
       } );
 
@@ -145,7 +148,7 @@ define( [
         isWeb: this.isWeb
       } );
 
-      this.levelView.render().show( callback );
+      this.levelView.render().show( callback, 400 );
 
     },
 
@@ -160,15 +163,24 @@ define( [
       } );
 
       this.questionsView.render().show( function () {
+
         this.showQuestion( 0 ); // show the first question
 
-        // Set the first answer active
-        this.questionsView.activateFirstAnswer.call( this.questionsView );
+        // Fade out cover
+        this.$cover.velocity( 'fadeOut', {
+          duration: 1000,
+          delay: 400,
+          complete: function () {
 
-        // Scroll to top
-        this.scrollTop();
+            // Set the first answer active
+            this.questionsView.activateFirstAnswer.call( this.questionsView );
 
-      }.bind( this ) );
+            // Scroll to top
+            this.scrollTop();
+          }.bind( this )
+        } );
+
+      }.bind( this ), 0 );
 
     },
 
@@ -241,7 +253,10 @@ define( [
 
 //      this.introView.hide(  );
 
-      this.renderLevel( this.renderQuestions.bind( this ) );
+      //this.renderLevel( this.renderQuestions.bind( this ) );
+
+      this.renderLevel();
+      this.renderQuestions();
 
     },
 
@@ -267,7 +282,7 @@ define( [
 
         this.levelView.updateSummaryText( security );
 
-        console.log( 'security level: ', security, levelAbsValue );
+//        console.log( 'security level: ', security, levelAbsValue );
 
       }
 

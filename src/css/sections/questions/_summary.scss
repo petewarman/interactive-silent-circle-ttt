@@ -13,10 +13,11 @@
 
     .question {
       display: block;
-      padding-bottom: 60px;
+      padding-bottom: 40px;
 
-      @media(min-width: 980px) {
+      @media(min-width: 660px) {
         opacity: 0;
+        padding-bottom: 60px;
 
         @include css3-prefix(transition-duration, 1s);
 
@@ -63,6 +64,7 @@
           color: $accent-color;
           font-size: 20px;
           line-height: 60px;
+          font-weight: normal;
 
           @media(min-width: 660px) {
             font-size: 22px;
@@ -79,6 +81,7 @@
         .endscreen {
           padding: 0 !important;
           font-size: 14px !important;
+          font-weight: normal;
 
           @media(min-width: 660px) {
             font-size: 16px !important;
@@ -113,9 +116,13 @@
         height: 2px;
         background-color: #666;
         position: absolute;
-        bottom: 30px;
         left: 50%;
         @include transform(translateX(-50%));
+        bottom: 20px;
+
+        @media(min-width: 660px) {
+          bottom: 30px;
+        }
       }
 
       .answers {
