@@ -948,7 +948,7 @@ body {
 }
 .guInteractive #about-section p,
 .guInteractive #about-section h4.sectionHeading {
-  color: #666;
+  color: #7e7e7e;
 }
 .guInteractive #video-section {
   background-color: #ff827f;
@@ -1607,7 +1607,7 @@ body {
   content: '';
   width: 19px;
   height: 1px;
-  background-color: #666;
+  background-color: #7e7e7e;
   position: relative;
   z-index: 1;
   top: 23px;

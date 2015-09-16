@@ -37,7 +37,7 @@
 
   .step {
     @include border-radius(50%);
-    border: 2px solid #7e7e7e;
+    border: 2px solid $medium-grey;
     width: $step-size;
     height: $step-size;
     position: relative;
@@ -63,13 +63,13 @@
       .color-fill {
         @include css3-prefix(transition-duration, 0.4s);
 //        fill: #666;
-        fill: #7e7e7e;
+        fill: $medium-grey;
       }
 
       .color-stroke {
         @include css3-prefix(transition-duration, 0.4s);
 //        stroke: #666;
-        stroke: #7e7e7e;
+        stroke: $medium-grey;
       }
     }
 
@@ -124,7 +124,7 @@
       content: '';
       width: 19px;
       height: 1px;
-      background-color: #666;
+      background-color: $medium-grey;
       position: relative;
       z-index: 1;
       top: $step-size / 2 - 1px;

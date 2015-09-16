@@ -39,7 +39,6 @@ define( [
       }
 
       // Get JSON questions + lang
-
       $.ajax( {
         dataType: 'jsonp',
         jsonpCallback: 'callback',
