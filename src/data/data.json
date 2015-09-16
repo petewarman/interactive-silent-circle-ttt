@@ -88,7 +88,7 @@ callback({
                 {
                     "answerId": "question-2-answer-0",
                     "answer": "Yes",
-                    "value": "1",
+                    "value": "10",
                     "feedback": "While great for convenience, using laptops or smartphones out of the office does bring with it certain risks. There’s no need to stop – but it’s worth checking you’re taking the right precautions.",
                     "endscreen": "Using devices on the move puts them at greater risk of loss or theft – so it’s even more important to follow good information-security practices. It’s also worth taking precautions when connecting to free Wi-Fi networks, such as in cafes or hotels. Spoof networks, given plausible-sounding names, are a threat, so it’s always worth checking the network’s name with staff. When you log on to websites, check that the URL starts with ”https” rather than ”http”: this means a secure connection is being used.",
                     "cstitle": null,
@@ -97,7 +97,7 @@ callback({
                 {
                     "answerId": "question-2-answer-1",
                     "answer": "No",
-                    "value": "10",
+                    "value": "1",
                     "feedback": "That puts your devices – and the data on them – at lower risk of being stolen. It’s worth checking that your office environment itself is secure from an information-security perspective though.",
                     "endscreen": "Physical security plays a part in securing your office environment and preventing outsiders from getting access to company systems. Data should be disposed of correctly – with confidential documents shredded and hard drives securely wiped of any sensitive data before disposal. Wireless networks should be secured to prevent unauthorised access. Bear in mind that, for most businesses, the risk posed by disgruntled ex-employees is probably higher than that from hackers.",
                     "cstitle": null,
