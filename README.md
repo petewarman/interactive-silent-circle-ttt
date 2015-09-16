@@ -16,6 +16,9 @@ See ```package.json``` and ```bower.json```
 > grunt
 ```
 
+A local server should run on ```http://localhost:8089```
+See ```Gruntfile.js```
+
 
 ## Update content
 Content is stored in a single JSON file: ```/src/data/data.json```
@@ -29,10 +32,6 @@ To generate an updated JSON file:
 - click on the link to download the new JSON
 - overwrite the old file in ```/src/data/data.json```
 - make sure to run the Grunt task to build
-
-
-A local server should run on ```http://localhost:8080```
-See ```Gruntfile.js```
 
 
 ## Check paths
