@@ -41,7 +41,8 @@ define( [
       // Get JSON questions + lang
 
       $.ajax( {
-        dataType: 'json',
+        dataType: 'jsonp',
+        jsonpCallback: 'callback',
         url: this.assetsPath + 'data/data.json',
         success: this.renderMainView.bind( this )
       } );

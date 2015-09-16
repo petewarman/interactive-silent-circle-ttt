@@ -38,15 +38,23 @@
         }
 
         .icon {
+          position: relative;
           width: 40px;
+          height: 40px;
           margin-right: 20px;
 
           @media(min-width: 660px) {
-            width: 10%;
-            margin-right: 5%;
+            width: 50px;
+            height: 50px;
+          }
+
+          @media(min-width: 980px) {
+            width: 60px;
+            height: 60px;
           }
 
           svg {
+            position: relative;
             display: block;
             width: 100%;
 
@@ -85,7 +93,11 @@
 
           @media(min-width: 660px) {
             font-size: 16px !important;
-            padding: 0 0 0 15% !important;
+            padding: 0 0 0 70px !important;
+          }
+
+          @media(min-width: 660px) {
+            padding: 0 0 0 80px !important;
           }
         }
       }
