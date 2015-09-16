@@ -205,13 +205,5 @@ module.exports = function ( grunt ) {
 
   grunt.registerTask( 'default', ['build', 'connect', 'watch'] );
 
-  grunt.registerTask( 'deploy', [
-    'build',
-    'rename',
-    'replace',
-    's3'
-  ] );
-
-
 };
 
