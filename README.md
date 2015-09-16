@@ -42,8 +42,6 @@ If necessary, open ```Gruntfile.js``` and fix the file paths in the ```replace``
 
 ## @TODO
 
-- Configure S3 in ```Gruntfile.js```
-
 
 - Google Analytics (???)
 
