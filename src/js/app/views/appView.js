@@ -4,6 +4,9 @@ define( [
   'underscore',
   'velocity',
 
+  // Analytics
+  'analytics',
+
   // Views
   'views/headerView',
   'views/introView',
@@ -26,7 +29,7 @@ define( [
 //  'velocity-ui'
 
 //  'views/analytics'
-], function ( Backbone, Mustache, _, velocity, HeaderView, IntroView, QuestionsView, LevelView, appTpl, sizeSvg, logOnSvg, outAndAboutSvg, upToDateSvg, cloudSvg, responsabilitySvg ) {
+], function ( Backbone, Mustache, _, velocity, ga, HeaderView, IntroView, QuestionsView, LevelView, appTpl, sizeSvg, logOnSvg, outAndAboutSvg, upToDateSvg, cloudSvg, responsabilitySvg ) {
   'use strict';
 
   return Backbone.View.extend( {
@@ -110,7 +113,7 @@ define( [
         questions: this.questions,
         isWeb: this.isWeb,
         path: {
-          assets: this.assetsPath //
+          assets: this.assetsPath
         }
       } ) );
 
@@ -205,6 +208,14 @@ define( [
       this.questionsView.setCurrentQuestion( index );
       this.levelView.setCurrentStep( index );
       this.currentQuestion = index;
+
+      // Google Analytics - send question number (index + 1)
+      window.ga( 'send', {
+        'hitType': 'event',          // Required.
+        'eventCategory': 'open question',   // Required.
+        'eventAction': 'click',      // Required.
+        'eventLabel': index + 1
+      } );
 
     },
 
