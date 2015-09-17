@@ -753,15 +753,18 @@ body {
     margin: 0 auto;
   }
 }
+.guInteractive #sharePage,
 .guInteractive #shareButtons {
   font-family: 'Guardian Text Sans Web', 'Agate Sans', sans-serif;
   font-size: 14px;
   color: #767676;
   margin-top: 0;
 }
+.guInteractive #sharePage p,
 .guInteractive #shareButtons p {
   margin: 0 0 5px;
 }
+.guInteractive #sharePage button,
 .guInteractive #shareButtons button {
   background: #333;
   width: 32px;
@@ -775,28 +778,36 @@ body {
   cursor: pointer;
   outline: none;
 }
+.guInteractive #sharePage button#shareTwitter,
 .guInteractive #shareButtons button#shareTwitter {
   background: #03b3ee url("../imgs/twitterIcon.svg") no-repeat center center;
 }
+.guInteractive #sharePage button#shareTwitter:hover,
 .guInteractive #shareButtons button#shareTwitter:hover {
   background-color: #028dbc;
 }
+.guInteractive #sharePage button#shareFacebook,
 .guInteractive #shareButtons button#shareFacebook {
   background: #3067a3 url("../imgs/facebookIcon.svg") no-repeat center center;
 }
+.guInteractive #sharePage button#shareFacebook:hover,
 .guInteractive #shareButtons button#shareFacebook:hover {
   background-color: #244e7c;
 }
+.guInteractive #sharePage button#sharePinterest,
 .guInteractive #shareButtons button#sharePinterest {
   background: #b9252c url("../imgs/pinterestIcon.svg") no-repeat center center;
 }
+.guInteractive #sharePage button#sharePinterest:hover,
 .guInteractive #shareButtons button#sharePinterest:hover {
   background-color: #8f1d22;
 }
+.guInteractive #sharePage button#shareTumblr,
 .guInteractive #shareButtons button#shareTumblr {
   background: #36465d url("../imgs/tumblrIcon2.svg") no-repeat center center;
   background-size: 11px;
 }
+.guInteractive #sharePage button#shareTumblr:hover,
 .guInteractive #shareButtons button#shareTumblr:hover {
   background-color: #232e3d;
 }
@@ -911,39 +922,53 @@ body {
 .guInteractive #header-section #sc-logo {
   position: relative;
   text-align: right;
-}
-.guInteractive #header-section #sc-logo a {
-  position: relative;
-  display: inline-block;
-  width: 50%;
-  padding: 10px 10px;
   border: none;
+  font-size: 0;
 }
-.guInteractive #header-section #sc-logo a img {
-  display: block;
-  width: 100%;
-  border: none;
+.guInteractive #header-section #sc-logo #sharePage {
+  text-align: left;
+  width: 40%;
 }
-@media (min-width: 440px) {
-  .guInteractive #header-section #sc-logo a {
-    width: 40%;
-  }
+.guInteractive #header-section #sc-logo #sharePage .inner {
+  padding: 20px;
 }
 @media (min-width: 660px) {
-  .guInteractive #header-section #sc-logo a {
-    padding: 15px 10px;
+  .guInteractive #header-section #sc-logo #sharePage .inner {
+    padding: 20px 0;
+  }
+}
+.guInteractive #header-section #sc-logo a,
+.guInteractive #header-section #sc-logo #sharePage {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+.guInteractive #header-section #sc-logo a {
+  width: 60%;
+  border: none;
+  text-align: right;
+}
+.guInteractive #header-section #sc-logo a img {
+  display: inline-block;
+  width: 100%;
+  border: none;
+  padding: 20px;
+  position: relative;
+}
+@media (min-width: 660px) {
+  .guInteractive #header-section #sc-logo a img {
+    width: 70%;
+    padding: 20px 0;
   }
 }
 @media (min-width: 980px) {
-  .guInteractive #header-section #sc-logo a {
-    width: 30%;
-    padding: 20px;
+  .guInteractive #header-section #sc-logo a img {
+    width: 60%;
   }
 }
 @media (min-width: 1300px) {
-  .guInteractive #header-section #sc-logo a {
-    width: 25%;
-    padding: 20px 40px;
+  .guInteractive #header-section #sc-logo a img {
+    width: 50%;
   }
 }
 .guInteractive #about-section p,

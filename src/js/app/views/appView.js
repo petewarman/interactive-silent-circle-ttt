@@ -38,6 +38,7 @@ define( [
 
     initialize: function ( options ) {
 
+      this.copy = options.data.share;
       this.data = this.prepareData( options.data );
       this.isWeb = options.isWeb;
       this.isTouch = options.isTouch;
@@ -103,6 +104,38 @@ define( [
       // Navigate through questions
       this.$el.on( click, '.step.done:not(.summary)', this.showQuestion.bind( this ) );
 
+
+      // Share buttons
+      this.$el.on( 'click', '#shareTwitter, #shareFacebook', this.sharePage.bind( this ) );
+    },
+
+    sharePage: function ( e ) {
+      var twitterBaseUrl = this.copy.twitterBaseUrl;
+      var facebookBaseUrl = this.copy.facebookBaseUrl;
+      var sharemessage = this.copy.sharePageMessage + " ";
+      var network = $( e.currentTarget ).attr( 'data-source' );
+      var shareWindow = "";
+      var img = this.copy.pageUrl + 'assets/imgs/' + this.copy.sharePageImg;
+      var guardianUrl = this.copy.pageUrl;
+
+//      console.log(img, this.copy.sharePageImg);
+
+      if ( network === "twitter" ) {
+        shareWindow =
+          twitterBaseUrl +
+            encodeURIComponent( sharemessage ) +
+            "%20" +
+            encodeURIComponent( guardianUrl )
+
+      } else if ( network === "facebook" ) {
+        shareWindow =
+          facebookBaseUrl +
+            encodeURIComponent( guardianUrl ) +
+            "&picture=" +
+            encodeURIComponent( img ) +
+            "&redirect_uri=http://www.theguardian.com";
+      }
+      window.open( shareWindow, network + "share", "width=640, height=320" );
     },
 
     render: function () {

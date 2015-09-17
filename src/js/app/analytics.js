@@ -16,7 +16,6 @@ define( [],
     ga( 'create', 'UA-000000-00', 'auto' );
     ga( 'send', 'pageview' );
 
-
     return ga;
 
   } );
