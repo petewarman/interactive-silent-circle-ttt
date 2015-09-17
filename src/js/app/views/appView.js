@@ -274,29 +274,22 @@ define( [
     updateTexts: function () {
 
       if ( this.currentState === 'summary' ) {
-
-        var levelAbsValue = this.getAnswersTotal();
-//        var levelPercent = this.levelView.getLevel() || 0;
-        var security = "good";
-
-//        if ( levelPercent <= 100 * 0.3 ) {
-//          security = "bad";
-//        } else if ( levelPercent <= 100 * 0.6 ) {
-//          security = "medium";
-//        }
-
-        if ( levelAbsValue >= this.levelView.medLevel ) {
-          security = "bad";
-        } else if ( levelAbsValue > this.levelView.minLevel ) {
-          security = "medium";
-        }
-
-        this.levelView.updateSummaryText( security );
-
-//        console.log( 'security level: ', security, levelAbsValue );
-
+        this.levelView.updateSummaryText( this.getSecurityLevel() );
       }
 
+    },
+
+    getSecurityLevel: function() {
+      var levelAbsValue = this.getAnswersTotal();
+      var security = "good";
+
+      if ( levelAbsValue >= this.levelView.medLevel ) {
+        security = "bad";
+      } else if ( levelAbsValue > this.levelView.minLevel ) {
+        security = "medium";
+      }
+
+      return security;
     },
 
     showSummary: function () {
@@ -317,6 +310,16 @@ define( [
 
       // Scroll to top
       this.scrollTop();
+
+      // Google Analytics - send question number (index + 1)
+      window.ga( 'send', {
+        'hitType': 'event',          // Required.
+        'eventCategory': 'open summary',   // Required.
+        'eventAction': 'click',      // Required.
+        'eventLabel': 'Test completed: ' + (this.getSecurityLevel()).toUpperCase()
+      } );
+
+//      console.log('Test completed: ' + (this.getSecurityLevel()).toUpperCase());
 
     },
 
