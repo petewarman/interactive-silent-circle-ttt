@@ -46,10 +46,10 @@ The section linking to the "Take the test" page must be updated with the right l
 ## @TODO
 
 
-- Update the file ```/src/import-data/lang.json```` with copy if necessary
+- Update the file ```/src/import-data/lang.json``` with copy if necessary
 
 
-- Update the file ```/src/import-data/lang.json```` with copy for Twitter, LinkedIn, Facebook + link to the Guardian page
+- Update the file ```/src/import-data/lang.json``` with copy for Twitter, LinkedIn, Facebook + link to the Guardian page
 
 
 - Update the links to the "Videos" page in ```/src/js/app/templates/app.html```
