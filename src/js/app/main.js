@@ -1,6 +1,6 @@
 define( [
   'views/appView',
-  'mediator-js',
+//  'mediator-js',
   'resize'
 
 
@@ -16,9 +16,9 @@ define( [
 
       // Init mediator + resize
       // Global Events - pub/sub
-      this.mediator = new Mediator();
-      var ResizeEvent = require( 'resize' );
-      new ResizeEvent( this.mediator );
+//      this.mediator = new Mediator();
+//      var ResizeEvent = require( 'resize' );
+//      new ResizeEvent( this.mediator );
 
       // Check if in app or on website
       this.isWeb = true;
@@ -54,7 +54,7 @@ define( [
 
       var appView = new AppView( {
         el: this.el,
-        mediator: this.mediator,
+//        mediator: this.mediator,
         isWeb: this.isWeb,
         data: data,
         touch: this.isTouch,

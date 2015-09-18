@@ -43,7 +43,7 @@ define( [
       this.isWeb = options.isWeb;
       this.isTouch = options.isTouch;
       this.assetsPath = options.assetsPath;
-      this.mediator = options.mediator;
+//      this.mediator = options.mediator;
 
     },
 
@@ -192,7 +192,7 @@ define( [
 
       this.questionsView = new QuestionsView( {
         el: this.$questionsSection[0],
-        mediator: this.mediator,
+//        mediator: this.mediator,
         app: this,
         data: this.data,
         isWeb: this.isWeb

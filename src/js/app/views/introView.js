@@ -3,8 +3,8 @@ define( [
   'mustache',
   'text!templates/intro.html',
   'underscore',
-  'velocity',
-  'velocity-ui'
+  'velocity'
+//  'velocity-ui'
 //  'views/analytics'
 ], function ( Backbone, Mustache, template, _, velocity ) {
   'use strict';

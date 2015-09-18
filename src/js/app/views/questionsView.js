@@ -3,9 +3,9 @@ define( [
   'mustache',
   'text!templates/questions.html',
   'underscore',
-  'velocity',
+  'velocity'
 
-  'velocity-ui'
+//  'velocity-ui'
 //  'views/analytics'
 ], function ( Backbone, Mustache, template, _, velocity ) {
   'use strict';
@@ -19,7 +19,7 @@ define( [
       this.questions = options.data.questions;
       this.app = options.app;
 
-      this.mediator = options.mediator;
+//      this.mediator = options.mediator;
 
       this.questionsCount = this.questions.length;
 
@@ -66,10 +66,10 @@ define( [
       $( document ).on( click, '.btn.enabled a', this.buttonClicked.bind( this ) );
 
       // Subscribe to the resize event
-      this.mediator.subscribe( 'resize', this.onResize.bind( this ) );
+//      this.mediator.subscribe( 'resize', this.onResize.bind( this ) );
 
       // Trigger a resize to get questions height
-      this.onResize()
+//      this.onResize()
     },
 
     buttonClicked: function () {
@@ -254,10 +254,10 @@ define( [
 
     },
 
-    onResize: function ( e ) {
-
-
-    }
+//    onResize: function ( e ) {
+//
+//
+//    }
 
   } );
 } );

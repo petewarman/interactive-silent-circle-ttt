@@ -7,7 +7,7 @@ require.config( {
     'backbone': '../libs/backbone',
 //    'crossdomain': '../libs/Backbone.CrossDomain',
     'velocity': '../libs/velocity',
-    'velocity-ui': '../libs/velocity.ui',
+//    'velocity-ui': '../libs/velocity.ui',
     'text': '../libs/text',
 //    'json': '../libs/json',
     'mustache': '../libs/mustache',

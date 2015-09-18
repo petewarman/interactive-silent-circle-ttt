@@ -6,9 +6,9 @@ define( [
   'velocity',
 
   // Icon for summary
-  'text!summarySvg',
+  'text!summarySvg'
 
-  'velocity-ui'
+//  'velocity-ui'
 
 //  'views/analytics'
 ], function ( Backbone, Mustache, template, _, velocity, summarySvg ) {
