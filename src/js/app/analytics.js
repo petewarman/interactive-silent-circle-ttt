@@ -13,7 +13,7 @@ define( [],
       m.parentNode.insertBefore( a, m )
     })( window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga' );
 
-    ga( 'create', 'UA-000000-00', 'auto' );
+    ga( 'create', 'UA-67811141-2', 'auto' );
     ga( 'send', 'pageview' );
 
     return ga;
