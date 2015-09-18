@@ -106,12 +106,13 @@ define( [
 
 
       // Share buttons
-      this.$el.on( 'click', '#shareTwitter, #shareFacebook', this.sharePage.bind( this ) );
+      this.$el.on( 'click', '#shareTwitter, #shareFacebook, #shareLinkedin', this.sharePage.bind( this ) );
     },
 
     sharePage: function ( e ) {
       var twitterBaseUrl = this.copy.twitterBaseUrl;
       var facebookBaseUrl = this.copy.facebookBaseUrl;
+      var linkedinBaseUrl = this.copy.linkedinBaseUrl;
       var sharemessage = this.copy.sharePageMessage + " ";
       var network = $( e.currentTarget ).attr( 'data-source' );
       var shareWindow = "";
@@ -134,6 +135,14 @@ define( [
             "&picture=" +
             encodeURIComponent( img ) +
             "&redirect_uri=http://www.theguardian.com";
+      } else if ( network === "linkedin" ) {
+        shareWindow =
+          linkedinBaseUrl +
+            "?title=" +
+            encodeURIComponent( sharemessage ) +
+            "&mini=true" +
+            "&url=" +
+            encodeURIComponent( guardianUrl )
       }
       window.open( shareWindow, network + "share", "width=640, height=320" );
     },

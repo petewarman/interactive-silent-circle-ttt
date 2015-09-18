@@ -2,10 +2,34 @@
 
   background-color: $accent-color;
 
+  h4.sectionHeading a {
+    color: #FFF;
+    text-decoration: none;
+  }
+
+  a img {
+    text-decoration: none;
+    border: none;
+  }
+
   .contentBlock-inner {
 
     h2 {
       color: #333;
+    }
+
+    p.half-width {
+      a {
+        color: #FFF;
+        text-decoration: none;
+      }
+    }
+
+    h2 {
+      a {
+        color: #333;
+        text-decoration: none;
+      }
     }
 
   }

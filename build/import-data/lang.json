@@ -27,8 +27,10 @@
     "sharePageMessage": "Oooh! The Take the Test page!!!",
     "sharePageImg": "gu-logo-fallback.png",
     "pageUrl": "http://labs.theguardian.com/2015/aug/silent-circle-interactive/",
+
     "twitterBaseUrl": "https://twitter.com/home?status=",
-    "facebookBaseUrl": "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link="
+    "facebookBaseUrl": "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=",
+    "linkedinBaseUrl": "https://www.linkedin.com/shareArticle"
   },
 
   "button": {

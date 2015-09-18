@@ -32,6 +32,12 @@
         background-color: darken(#3067a3, 10%);
       }
     }
+    &#shareLinkedin {
+      background: #0071a1 url('#{$imgs-path}linkedinIcon.svg') no-repeat center center;
+      &:hover {
+        background-color: darken(#0071a1, 10%);
+      }
+    }
     &#sharePinterest {
       background: #b9252c url('#{$imgs-path}pinterestIcon.svg') no-repeat center center;
       &:hover {

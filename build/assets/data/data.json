@@ -149,7 +149,7 @@ callback({
                 {
                     "answerId": "question-4-answer-0",
                     "answer": "Yes",
-                    "value": "1",
+                    "value": "10",
                     "feedback": "Cloud services offer great convenience. But it’s worth checking a couple of things to ensure this isn’t at the expense of your data security.",
                     "endscreen": "Take a look at the security arrangements your provider has in place. Start by checking they are certified as ISO 27001 compliant – ISO 27001 is a set of international standards on information security management. Second, check that your cloud computing arrangements are in line with your Data Protection Act responsibilities. Broadly speaking, services based in the European Economic Area and US-based services that are Safe Harbor accredited can be used; services in other countries potentially shouldn’t be.",
                     "cstitle": null,
@@ -158,7 +158,7 @@ callback({
                 {
                     "answerId": "question-4-answer-1",
                     "answer": "No",
-                    "value": "5",
+                    "value": "1",
                     "feedback": "Cloud computing has been one of the biggest trends in technology over the past few years. Even if you don’t use it yet, the chances are you will in the future, so it’s worth getting familiar with some of the things to think about when making the switch.",
                     "endscreen": "Cloud computing offers a number of benefits – not least the potential for easier collaboration. When choosing a cloud computing provider, it’s worth checking the security arrangements they have in place and it’s best to stick to a reputable provider. It’s also worth thinking about your Data Protection Act responsibilities. Broadly speaking, services based in the European Economic Area and US-based services that are Safe Harbor accredited can be used; services in other countries potentially shouldn’t be.",
                     "cstitle": null,
@@ -167,7 +167,7 @@ callback({
                 {
                     "answerId": "question-4-answer-2",
                     "answer": "Not sure",
-                    "value": "10",
+                    "value": "5",
                     "feedback": "Broadly speaking, cloud computing refers to use of either internet-based software or online storage space. Your company might have a use for it, so it’s worth getting familiar with some of the things you’ll need to consider when making the switch.",
                     "endscreen": "Cloud computing offers a number of benefits – not least the potential for easier collaboration. When choosing a cloud computing provider, it’s worth checking the security arrangements they have in place and it’s best to stick to a reputable provider. It’s also worth thinking about your Data Protection Act responsibilities. Broadly speaking, services based in the European Economic Area and US-based services that are Safe Harbor accredited can be used; services in other countries potentially shouldn’t be.",
                     "cstitle": null,
@@ -236,6 +236,7 @@ callback({
         "sharePageImg": "gu-logo-fallback.png",
         "pageUrl": "http://labs.theguardian.com/2015/aug/silent-circle-interactive/",
         "twitterBaseUrl": "https://twitter.com/home?status=",
-        "facebookBaseUrl": "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link="
+        "facebookBaseUrl": "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=",
+        "linkedinBaseUrl": "https://www.linkedin.com/shareArticle"
     }
 });
