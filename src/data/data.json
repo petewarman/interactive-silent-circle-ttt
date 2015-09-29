@@ -232,9 +232,9 @@ callback({
         }
     },
     "share": {
-        "sharePageMessage": "Oooh! The Take the Test page!!!",
-        "sharePageImg": "gu-logo-fallback.png",
-        "pageUrl": "http://labs.theguardian.com/2015/aug/silent-circle-interactive/",
+        "sharePageMessage": "How secure is your business? Take the test",
+        "sharePageImg": "share.jpg",
+        "pageUrl": "http://www.theguardian.com/media-network/ng-interactive/2015/sep/29/how-secure-is-your-business-test",
         "twitterBaseUrl": "https://twitter.com/home?status=",
         "facebookBaseUrl": "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=",
         "linkedinBaseUrl": "https://www.linkedin.com/shareArticle"
