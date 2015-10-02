@@ -21,13 +21,13 @@ define( [
 //      new ResizeEvent( this.mediator );
 
       // Check if in app or on website
-      this.isWeb = true;
-      if ( typeof window.guardian === "undefined" ) {
-        this.isWeb = false;
+      this.isLocal = false;
+      if ( window.location.hostname === 'localhost' ) {
+        this.isLocal = true;
       }
 
       // Paths
-      this.rootPath = this.isWeb ? '{{remote-root}}' : '{{local-root}}';
+      this.rootPath = this.isLocal ? '{{local-root}}' : '{{remote-root}}';
       this.assetsPath = this.rootPath + 'assets/';
 
       // Touch?
@@ -55,7 +55,7 @@ define( [
       var appView = new AppView( {
         el: this.el,
 //        mediator: this.mediator,
-        isWeb: this.isWeb,
+        isWeb: true,
         data: data,
         touch: this.isTouch,
         assetsPath: this.assetsPath
