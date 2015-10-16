@@ -256,7 +256,6 @@ define( [
 
 //    onResize: function ( e ) {
 //
-//
 //    }
 
   } );

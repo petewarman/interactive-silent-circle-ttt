@@ -54,7 +54,7 @@ define( [
 
       var appView = new AppView( {
         el: this.el,
-//        mediator: this.mediator,
+        // mediator: this.mediator,
         isWeb: true,
         data: data,
         touch: this.isTouch,

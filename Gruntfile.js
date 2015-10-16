@@ -83,7 +83,10 @@ module.exports = function ( grunt ) {
         tasks: ['copy:data'],
         options: {
           spawn: false,
-          livereload: true
+          livereload: {
+            host: 'localhost',
+            port: pkg.config.livereloadPort,
+          }
         }
       },
 
@@ -97,7 +100,10 @@ module.exports = function ( grunt ) {
         tasks: ['requirejs', 'replace'],
         options: {
           spawn: false,
-          livereload: true
+          livereload: {
+            host: 'localhost',
+            port: pkg.config.livereloadPort,
+          }
         }
       },
 
@@ -106,7 +112,10 @@ module.exports = function ( grunt ) {
         tasks: ['copy', 'replace'],
         options: {
           spawn: false,
-          livereload: true
+          livereload: {
+            host: 'localhost',
+            port: pkg.config.livereloadPort,
+          }
         }
       },
 
@@ -115,7 +124,10 @@ module.exports = function ( grunt ) {
         tasks: ['sass', 'autoprefixer', 'replace'],
         options: {
           spawn: false,
-          livereload: true
+          livereload: {
+            host: 'localhost',
+            port: pkg.config.livereloadPort,
+          }
         }
       }
     },
